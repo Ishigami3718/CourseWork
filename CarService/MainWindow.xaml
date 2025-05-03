@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="600">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Замовлення"/>
+            <MenuItem Header="Клієнти"/>
+            <MenuItem Header="Послуги"/>
+            <MenuItem Header="Працівники"/>
+            <MenuItem Header="Склад"/>
+        </Menu>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
 
     </Grid>
+    </DockPanel>
 </Window>
