@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,13 @@ namespace CarService
         public MainWindow()
         {
             InitializeComponent();
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Ім'я", typeof(string));
+            data.Columns.Add("Машина", typeof(string));
+            data.Columns.Add("Ціна", typeof(double));
+            data.Columns.Add("Дата", typeof(DateTime));
+            Data.Navigate(new Page1(data));
         }
     }
 }

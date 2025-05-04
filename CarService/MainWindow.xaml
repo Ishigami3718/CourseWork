@@ -42,7 +42,7 @@
                     <RowDefinition Height="1.4*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0"/>
+                <Frame x:Name="Data" Grid.Row="0" Grid.Column="0"/>
                 <Frame Grid.Row="1" Grid.Column="0"/>
             </Grid>
             <Frame x:Name="Frame" Grid.Row="0" Grid.Column="0"/>
