@@ -14,14 +14,40 @@
             <MenuItem Header="Працівники"/>
             <MenuItem Header="Склад"/>
         </Menu>
-    <Grid>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Width="25">
+                <MenuItem.Icon>
+                    <Image Source="Images/Adding.png" Stretch="Uniform"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Width="25">
+                <MenuItem.Icon>
+                    <Image Source="Images/Sorting.png" Height="25" Width="15"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Width="25">
+                <MenuItem.Icon>
+                    <Image Source="Images/Deleting.png" Height="25" Width="15"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+        <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition/>
 
         </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0" Grid.Column="0"/>
+                <Frame Grid.Row="1" Grid.Column="0"/>
+            </Grid>
+            <Frame x:Name="Frame" Grid.Row="0" Grid.Column="0"/>
 
 
-    </Grid>
+        </Grid>
     </DockPanel>
 </Window>
