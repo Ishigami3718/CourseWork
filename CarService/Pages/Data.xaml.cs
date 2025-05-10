@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,25 @@ namespace CarService.Pages
     /// </summary>
     public partial class Page1 : Page
     {
+        public static void AddRow(RequestDTO req,DataTable dt)
+        {
+            dt.Rows.Add(req.Id,"Ros","BMW",req.Price,req.Date);
+        }
+
+        public static new void AddRow(RequestDTO req, ObservableCollection<RequestDTO> requests)
+        {
+            requests.Add(req);
+        }
         public Page1(DataTable dt)
         {
             InitializeComponent();
             DataGrid.ItemsSource = dt.DefaultView;
+        }
+
+        public Page1(ObservableCollection<RequestDTO> requests)
+        {
+            InitializeComponent();
+            DataGrid.ItemsSource = requests;
         }
     }
 }

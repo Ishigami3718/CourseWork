@@ -14,23 +14,24 @@
             <MenuItem Header="Працівники"/>
             <MenuItem Header="Склад"/>
         </Menu>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Width="25">
-                <MenuItem.Icon>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Width="25" ToolTip="Додати">
                     <Image Source="Images/Adding.png" Stretch="Uniform"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Width="25">
-                <MenuItem.Icon>
+                </Button>
+                <Button Width="25" ToolTip="Сортувати">
                     <Image Source="Images/Sorting.png" Height="25" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Width="25">
-                <MenuItem.Icon>
+                </Button>
+                <Button Width="25" ToolTip="Видалити">
                     <Image Source="Images/Deleting.png" Height="25" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
+                </Button>
+                <Button Width="25" ToolTip="Редагувати">
+                    <Image Source="Images/Redacting.png" Height="25" Width="15"/>
+                </Button>
+                <TextBox Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
+             Text="Введіть для пошуку"/>
+            </ToolBar>
+        </ToolBarTray>
         <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"/>
@@ -42,8 +43,8 @@
                     <RowDefinition Height="1.4*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Frame x:Name="Data" Grid.Row="0" Grid.Column="0"/>
-                <Frame Grid.Row="1" Grid.Column="0"/>
+                <Frame x:Name="Data" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                <Frame Grid.Row="1" Grid.Column="0" Margin="5"/>
             </Grid>
             <Frame x:Name="Frame" Grid.Row="0" Grid.Column="0"/>
 
