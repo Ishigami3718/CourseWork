@@ -44,9 +44,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Frame x:Name="Data" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                <Frame Grid.Row="1" Grid.Column="0" Margin="5"/>
+                <Frame x:Name="AddData" Grid.Row="1" Grid.Column="0" Margin="5"/>
             </Grid>
-            <Frame x:Name="Frame" Grid.Row="0" Grid.Column="0"/>
+            <Frame Grid.Row="0" Grid.Column="0"/>
 
 
         </Grid>

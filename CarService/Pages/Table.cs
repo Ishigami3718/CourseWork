@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarService.ClassServices;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace CarService.Pages
 {
     public class Table
     {
+        //Requests table
 
         public static DataTable Requsts()
         {
@@ -23,8 +25,7 @@ namespace CarService.Pages
 
         public static void AddRow(RequestDTO req, DataTable dt)
         {
-            //TODO Add constructors to client classes!
-            dt.Rows.Add(req.Id, req.Client, req.Client.Car, req.Price, req.Date);
+            dt.Rows.Add(req.Id, ClientCreator.CreateClient(req.Client), req.Client.Car, req.Price, req.Date);
         }
     }
 }

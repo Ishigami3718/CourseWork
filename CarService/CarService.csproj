@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClassServices\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Images\Adding.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

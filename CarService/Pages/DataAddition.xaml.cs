@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +18,11 @@ namespace CarService.Pages
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Data : Page
+    public partial class DataAddition : Page
     {
-        //Requests table
-        
-        public Data(DataTable dt)
+        public DataAddition()
         {
             InitializeComponent();
-            DataGrid.ItemsSource = dt.DefaultView;
         }
     }
 }

@@ -27,12 +27,12 @@ namespace CarService
         {
             InitializeComponent();
             mainData =Pages.Table.Requsts();
-            Data.Navigate(new Page1(mainData));
+            Data.Navigate(new Data(mainData));
              for(int i = 0; i < 10; i++)
              {
                  Pages.Table.AddRow(new RequestDTO { Client=new ClientDTO(),Date=new DateTime(2025,4,12),Id=i+1,Price=1500},mainData);
              }
-
+             AddData.Navigate(new DataAddition());
         }
     }
 }
