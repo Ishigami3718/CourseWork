@@ -8,8 +8,25 @@ namespace CarService.Clients
 {
     public class Client:IClient
     {
-         int id;
-         string name;
-         Car car;
+         protected int id;
+         protected string name;
+         protected Car car;
+
+        public ClientDTO ToDTO()
+        {
+            return new ClientDTO
+            {
+                Id = id,
+                Name = name,
+                Car = car
+            };
+        }
+
+        public Client(ClientDTO dto)
+        {
+            id = dto.Id;
+            name = dto.Name;
+            car = dto.Car;
+        }
     }
 }

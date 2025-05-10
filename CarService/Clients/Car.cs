@@ -11,5 +11,23 @@ namespace CarService.Clients
         string mark, model, licensePlate;
         int run;
 
+        public CarDTO ToDTO()
+        {
+            return new CarDTO()
+            {
+                Mark = mark,
+                Model = model,
+                LicensePlate = licensePlate,
+                Run = run
+            };
+        }
+
+        public Car(CarDTO dto)
+        {
+            mark = dto.Mark;
+            model = dto.Model;
+            licensePlate = dto.LicensePlate;
+            run = dto.Run;
+        }
     }
 }
