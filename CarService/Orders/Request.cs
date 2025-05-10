@@ -8,5 +8,10 @@ namespace CarService.Orders
 {
     public class Request
     {
+        IClient client;
+        int id;
+        DateOnly date;
+        List<Service> services;
+        double totalPrice;
     }
 }

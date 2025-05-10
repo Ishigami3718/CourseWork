@@ -8,5 +8,8 @@ namespace CarService.Clients
 {
     public class Client:IClient
     {
+         int id;
+         string name;
+         Car car;
     }
 }

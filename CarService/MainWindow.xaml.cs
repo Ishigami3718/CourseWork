@@ -22,14 +22,15 @@ namespace CarService
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataTable mainData;
         public MainWindow()
         {
             InitializeComponent();
-            DataTable data =Pages.Table.Requsts();
-            Data.Navigate(new Page1(data));
+            mainData =Pages.Table.Requsts();
+            Data.Navigate(new Page1(mainData));
              for(int i = 0; i < 10; i++)
              {
-                 data.Rows.Add(i+1,"Ros","Car",1500,new DateTime(2015,12,12).Date);
+                 Pages.Table.AddRow(new RequestDTO { Client=new ClientDTO(),Date=new DateTime(2025,4,12),Id=i+1,Price=1500},mainData);
              }
 
         }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarService.Clients
 {
-    public class RegularClient:Client,IClient
+    public class Car
     {
-        int transmission;
+        string mark, model, licensePlate;
+        int run;
+
     }
 }

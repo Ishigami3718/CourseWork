@@ -12,7 +12,7 @@ namespace CarService.Orders
         [DisplayName("Id")]
         public int Id { get; set; }
         [DisplayName("Клієнт")]
-        public IClient Client { get; set; }
+        public ClientDTO Client { get; set; }
         [DisplayName("Дата")]
         public DateTime Date { get; set; }
         [DisplayName("Ціна")]

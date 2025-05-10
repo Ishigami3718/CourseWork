@@ -11,5 +11,9 @@ namespace CarService.Clients
         public string Id { get; set; }
         public string Name { get; set; }
 
+        public Car Car { get; set; }
+
+        public int? Transmission {  get; set; }
+
     }
 }
