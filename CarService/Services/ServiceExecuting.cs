@@ -36,7 +36,7 @@ namespace CarService.Services
         {
             service = new Service(dto.Service);
             details = dto.Details.Select(i=>new Detail(i)).ToList();
-            workers = dto.WorkerDTOs.Select(i => new Worker(i) as IWorker).ToList();
+            workers = dto.Workers.Select(i => new Worker(i) as IWorker).ToList();
         }
     }
 }
