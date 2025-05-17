@@ -26,7 +26,6 @@ namespace CarService.Pages
         {
             InitializeComponent();
             Services = requestsDTO.Services;
-
             DataContext = this;
         }
     }

@@ -28,8 +28,12 @@ namespace CarService
         {
             InitializeComponent();
             mainData =Pages.Table.Requsts();
-            requestDTOs.Add(new RequestDTO { Client = new ClientDTO(), Date = new DateOnly(2025, 4, 12), Id =  1, Price = 1500 });
+            List<ServiceExecutingDTO> ser = new List<ServiceExecutingDTO>();
+            ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
+            RequestDTO r = new RequestDTO { Client = new ClientDTO(), Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser };
+            requestDTOs.Add(r);
             Data.Navigate(new Data(requestDTOs));
+            AddData.Navigate(new DataAddition(r));
              /*for(int i = 0; i < 10; i++)
              {
                  Pages.Table.AddRow(new RequestDTO { Client=new ClientDTO(),Date=new DateTime(2025,4,12),Id=i+1,Price=1500},mainData);

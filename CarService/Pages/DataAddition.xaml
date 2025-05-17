@@ -15,6 +15,22 @@
             <MenuItem x:Name="Second" Header="Товари" IsEnabled="False"/>
             </Menu>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+                  VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Service.Price}"/>
+                    <DataGridTextColumn Header="Сума з ПДВ" Binding="{Binding Path=TotalPrice}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid Grid.Column="1" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+                  VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False">
+                
+            </DataGrid>
         </Grid>
     </DockPanel>
 
