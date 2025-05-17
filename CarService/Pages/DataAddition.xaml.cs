@@ -20,9 +20,14 @@ namespace CarService.Pages
     /// </summary>
     public partial class DataAddition : Page
     {
-        public DataAddition()
+       // public List<ServiceExecutingDTO> Requests { get; set; }
+        public List<ServiceExecutingDTO> Services { get; set; }
+        public DataAddition(RequestDTO requestsDTO)
         {
             InitializeComponent();
+            Services = requestsDTO.Services;
+
+            DataContext = this;
         }
     }
 }

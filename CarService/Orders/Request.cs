@@ -11,7 +11,7 @@ namespace CarService.Orders
         IClient client;
         int id;
         DateOnly date;
-        List<Service> services;
+        List<ServiceExecuting> services;
         double totalPrice;
 
         public Request(RequestDTO dto)
@@ -19,7 +19,7 @@ namespace CarService.Orders
             client = ClassCreator.CreateClient(dto.Client);
             id = dto.Id;
             date = dto.Date;
-            services = dto.Services;
+            services = dto.Services.Select(i=>new ServiceExecuting(i)).ToList();
             totalPrice = dto.Price;
         }
     }

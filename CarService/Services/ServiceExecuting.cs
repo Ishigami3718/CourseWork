@@ -28,7 +28,15 @@ namespace CarService.Services
         public void SetWorker(WorkerDTO dto,double quota)
         {
             IWorker worker = ClassCreator.CreateWorker(dto);
+            worker.Quota = quota;
             workers.Add(worker);
+        }
+
+        public ServiceExecuting(ServiceExecutingDTO dto)
+        {
+            service = new Service(dto.Service);
+            details = dto.Details.Select(i=>new Detail(i)).ToList();
+            workers = dto.WorkerDTOs.Select(i => new Worker(i) as IWorker).ToList();
         }
     }
 }

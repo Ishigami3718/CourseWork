@@ -8,5 +8,9 @@ namespace CarService.Workers
 {
     public class WorkerDTO
     {
+        public string Name {  get; set; }
+        public double Salary {  get; set; }
+
+        public double? Quota {  get; set; }
     }
 }

@@ -26,6 +26,12 @@ namespace CarService.Services
         public ServiceDTO ToDto()
         {
             return new ServiceDTO { Name = Name, Price = Price };
+        }
+        public Service(ServiceDTO dto)
+        {
+            name = dto.Name;
+            price = dto.Price;
+        }
 
     }
 }

@@ -16,5 +16,13 @@ namespace CarService.Storage
         {
             return new DetailDTO { Count = count, Model = model, Price = price, Name = name, Value = value };
         }
+        public Detail(DetailDTO dto)
+        {
+            name = dto.Name;
+            model = dto.Model;
+            price = dto.Price;
+            count = dto.Count;
+            value = dto.Value;
+        }
     }
 }

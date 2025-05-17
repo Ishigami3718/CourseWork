@@ -17,7 +17,7 @@ namespace CarService.Orders
         [DisplayName("Дата")]
         public DateOnly Date { get; set; }
 
-        public List<Service> Services { get; set; }
+        public List<ServiceExecutingDTO> Services { get; set; }
         [DisplayName("Ціна")]
         public double Price {  get; set; }
     }

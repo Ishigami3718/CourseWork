@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarService.Workers
 {
-    public class Worker
+    public class Worker:IWorker
     {
         string name;
         double salary;
@@ -15,12 +15,12 @@ namespace CarService.Workers
         public double Quota { get { return quota; } set { quota = value; } }
         public Worker(WorkerDTO dto)
         {
-            //TODO Fill constructor
+            name = dto.Name;
+            salary = dto.Salary;
         }
         public WorkerDTO ToDto()
         {
-            //TODO Fill meth
-            return new WorkerDTO { };
+            return new WorkerDTO {Name=name,Salary=salary};
         }
     }
 }

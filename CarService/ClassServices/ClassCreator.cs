@@ -17,7 +17,7 @@ namespace CarService.ClassServices
 
         public static IWorker CreateWorker(WorkerDTO dto)
         {
-            return new Worker(dto);
+            return (IWorker)new Worker(dto);
         }
     }
 }
