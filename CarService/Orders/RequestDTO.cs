@@ -20,5 +20,7 @@ namespace CarService.Orders
         public List<ServiceExecutingDTO> Services { get; set; }
         [DisplayName("Ціна")]
         public double Price {  get; set; }
+
+        public List<WorkerDTO> Workers { get; set; }
     }
 }

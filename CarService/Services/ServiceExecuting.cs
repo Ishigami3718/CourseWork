@@ -11,7 +11,7 @@ namespace CarService.Services
         Service service;
         List<Detail> details;
         const double vat = 0.2;
-        List<IWorker> workers = new List<IWorker>();
+        
         double totalPrice=>CalcPrice();
 
         private double CalcPrice()
@@ -25,18 +25,16 @@ namespace CarService.Services
             return (detailPrice+service.Price)*(1+vat);
         }
 
-        public void SetWorker(WorkerDTO dto,double quota)
-        {
-            IWorker worker = ClassCreator.CreateWorker(dto);
-            worker.Quota = quota;
-            workers.Add(worker);
-        }
 
         public ServiceExecuting(ServiceExecutingDTO dto)
         {
             service = new Service(dto.Service);
             details = dto.Details.Select(i=>new Detail(i)).ToList();
-            workers = dto.Workers.Select(i => new Worker(i) as IWorker).ToList();
+        }
+
+        public ServiceExecutingDTO ToDto()
+        {
+            return new ServiceExecutingDTO { Details = details.Select(i => i.ToDto()).ToList(), Service = service.ToDto(), TotalPrice = totalPrice };
         }
     }
 }
