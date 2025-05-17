@@ -8,5 +8,8 @@ namespace CarService.Workers
 {
     public class Worker
     {
+        string name;
+        double salary;
+        double? quota;
     }
 }

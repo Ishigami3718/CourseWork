@@ -9,11 +9,12 @@ namespace CarService.Services
     public class Service
     {
         string name;
-        int price;
-        public Service(string name, int price) { this.name = name; this.price = price; }
+        double price;
+        
+        public Service(string name, double price) { this.name = name; this.price = price; }
 
         public string Name {  get { return name; } }
-        public int Price 
+        public double Price 
         { 
             get {  return price; } 
             set 
@@ -21,6 +22,10 @@ namespace CarService.Services
                 if(price>0) price = value;
             } 
         }
+
+        public ServiceDTO ToDto()
+        {
+            return new ServiceDTO { Name = Name, Price = Price };
 
     }
 }

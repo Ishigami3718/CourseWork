@@ -11,5 +11,10 @@ namespace CarService.Storage
         string name, model;
         int price,count;
         string value;
+
+        public DetailDTO ToDto()
+        {
+            return new DetailDTO { Count = count, Model = model, Price = price, Name = name, Value = value };
+        }
     }
 }
