@@ -9,9 +9,9 @@ namespace CarService.Services
     public class ServiceExecuting
     {
         Service service;
-        List<Detail>? details;
+        List<Detail> details;
         const double vat = 0.2;
-        IWorker worker;
+        List<IWorker> workers = new List<IWorker>();
         double totalPrice=>CalcPrice();
 
         private double CalcPrice()
@@ -23,6 +23,12 @@ namespace CarService.Services
                 detailPrice += currDetail.Price*currDetail.Count;
             }
             return (detailPrice+service.Price)*(1+vat);
+        }
+
+        public void SetWorker(WorkerDTO dto,double quota)
+        {
+            IWorker worker = ClassCreator.CreateWorker(dto);
+            workers.Add(worker);
         }
     }
 }

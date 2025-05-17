@@ -16,7 +16,7 @@ namespace CarService.Orders
 
         public Request(RequestDTO dto)
         {
-            client = ClientCreator.CreateClient(dto.Client);
+            client = ClassCreator.CreateClient(dto.Client);
             id = dto.Id;
             date = dto.Date;
             services = dto.Services;

@@ -10,6 +10,17 @@ namespace CarService.Workers
     {
         string name;
         double salary;
-        double? quota;
+        double quota;
+
+        public double Quota { get { return quota; } set { quota = value; } }
+        public Worker(WorkerDTO dto)
+        {
+            //TODO Fill constructor
+        }
+        public WorkerDTO ToDto()
+        {
+            //TODO Fill meth
+            return new WorkerDTO { };
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace CarService.Pages
 
         public static void AddRow(RequestDTO req, DataTable dt)
         {
-            dt.Rows.Add(req.Id, ClientCreator.CreateClient(req.Client), req.Client.Car, req.Price, req.Date.ToString("dd.MM.yyyy"));
+            dt.Rows.Add(req.Id, ClassCreator.CreateClient(req.Client), req.Client.Car, req.Price, req.Date.ToString("dd.MM.yyyy"));
         }
     }
 }
