@@ -23,16 +23,18 @@ namespace CarService
     public partial class MainWindow : Window
     {
         DataTable mainData;
+        List<RequestDTO> requestDTOs = new List<RequestDTO>();
         public MainWindow()
         {
             InitializeComponent();
             mainData =Pages.Table.Requsts();
-            Data.Navigate(new Data(mainData));
-             for(int i = 0; i < 10; i++)
+            requestDTOs.Add(new RequestDTO { Client = new ClientDTO(), Date = new DateOnly(2025, 4, 12), Id =  1, Price = 1500 });
+            Data.Navigate(new Data(requestDTOs));
+             /*for(int i = 0; i < 10; i++)
              {
                  Pages.Table.AddRow(new RequestDTO { Client=new ClientDTO(),Date=new DateTime(2025,4,12),Id=i+1,Price=1500},mainData);
              }
-             AddData.Navigate(new DataAddition());
+             AddData.Navigate(new DataAddition());*/
         }
     }
 }

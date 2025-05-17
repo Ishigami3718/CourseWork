@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Images\Adding.png" />
+    <None Remove="Images\AppIcon.png" />
     <None Remove="Images\Deleting.png" />
     <None Remove="Images\Redacting.png" />
     <None Remove="Images\Sorting.png" />
@@ -16,6 +17,9 @@
 
   <ItemGroup>
     <Content Include="Images\Adding.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\AppIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Deleting.png">

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600">
+        Title="Система обліку СТО" Height="350" Width="600"
+        Icon="Images/AppIcon.png">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Замовлення"/>

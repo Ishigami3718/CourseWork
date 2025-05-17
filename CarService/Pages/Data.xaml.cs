@@ -23,11 +23,14 @@ namespace CarService.Pages
     public partial class Data : Page
     {
         //Requests table
+        public List<RequestDTO> Requests { get; set; }
         
-        public Data(DataTable dt)
+        public Data(List<RequestDTO> requestsDTO)
         {
             InitializeComponent();
-            DataGrid.ItemsSource = dt.DefaultView;
+            //Requests = requestsDTO.Select(i=>new Request(i)).ToList();
+            Requests= requestsDTO;
+            DataContext = this;
         }
     }
 }

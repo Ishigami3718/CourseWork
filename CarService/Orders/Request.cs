@@ -13,5 +13,15 @@ namespace CarService.Orders
         DateOnly date;
         List<Service> services;
         double totalPrice;
+
+        public Request(RequestDTO dto)
+        {
+            client = ClientCreator.CreateClient(dto.Client);
+            id = dto.Id;
+            date = dto.Date;
+            services = dto.Services;
+            totalPrice = dto.Price;
+        }
     }
+
 }

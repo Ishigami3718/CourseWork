@@ -10,7 +10,16 @@
     HorizontalAlignment="Stretch">
 
     <Grid>
-        <DataGrid x:Name="DataGrid" ColumnWidth="*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CanUserSortColumns="False"/>
+        <DataGrid x:Name="DataGrid" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+                  VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Requests}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Клієнт" Binding="{Binding Path=ClientName}"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}"/>
+                <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

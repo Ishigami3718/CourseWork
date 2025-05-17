@@ -11,8 +11,8 @@
     
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem x:Name="First" Header="Роботи"/>
-            <MenuItem x:Name="Second" Header="Товари"/>
+                <MenuItem x:Name="First" Header="Роботи" IsEnabled="False"/>
+            <MenuItem x:Name="Second" Header="Товари" IsEnabled="False"/>
             </Menu>
         <Grid>
         </Grid>

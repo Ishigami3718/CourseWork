@@ -19,13 +19,13 @@ namespace CarService.Pages
             data.Columns.Add("Ім'я", typeof(IClient)).ReadOnly = true;
             data.Columns.Add("Машина", typeof(Car)).ReadOnly = true;
             data.Columns.Add("Ціна", typeof(double)).ReadOnly = true;
-            data.Columns.Add("Дата", typeof(DateTime)).ReadOnly = true;
+            data.Columns.Add("Дата", typeof(string)).ReadOnly = true;
             return data;
         }
 
         public static void AddRow(RequestDTO req, DataTable dt)
         {
-            dt.Rows.Add(req.Id, ClientCreator.CreateClient(req.Client), req.Client.Car, req.Price, req.Date);
+            dt.Rows.Add(req.Id, ClientCreator.CreateClient(req.Client), req.Client.Car, req.Price, req.Date.ToString("dd.MM.yyyy"));
         }
     }
 }
