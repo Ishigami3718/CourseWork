@@ -10,19 +10,9 @@ namespace CarService.Services
     {
         Service service;
         List<IDetail> details;
-        const double vat = 0.2;
         
-        double totalPrice=>CalcPrice();
+        double totalPrice=>Calculator.CalcPrice(service,details);
 
-        private double CalcPrice()
-        {
-            double detailPrice = 0;
-            foreach(var i in details)
-            {
-                detailPrice += i.Price*i.Count;
-            }
-            return (detailPrice+service.Price)*(1+vat);
-        }
 
 
         public ServiceExecuting(ServiceExecutingDTO dto)
