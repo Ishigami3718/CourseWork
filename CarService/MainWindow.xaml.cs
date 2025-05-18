@@ -43,7 +43,7 @@ namespace CarService
 
         private void AddObject_Click(object sender, RoutedEventArgs e)
         {
-
+            new Window1().ShowDialog();
         }
     }
 }
