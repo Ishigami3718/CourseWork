@@ -18,11 +18,12 @@
             <TabControl Grid.Column="0">
                 <TabItem Header="Роботи">
                     <DataGrid Grid.Column="0" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
-      VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services}">
+      VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services}" HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}"/>
-                            <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Service.Price}"/>
-                            <DataGridTextColumn Header="Сума з ПДВ" Binding="{Binding Path=TotalPrice}"/>
+                            <DataGridTextColumn Width="200" Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}"/>
+                            <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Price}"/>
+                            <DataGridTextColumn Width="100" Header="Сума з ПДВ" Binding="{Binding Path=TotalPrice}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>

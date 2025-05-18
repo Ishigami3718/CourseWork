@@ -15,5 +15,7 @@ namespace CarService.Clients
 
         public int? Transmission {  get; set; }
 
+        public double? Discount { get; set; }
+
     }
 }

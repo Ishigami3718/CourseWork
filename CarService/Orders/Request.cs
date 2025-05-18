@@ -12,7 +12,7 @@ namespace CarService.Orders
         int id;
         DateOnly date;
         List<ServiceExecuting> services;
-        double totalPrice=>CalcPrice();
+        double totalPrice => CalcPrice() * (1.0 - client.Discount);
         List<IWorker> workers = new List<IWorker>();
 
         public Request(RequestDTO dto)

@@ -17,7 +17,7 @@
         </Menu>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button Width="25" ToolTip="Додати">
+                <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddObject_Click">
                     <Image Source="Images/Adding.png" Stretch="Uniform"/>
                 </Button>
                 <Button Width="25" ToolTip="Сортувати">

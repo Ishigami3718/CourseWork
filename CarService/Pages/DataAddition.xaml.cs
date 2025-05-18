@@ -22,10 +22,12 @@ namespace CarService.Pages
     {
        // public List<ServiceExecutingDTO> Requests { get; set; }
         public List<ServiceExecutingDTO> Services { get; set; }
+        public List<WorkerDTO> Workers { get; set; }
         public DataAddition(RequestDTO requestsDTO)
         {
             InitializeComponent();
             Services = requestsDTO.Services;
+            Workers = requestsDTO.Workers;
             DataContext = this;
         }
     }

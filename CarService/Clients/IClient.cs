@@ -8,5 +8,6 @@ namespace CarService.Clients
 {
     public interface IClient
     {
+        public double Discount {  get; }
     }
 }

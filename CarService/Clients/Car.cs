@@ -10,6 +10,7 @@ namespace CarService.Clients
     {
         string mark, model, licensePlate;
         int run;
+        DateOnly registerDate;
 
         public CarDTO ToDTO()
         {

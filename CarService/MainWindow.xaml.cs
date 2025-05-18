@@ -22,15 +22,15 @@ namespace CarService
     /// </summary>
     public partial class MainWindow : Window
     {
-        DataTable mainData;
         List<RequestDTO> requestDTOs = new List<RequestDTO>();
         public MainWindow()
         {
             InitializeComponent();
-            mainData =Pages.Table.Requsts();
             List<ServiceExecutingDTO> ser = new List<ServiceExecutingDTO>();
             ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
-            RequestDTO r = new RequestDTO { Client = new ClientDTO(), Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser };
+            RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
+                Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser,
+                Workers=new List<WorkerDTO>() { new WorkerDTO() {Name="Kalpas Sidorov",Quota=1.0} } };
             requestDTOs.Add(r);
             Data.Navigate(new Data(requestDTOs));
             AddData.Navigate(new DataAddition(r));
@@ -39,6 +39,11 @@ namespace CarService
                  Pages.Table.AddRow(new RequestDTO { Client=new ClientDTO(),Date=new DateTime(2025,4,12),Id=i+1,Price=1500},mainData);
              }
              AddData.Navigate(new DataAddition());*/
+        }
+
+        private void AddObject_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

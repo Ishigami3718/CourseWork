@@ -12,6 +12,8 @@ namespace CarService.Clients
          protected string name;
          protected Car car;
 
+        public virtual double Discount => 0;
+
         public ClientDTO ToDTO()
         {
             return new ClientDTO

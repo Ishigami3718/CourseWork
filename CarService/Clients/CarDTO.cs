@@ -13,6 +13,6 @@ namespace CarService.Clients
         public string LicensePlate {  get; set; }
         public int Run {  get; set; }
 
-
+        public DateOnly RegisterDate { get; set; }
     }
 }
