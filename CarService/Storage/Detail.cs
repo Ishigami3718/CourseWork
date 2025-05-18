@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace CarService.Storage
 {
-    public class Detail
+    public class Detail:IDetail
     {
         string name, model;
-        int price,count;
+        double price,count;
         string value;
+
+        public double Price => price;
+        public double Count => count;
 
         public DetailDTO ToDto()
         {

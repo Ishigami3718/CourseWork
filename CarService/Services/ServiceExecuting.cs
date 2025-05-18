@@ -9,7 +9,7 @@ namespace CarService.Services
     public class ServiceExecuting
     {
         Service service;
-        List<Detail> details;
+        List<IDetail> details;
         const double vat = 0.2;
         
         double totalPrice=>CalcPrice();
@@ -19,8 +19,7 @@ namespace CarService.Services
             double detailPrice = 0;
             foreach(var i in details)
             {
-                DetailDTO currDetail = i.ToDto();
-                detailPrice += currDetail.Price*currDetail.Count;
+                detailPrice += i.Price*i.Count;
             }
             return (detailPrice+service.Price)*(1+vat);
         }
@@ -29,12 +28,12 @@ namespace CarService.Services
         public ServiceExecuting(ServiceExecutingDTO dto)
         {
             service = new Service(dto.Service);
-            details = dto.Details.Select(i=>new Detail(i)).ToList();
+            details = dto.Details.Select(i=>ClassCreator.CreateDetail(i)).ToList();
         }
 
         public ServiceExecutingDTO ToDto()
         {
-            return new ServiceExecutingDTO { Details = details.Select(i => i.ToDto()).ToList(), Service = service.ToDto(), TotalPrice = totalPrice };
+            return new ServiceExecutingDTO { Details = details.Select(i => ((Detail)i).ToDto()).ToList(), Service = service.ToDto(), TotalPrice = totalPrice };
         }
     }
 }
