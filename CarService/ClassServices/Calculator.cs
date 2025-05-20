@@ -24,7 +24,7 @@ namespace CarService.ClassServices
         public static double CalcFullPrice(List<ServiceExecuting> services,IClient client)
         {
             double price = 0;
-            foreach (ServiceExecuting service in services) price += service.ToDto().TotalPrice;
+            foreach (ServiceExecuting service in services) price += service.TotalPrice;
             return price * (1.0 - client.Discount);
         }
     }

@@ -13,6 +13,8 @@ namespace CarService.Services
         
         double totalPrice;
 
+        public double TotalPrice { get { return totalPrice; } }
+
 
         public ServiceExecuting(Service service, List<IDetail> details,double totalPrice)
         {
