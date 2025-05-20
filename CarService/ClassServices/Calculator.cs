@@ -20,5 +20,12 @@ namespace CarService.ClassServices
             }
             return (detailPrice + service.Price) * (1 + vat);
         }
+
+        public static double CalcFullPrice(List<ServiceExecuting> services,IClient client)
+        {
+            double price = 0;
+            foreach (ServiceExecuting service in services) price += service.ToDto().TotalPrice;
+            return price * (1.0 - client.Discount);
+        }
     }
 }

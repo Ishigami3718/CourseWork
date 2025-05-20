@@ -11,9 +11,15 @@ namespace CarService.Services
         Service service;
         List<IDetail> details;
         
-        double totalPrice=>Calculator.CalcPrice(service,details);
+        double totalPrice;
 
 
+        public ServiceExecuting(Service service, List<IDetail> details,double totalPrice)
+        {
+            this.service = service;
+            this.details = details;
+            this.totalPrice = totalPrice;
+        }
 
         public ServiceExecuting(ServiceExecutingDTO dto)
         {

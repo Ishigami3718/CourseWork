@@ -12,8 +12,22 @@ namespace CarService.Orders
         int id;
         DateOnly date;
         List<ServiceExecuting> services;
-        double totalPrice => CalcPrice() * (1.0 - client.Discount);
+        double totalPrice;
         List<IWorker> workers = new List<IWorker>();
+
+        public IClient Client {  get { return client; } }
+        public int Id { get { return id; } }
+        public List<ServiceExecuting> Services {  get { return services; } }
+
+        public Request(IClient client, int id, DateOnly date, List<ServiceExecuting> services,double totalPrice ,List<IWorker> workers)
+        {
+            this.client = client;
+            this.id = id;
+            this.date = date;
+            this.services = services;
+            this.totalPrice = totalPrice;
+            this.workers = workers;
+        }
 
         public Request(RequestDTO dto)
         {
@@ -23,19 +37,6 @@ namespace CarService.Orders
             services = dto.Services.Select(i=>new ServiceExecuting(i)).ToList();
         }
 
-        public void SetWorker(WorkerDTO dto, double quota)
-        {
-            IWorker worker = ClassCreator.CreateWorker(dto);
-            worker.Quota = quota;
-            workers.Add(worker);
-        }
-
-        private double CalcPrice()
-        {
-            double price = 0;
-            foreach (ServiceExecuting service in services) price += service.ToDto().TotalPrice;
-            return price;
-        }
     }
 
 }
