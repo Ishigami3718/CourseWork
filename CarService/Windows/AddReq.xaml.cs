@@ -23,5 +23,15 @@ namespace CarService.Windows
         {
             InitializeComponent();
         }
+
+        private void AddService(object sender, RoutedEventArgs e)
+        {
+            new Window2().ShowDialog();
+        }
+
+        private void AddWorker(object sender, RoutedEventArgs e)
+        {
+            new AddWorker().ShowDialog();
+        }
     }
 }

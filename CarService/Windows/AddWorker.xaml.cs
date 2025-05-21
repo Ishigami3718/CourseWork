@@ -15,13 +15,12 @@ using System.Windows.Shapes;
 namespace CarService.Windows
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for AddWorker.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class AddWorker : Window
     {
-        public List<Service> Services { get; set; }
-        public List<IDetail> Details { get; set; }
-        public Window2()
+        public List<IWorker> Workers {  get; set; }
+        public AddWorker()
         {
             InitializeComponent();
         }
