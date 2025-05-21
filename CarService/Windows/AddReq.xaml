@@ -8,8 +8,8 @@
         Title="Window1" Height="450" Width="500">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.7*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="Клієнт" FontSize="16" Margin="3">
@@ -75,14 +75,18 @@ FontSize="15" Width="75"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListBox Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-                <Button Content="Додати" Grid.Column="2" Margin="5" Click="AddService"/>
+                <GroupBox Header="Роботи" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <ListBox/>
+                    </GroupBox>
+                        <Button Content="Додати" Grid.Column="2" Margin="5" Click="AddService"/>
                 <Button Grid.Row="1" Grid.Column="2" Margin="5" FontSize="14" Click="AddWorker">
                     <Button.Content>
                         <TextBlock Text="Назначити працівника" TextWrapping="Wrap"/>
                     </Button.Content>
                 </Button>
-                <ListBox Grid.Column="3" Grid.RowSpan="2"/>
+                <GroupBox Header="Працівники" Grid.Column="3" Grid.RowSpan="2">
+                    <ListBox/>
+                </GroupBox>
             </Grid>
         </GroupBox>
     </Grid>
