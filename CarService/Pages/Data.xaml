@@ -12,7 +12,7 @@
     <Grid>
         <DataGrid x:Name="DataGrid" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
                   VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False"
-                  ItemsSource="{Binding Requests}" IsReadOnly="True">
+                  ItemsSource="{Binding Requests}" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Клієнт" Binding="{Binding Path=ClientName}"/>

@@ -23,6 +23,7 @@ namespace CarService
     public partial class MainWindow : Window
     {
         static ObservableCollection<RequestDTO> requests;
+        DataAddition dataAddition;
 
         public static int LastId 
         { get 
@@ -40,9 +41,20 @@ namespace CarService
             RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
                 Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser,
                 Workers=new ObservableCollection<WorkerDTO>() { new WorkerDTO() {Name="Kalpas Sidorov",Quota=1.0} } };
+            RequestDTO r1 = new RequestDTO
+            {
+                Client = new ClientDTO() { Name = "Петренко Петро" },
+                Date = new DateOnly(2024, 7, 10),
+                Id = 2,
+                Price = 700,
+                Services = ser,
+                Workers = new ObservableCollection<WorkerDTO>() { new WorkerDTO() { Name = "Вадим Зубенко", Quota = 1.0 } }
+            };
             requests.Add(r);
+            requests.Add(r1);
             Data.Navigate(new Data(requests));
-            AddData.Navigate(new DataAddition(r));
+            dataAddition = new DataAddition();
+            AddData.Navigate(dataAddition);
         }
 
         public static void TransferRequest(RequestDTO request)
@@ -54,5 +66,9 @@ namespace CarService
             new Window1().ShowDialog();
         }
 
+        public void Update(RequestDTO request)
+        {
+            dataAddition.UpdateData(request);
+        }
     }
 }

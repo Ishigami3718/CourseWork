@@ -24,6 +24,7 @@ namespace CarService.Pages
     {
         //Requests table
         public ObservableCollection<RequestDTO> Requests { get; set; }
+        private RequestDTO selectedRequest;
         
         public Data(ObservableCollection<RequestDTO> requestsDTO)
         {
@@ -33,6 +34,9 @@ namespace CarService.Pages
             DataContext = this;
         }
 
-        public void UpdateView() => DataContext = this;
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (Application.Current.MainWindow as MainWindow).Update((RequestDTO)DataGrid.SelectedItem);
+        }
     }
 }

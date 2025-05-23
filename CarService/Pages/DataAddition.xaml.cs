@@ -31,5 +31,25 @@ namespace CarService.Pages
             Workers = requestsDTO.Workers;
             DataContext = this;
         }
+
+        public DataAddition()
+        {
+            Services = new ObservableCollection<ServiceExecutingDTO>();
+            Workers = new ObservableCollection<WorkerDTO>();
+            InitializeComponent();
+            DataContext = this;
+        }
+
+        public void UpdateData(RequestDTO dto)
+        {
+            Services.Clear();
+            foreach (var s in dto.Services)
+                Services.Add(s);
+
+            Workers.Clear();
+            foreach (var w in dto.Workers)
+                Workers.Add(w);
+            DataContext = this;
+        }
     }
 }
