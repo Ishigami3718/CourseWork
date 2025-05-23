@@ -23,6 +23,7 @@ namespace CarService
     public partial class MainWindow : Window
     {
         static ObservableCollection<RequestDTO> requests;
+        static ObservableCollection<RequestDTO> requestsSer;
         DataAddition dataAddition;
 
         public static int LastId 
@@ -55,6 +56,15 @@ namespace CarService
             Data.Navigate(new Data(requests));
             dataAddition = new DataAddition();
             AddData.Navigate(dataAddition);
+            requestsSer = new ObservableCollection<RequestDTO>(requests.Select(i => new RequestDTO
+            {
+                Client = i.Client,
+                Date = i.Date,
+                Id = i.Id,
+                Price = i.Price,
+                Services = i.Services,
+                Workers = i.Workers
+            }));
         }
 
         public static void TransferRequest(RequestDTO request)
@@ -86,5 +96,29 @@ namespace CarService
         private void ByName(object sender, RoutedEventArgs e) => SortRequests(i => i.ClientName);
         private void ByDate(object sender, RoutedEventArgs e) => SortRequests(i => i.Date);
         private void ById(object sender, RoutedEventArgs e) => SortRequests(i => i.Id);
+
+        private void StartSearching(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Search.Text = string.Empty;
+        }
+
+        private void Searching(object sender, TextChangedEventArgs e)
+        {
+            string ser = Search.Text;
+            if (ser != "Введіть для пошуку")
+            {
+                if (ser != string.Empty)
+                {
+                    List<RequestDTO> r = requests.Where(i => i.ClientName.Contains(ser)).ToList();
+                    requests.Clear();
+                    foreach (var i in r) requests.Add(i);
+                }
+                else
+                {
+                    requests.Clear();
+                    foreach (var i in requestsSer) requests.Add(i);
+                }
+            }
+        }
     }
 }

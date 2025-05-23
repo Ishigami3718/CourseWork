@@ -42,14 +42,17 @@ namespace CarService.Pages
 
         public void UpdateData(RequestDTO dto)
         {
-            Services.Clear();
-            foreach (var s in dto.Services)
-                Services.Add(s);
+            if (dto != null)
+            {
+                Services.Clear();
+                foreach (var s in dto.Services)
+                    Services.Add(s);
 
-            Workers.Clear();
-            foreach (var w in dto.Workers)
-                Workers.Add(w);
-            DataContext = this;
+                Workers.Clear();
+                foreach (var w in dto.Workers)
+                    Workers.Add(w);
+                DataContext = this;
+            }
         }
     }
 }
