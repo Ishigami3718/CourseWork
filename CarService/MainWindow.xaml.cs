@@ -77,25 +77,14 @@ namespace CarService
             but.ContextMenu.IsOpen = true;
         }
 
-        private void ByName(object sender, RoutedEventArgs e)
+        private void SortRequests(Func<RequestDTO, IComparable> ByKey)
         {
-            ObservableCollection<RequestDTO> newReq = new ObservableCollection<RequestDTO>(requests.OrderBy(i=>i.ClientName));
+            var sorted = new ObservableCollection<RequestDTO>(requests.OrderBy(ByKey));
             requests.Clear();
-            foreach (var i in newReq) requests.Add(i);
+            foreach (var item in sorted) requests.Add(item);
         }
-
-        private void ByDate(object sender, RoutedEventArgs e)
-        {
-            ObservableCollection<RequestDTO> newReq = new ObservableCollection<RequestDTO>(requests.OrderBy(i => i.Date));
-            requests.Clear();
-            foreach (var i in newReq) requests.Add(i);
-        }
-
-        private void ById(object sender, RoutedEventArgs e)
-        {
-            ObservableCollection<RequestDTO> newReq = new ObservableCollection<RequestDTO>(requests.OrderBy(i => i.Id));
-            requests.Clear();
-            foreach (var i in newReq) requests.Add(i);
-        }
+        private void ByName(object sender, RoutedEventArgs e) => SortRequests(i => i.ClientName);
+        private void ByDate(object sender, RoutedEventArgs e) => SortRequests(i => i.Date);
+        private void ById(object sender, RoutedEventArgs e) => SortRequests(i => i.Id);
     }
 }
