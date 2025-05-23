@@ -11,12 +11,12 @@ namespace CarService.ClassServices
 {
     public class Serializer
     {
-        public static void Serialize(List<RequestDTO> requests)
+        public static void Serialize<T>(List<T> requests,string path)
         {
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<RequestDTO>));
-                using (TextWriter tw = new StreamWriter(@"Orders\Orders.xml"))
+                XmlSerializer ser = new XmlSerializer(typeof(List<T>));
+                using (TextWriter tw = new StreamWriter(path))
                 {
                     ser.Serialize(tw, requests);
                 }
@@ -27,22 +27,20 @@ namespace CarService.ClassServices
             }
         }
 
-        public static List<RequestDTO> Deserialize()
+        public static List<T> Deserialize<T>(string path)
         {
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<RequestDTO>));
-                using (TextReader tr = new StreamReader(@"Orders\Orders.xml"))
+                XmlSerializer ser = new XmlSerializer(typeof(List<T>));
+                using (TextReader tr = new StreamReader(path))
                 {
-                    return (List<RequestDTO>)ser.Deserialize(tr);
+                    return (List<T>)ser.Deserialize(tr);
                 }
             }
             catch
             {
-                return null;
+                return new List<T>();
             }
         }
-
-        //TODO another objects
     }
 }

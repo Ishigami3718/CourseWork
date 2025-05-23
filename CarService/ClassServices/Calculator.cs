@@ -20,6 +20,15 @@ namespace CarService.ClassServices
             }
             return (detailPrice + service.Price) * (1 + vat);
         }
+        /*public static double CalcPrice(ServiceExecuting service)
+        {
+            double detailPrice = 0;
+            foreach (var i in service.Details)
+            {
+                detailPrice += i.Price * i.Count;
+            }
+            return (detailPrice + service.Service.Price) * (1 + vat);
+        }*/
 
         public static double CalcFullPrice(List<ServiceExecuting> services,IClient client)
         {

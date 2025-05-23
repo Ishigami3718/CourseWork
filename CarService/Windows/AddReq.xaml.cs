@@ -19,9 +19,13 @@ namespace CarService.Windows
     /// </summary>
     public partial class Window1 : Window
     {
+        public static List<IWorker> workers {  get; set; }
+        public static List<ServiceExecuting> services {  get; set; }
         public Window1()
         {
             InitializeComponent();
+            workers = new List<IWorker>();
+            services = new List<ServiceExecuting>();
         }
 
         private void AddService(object sender, RoutedEventArgs e)
@@ -32,6 +36,16 @@ namespace CarService.Windows
         private void AddWorker(object sender, RoutedEventArgs e)
         {
             new AddWorker().ShowDialog();
+        }
+
+        public static void TransferWorker(WorkerDTO worker)
+        {
+            workers.Add(ClassCreator.CreateWorker(worker));
+        }
+
+        public static void TransferService(ServiceExecutingDTO service)
+        {
+            services.Add(new ServiceExecuting(service)); 
         }
     }
 }
