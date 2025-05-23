@@ -16,6 +16,17 @@ namespace CarService.ClassServices
             return new Client(dto);
         }
 
+        public static IClient CreateClient(string name,Car car,bool isReqular,int transmission, double discount)
+        {
+            if (isReqular) return new RegularClient(MainWindow.LastId + 1, name, car, transmission, Math.Round(discount/100,3));
+            else return new Client(MainWindow.LastId + 1, name, car);
+        }
+
+        public static Car CreateCar(string mark, string model, string licensePlate, int run, DateOnly reqisterDate)
+        {
+            return new Car(mark, model, licensePlate, run, reqisterDate);
+        }
+
         public static IWorker CreateWorker(WorkerDTO dto)
         {
             return new Worker(dto);
@@ -26,9 +37,9 @@ namespace CarService.ClassServices
             return new Detail(dto);
         }
 
-        public static Request CreateRequest(IClient client,int id,DateOnly date,List<ServiceExecuting> services,List<IWorker> workers)
+        public static Request CreateRequest(IClient client,List<ServiceExecuting> services,List<IWorker> workers)
         {
-            return new Request(client,id,date,services,Calculator.CalcFullPrice(services,client),workers);
+            return new Request(client, MainWindow.LastId + 1,DateOnly.FromDateTime(DateTime.Now),services,Calculator.CalcFullPrice(services,client),workers);
         }
 
         public static ServiceExecuting CreateServiceExexuting(Service service,List<IDetail> details)

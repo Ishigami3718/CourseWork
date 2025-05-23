@@ -8,11 +8,18 @@ namespace CarService.Clients
 {
     public class Client:IClient
     {
-         protected int id;
-         protected string name;
-         protected Car car;
+        int id;
+        string name;
+        Car car;
 
         public virtual double Discount => 0;
+
+        public Client(int id,string name,Car car)
+        {
+            this.id = id;
+            this.name = name;
+            this.car = car;
+        }
 
         public ClientDTO ToDTO()
         {

@@ -13,7 +13,13 @@ namespace CarService.Clients
 
         public override double Discount => discount;
 
-        public  ClientDTO ToDTO()
+        public RegularClient(int id, string name, Car car,int transmission,double discount) : base(id, name, car)
+        {
+            this.transmission = transmission;
+            this.discount = discount;
+        }
+
+        public new ClientDTO ToDTO()
         {
             ClientDTO dto = ((Client)this).ToDTO();
             dto.Transmission = transmission;

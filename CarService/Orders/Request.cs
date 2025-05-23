@@ -37,6 +37,18 @@ namespace CarService.Orders
             services = dto.Services.Select(i=>new ServiceExecuting(i)).ToList();
         }
 
+        public RequestDTO ToDTO()
+        {
+            return new RequestDTO()
+            {
+                Client = client.ToDTO(),
+                Id = id,
+                Date = date,
+                Price = totalPrice,
+                Services = services.Select(i => i.ToDto()).ToList(),
+                Workers = workers.Select(i => i.ToDto()).ToList()
+            };
+        }
     }
 
 }

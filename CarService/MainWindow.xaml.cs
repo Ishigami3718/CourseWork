@@ -22,28 +22,41 @@ namespace CarService
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<RequestDTO> requestDTOs = new List<RequestDTO>();
+        static List<RequestDTO> requests;
+
+        public static int LastId 
+        { get 
+            { 
+               if(requests.Count!=0) return requests[requests.Count-1].Id;
+               else return 0;
+            } 
+        }
         public MainWindow()
         {
             InitializeComponent();
+            requests = Serializer.Deserialize<RequestDTO>(@"Orders\Requests.xml");
             List<ServiceExecutingDTO> ser = new List<ServiceExecutingDTO>();
             ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
             RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
                 Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser,
                 Workers=new List<WorkerDTO>() { new WorkerDTO() {Name="Kalpas Sidorov",Quota=1.0} } };
-            requestDTOs.Add(r);
-            Data.Navigate(new Data(requestDTOs));
+            requests.Add(r);
+            Data.Navigate(new Data(requests));
             AddData.Navigate(new DataAddition(r));
-             /*for(int i = 0; i < 10; i++)
-             {
-                 Pages.Table.AddRow(new RequestDTO { Client=new ClientDTO(),Date=new DateTime(2025,4,12),Id=i+1,Price=1500},mainData);
-             }
-             AddData.Navigate(new DataAddition());*/
         }
 
+        public static void TransferRequest(RequestDTO request)
+        {
+            requests.Add(request);
+        }
         private void AddObject_Click(object sender, RoutedEventArgs e)
         {
             new Window1().ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Data.Navigate(new Data(requests));
         }
     }
 }

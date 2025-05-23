@@ -47,5 +47,14 @@ namespace CarService.Windows
         {
             services.Add(new ServiceExecuting(service)); 
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Car car = ClassCreator.CreateCar(Mark.Text,Model.Text,Plate.Text,int.Parse(Run.Text),DateOnly.FromDateTime((DateTime)RegDate.SelectedDate));
+            IClient client = ClassCreator.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
+            Request requst = ClassCreator.CreateRequest(client, services, workers);
+            MainWindow.TransferRequest(requst.ToDTO());
+
+        }
     }
 }
