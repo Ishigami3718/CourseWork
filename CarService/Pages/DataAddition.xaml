@@ -19,11 +19,11 @@
                 <TabItem Header="Роботи">
                     <DataGrid Grid.Column="0" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
       VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services}" HorizontalScrollBarVisibility="Auto"
-          VerticalScrollBarVisibility="Auto">
+          VerticalScrollBarVisibility="Auto" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="200" Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}"/>
-                            <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Price}"/>
-                            <DataGridTextColumn Width="100" Header="Сума з ПДВ" Binding="{Binding Path=TotalPrice}"/>
+                            <DataGridTextColumn Width="200" Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Price}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Сума з ПДВ" Binding="{Binding Path=TotalPrice}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
@@ -33,10 +33,10 @@
             <TabControl Grid.Column="1">
                 <TabItem Header="Виконавці">
                     <DataGrid ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
-      VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Workers}">
+      VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Workers}" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Співробітник" Binding="{Binding Path=Name}"/>
-                        <DataGridTextColumn Header="Доля" Binding="{Binding Path=Quota}"/>
+                            <DataGridTextColumn Header="Співробітник" Binding="{Binding Path=Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Доля" Binding="{Binding Path=Quota}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>

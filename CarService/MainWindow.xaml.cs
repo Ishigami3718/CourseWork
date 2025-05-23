@@ -70,5 +70,32 @@ namespace CarService
         {
             dataAddition.UpdateData(request);
         }
+
+        private void Sorting(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            but.ContextMenu.IsOpen = true;
+        }
+
+        private void ByName(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<RequestDTO> newReq = new ObservableCollection<RequestDTO>(requests.OrderBy(i=>i.ClientName));
+            requests.Clear();
+            foreach (var i in newReq) requests.Add(i);
+        }
+
+        private void ByDate(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<RequestDTO> newReq = new ObservableCollection<RequestDTO>(requests.OrderBy(i => i.Date));
+            requests.Clear();
+            foreach (var i in newReq) requests.Add(i);
+        }
+
+        private void ById(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<RequestDTO> newReq = new ObservableCollection<RequestDTO>(requests.OrderBy(i => i.Id));
+            requests.Clear();
+            foreach (var i in newReq) requests.Add(i);
+        }
     }
 }

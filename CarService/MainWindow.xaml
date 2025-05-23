@@ -20,8 +20,15 @@
                 <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddObject_Click">
                     <Image Source="Images/Adding.png" Stretch="Uniform"/>
                 </Button>
-                <Button Width="25" ToolTip="Сортувати">
+                <Button x:Name="Sort" Width="25" ToolTip="Сортувати" Click="Sorting">
                     <Image Source="Images/Sorting.png" Height="25" Width="15"/>
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="Context">
+                            <MenuItem Header="За ім'ям" Click="ByName"/>
+                            <MenuItem Header="За датою" Click="ByDate"/>
+                            <MenuItem Header="За Id" Click="ById"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
                 </Button>
                 <Button Width="25" ToolTip="Видалити">
                     <Image Source="Images/Deleting.png" Height="25" Width="15"/>
