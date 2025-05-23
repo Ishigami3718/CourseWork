@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace CarService.Services
     public class ServiceExecuting
     {
         Service service;
-        List<IDetail> details;
+        ObservableCollection<IDetail> details;
         
         double totalPrice;
 
@@ -18,7 +19,7 @@ namespace CarService.Services
         public List<IDetail> Details { get { return details; } }*/
 
 
-        public ServiceExecuting(Service service, List<IDetail> details,double totalPrice)
+        public ServiceExecuting(Service service, ObservableCollection<IDetail> details,double totalPrice)
         {
             this.service = service;
             this.details = details;
@@ -28,12 +29,12 @@ namespace CarService.Services
         public ServiceExecuting(ServiceExecutingDTO dto)
         {
             service = new Service(dto.Service);
-            details = dto.Details.Select(i=>ClassCreator.CreateDetail(i)).ToList();
+            details = new ObservableCollection<IDetail>(dto.Details.Select(i=>ClassCreator.CreateDetail(i)));
         }
 
         public ServiceExecutingDTO ToDto()
         {
-            return new ServiceExecutingDTO { Details = details.Select(i => ((Detail)i).ToDto()).ToList(), Service = service.ToDto(), TotalPrice = totalPrice };
+            return new ServiceExecutingDTO { Details = details.Select(i => i.ToDTO()).ToList(), Service = service.ToDto(), TotalPrice = totalPrice };
         }
     }
 }

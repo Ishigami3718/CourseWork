@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,10 @@ namespace CarService.Orders
         [DisplayName("Дата")]
         public DateOnly Date { get; set; }
 
-        public List<ServiceExecutingDTO> Services { get; set; }
+        public ObservableCollection<ServiceExecutingDTO> Services { get; set; }
         [DisplayName("Ціна")]
         public double Price {  get; set; }
 
-        public List<WorkerDTO> Workers { get; set; }
+        public ObservableCollection<WorkerDTO> Workers { get; set; }
     }
 }

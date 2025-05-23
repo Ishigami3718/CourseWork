@@ -1,6 +1,7 @@
 ﻿using CarService.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,12 +38,12 @@ namespace CarService.ClassServices
             return new Detail(dto);
         }
 
-        public static Request CreateRequest(IClient client,List<ServiceExecuting> services,List<IWorker> workers)
+        public static Request CreateRequest(IClient client,ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
         {
             return new Request(client, MainWindow.LastId + 1,DateOnly.FromDateTime(DateTime.Now),services,Calculator.CalcFullPrice(services,client),workers);
         }
 
-        public static ServiceExecuting CreateServiceExexuting(Service service,List<IDetail> details)
+        public static ServiceExecuting CreateServiceExexuting(Service service, ObservableCollection<IDetail> details)
         {
             return new ServiceExecuting(service,details, Calculator.CalcPrice(service, details));
         }

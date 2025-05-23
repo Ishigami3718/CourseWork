@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,15 @@ namespace CarService.Orders
         IClient client;
         int id;
         DateOnly date;
-        List<ServiceExecuting> services;
+        ObservableCollection<ServiceExecuting> services;
         double totalPrice;
-        List<IWorker> workers = new List<IWorker>();
+        ObservableCollection<IWorker> workers;
 
         public IClient Client {  get { return client; } }
         public int Id { get { return id; } }
-        public List<ServiceExecuting> Services {  get { return services; } }
+        public ObservableCollection<ServiceExecuting> Services {  get { return services; } }
 
-        public Request(IClient client, int id, DateOnly date, List<ServiceExecuting> services,double totalPrice ,List<IWorker> workers)
+        public Request(IClient client, int id, DateOnly date, ObservableCollection<ServiceExecuting> services,double totalPrice ,ObservableCollection<IWorker> workers)
         {
             this.client = client;
             this.id = id;
@@ -34,7 +35,8 @@ namespace CarService.Orders
             client = ClassCreator.CreateClient(dto.Client);
             id = dto.Id;
             date = dto.Date;
-            services = dto.Services.Select(i=>new ServiceExecuting(i)).ToList();
+            services = new ObservableCollection<ServiceExecuting>(dto.Services.Select(i => new ServiceExecuting(i)));
+            workers = new ObservableCollection<IWorker>(dto.Workers.Select(i => ClassCreator.CreateWorker(i)));
         }
 
         public RequestDTO ToDTO()
@@ -45,8 +47,8 @@ namespace CarService.Orders
                 Id = id,
                 Date = date,
                 Price = totalPrice,
-                Services = services.Select(i => i.ToDto()).ToList(),
-                Workers = workers.Select(i => i.ToDto()).ToList()
+                Services = new ObservableCollection<ServiceExecutingDTO>(services.Select(i => i.ToDto())),
+                Workers = new ObservableCollection<WorkerDTO>(workers.Select(i => i.ToDto()))
             };
         }
     }

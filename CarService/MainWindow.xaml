@@ -47,7 +47,6 @@
                 <Frame x:Name="Data" Grid.Row="0" Grid.Column="0" Margin="5"/>
                 <Frame x:Name="AddData" Grid.Row="1" Grid.Column="0" Margin="5"/>
             </Grid>
-            <Button VerticalAlignment="Top" Height="50" Content="Reload" Click="Button_Click"/>
 
 
         </Grid>

@@ -22,7 +22,7 @@ namespace CarService
     /// </summary>
     public partial class MainWindow : Window
     {
-        static List<RequestDTO> requests;
+        static ObservableCollection<RequestDTO> requests;
 
         public static int LastId 
         { get 
@@ -34,12 +34,12 @@ namespace CarService
         public MainWindow()
         {
             InitializeComponent();
-            requests = Serializer.Deserialize<RequestDTO>(@"Orders\Requests.xml");
-            List<ServiceExecutingDTO> ser = new List<ServiceExecutingDTO>();
+            requests = /*Serializer.Deserialize<RequestDTO>(@"Orders\Requests.xml");*/new ObservableCollection<RequestDTO>();
+            ObservableCollection<ServiceExecutingDTO> ser = new ObservableCollection<ServiceExecutingDTO>();
             ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
             RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
                 Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser,
-                Workers=new List<WorkerDTO>() { new WorkerDTO() {Name="Kalpas Sidorov",Quota=1.0} } };
+                Workers=new ObservableCollection<WorkerDTO>() { new WorkerDTO() {Name="Kalpas Sidorov",Quota=1.0} } };
             requests.Add(r);
             Data.Navigate(new Data(requests));
             AddData.Navigate(new DataAddition(r));
@@ -54,9 +54,5 @@ namespace CarService
             new Window1().ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Data.Navigate(new Data(requests));
-        }
     }
 }

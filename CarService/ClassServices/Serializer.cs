@@ -1,6 +1,7 @@
 ﻿using CarService.Orders;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace CarService.ClassServices
 {
     public class Serializer
     {
-        public static void Serialize<T>(List<T> requests,string path)
+        public static void Serialize<T>(ObservableCollection<T> requests,string path)
         {
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<T>));
+                XmlSerializer ser = new XmlSerializer(typeof(ObservableCollection<T>));
                 using (TextWriter tw = new StreamWriter(path))
                 {
                     ser.Serialize(tw, requests);
@@ -27,19 +28,19 @@ namespace CarService.ClassServices
             }
         }
 
-        public static List<T> Deserialize<T>(string path)
+        public static ObservableCollection<T> Deserialize<T>(string path)
         {
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<T>));
+                XmlSerializer ser = new XmlSerializer(typeof(ObservableCollection<T>));
                 using (TextReader tr = new StreamReader(path))
                 {
-                    return (List<T>)ser.Deserialize(tr);
+                    return (ObservableCollection<T>)ser.Deserialize(tr);
                 }
             }
             catch
             {
-                return new List<T>();
+                return new ObservableCollection<T>();
             }
         }
     }

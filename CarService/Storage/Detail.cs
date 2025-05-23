@@ -15,7 +15,7 @@ namespace CarService.Storage
         public double Price => price;
         public double Count => count;
 
-        public DetailDTO ToDto()
+        public DetailDTO ToDTO()
         {
             return new DetailDTO { Count = count, Model = model, Price = price, Name = name, Value = value };
         }

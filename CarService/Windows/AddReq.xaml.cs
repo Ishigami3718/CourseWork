@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,13 @@ namespace CarService.Windows
     /// </summary>
     public partial class Window1 : Window
     {
-        public static List<IWorker> workers {  get; set; }
-        public static List<ServiceExecuting> services {  get; set; }
+        public static ObservableCollection<IWorker> workers {  get; set; }
+        public static ObservableCollection<ServiceExecuting> services {  get; set; }
         public Window1()
         {
             InitializeComponent();
-            workers = new List<IWorker>();
-            services = new List<ServiceExecuting>();
+            workers = new ObservableCollection<IWorker>();
+            services = new ObservableCollection<ServiceExecuting>();
         }
 
         private void AddService(object sender, RoutedEventArgs e)

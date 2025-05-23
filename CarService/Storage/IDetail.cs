@@ -10,5 +10,7 @@ namespace CarService.Storage
     {
         public double Price { get; }
         public double Count {  get; }
+
+        public DetailDTO ToDTO();
     }
 }

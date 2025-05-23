@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,18 +20,18 @@ namespace CarService.Windows
     /// </summary>
     public partial class Window2 : Window
     {
-        public  List<Service> Services { get; set; }
-        public  List<IDetail> Details { get; set; }
+        public  ObservableCollection<Service> Services { get; set; }
+        public  ObservableCollection<IDetail> Details { get; set; }
 
         Service selectedService;
 
-        public static List<IDetail> DetailsToTransfer { get; set; }
+        public static ObservableCollection<IDetail> DetailsToTransfer { get; set; }
         public Window2()
         {
             InitializeComponent();
             Services = Serializer.Deserialize<Service>("Services.Services.xml");
             Details = Serializer.Deserialize<IDetail>("Storage.Details.xml");
-            DetailsToTransfer = new List<IDetail>();
+            DetailsToTransfer = new ObservableCollection<IDetail>();
             DataContext = this;
         }
 

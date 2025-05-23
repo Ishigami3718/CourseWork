@@ -23,14 +23,16 @@ namespace CarService.Pages
     public partial class Data : Page
     {
         //Requests table
-        public List<RequestDTO> Requests { get; set; }
+        public ObservableCollection<RequestDTO> Requests { get; set; }
         
-        public Data(List<RequestDTO> requestsDTO)
+        public Data(ObservableCollection<RequestDTO> requestsDTO)
         {
             InitializeComponent();
             //Requests = requestsDTO.Select(i=>new Request(i)).ToList();
             Requests= requestsDTO;
             DataContext = this;
         }
+
+        public void UpdateView() => DataContext = this;
     }
 }

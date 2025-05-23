@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,8 @@ namespace CarService.Pages
     public partial class DataAddition : Page
     {
        // public List<ServiceExecutingDTO> Requests { get; set; }
-        public List<ServiceExecutingDTO> Services { get; set; }
-        public List<WorkerDTO> Workers { get; set; }
+        public ObservableCollection<ServiceExecutingDTO> Services { get; set; }
+        public ObservableCollection<WorkerDTO> Workers { get; set; }
         public DataAddition(RequestDTO requestsDTO)
         {
             InitializeComponent();
