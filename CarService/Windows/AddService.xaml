@@ -20,11 +20,11 @@
         <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Сервіс" FontSize="18"/>
         <TextBlock Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Деталі на складі" FontSize="18"/>
         <TextBlock Grid.Column="2" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Деталі для сервісу" FontSize="18"/>
-        <ListBox Grid.Row="1"  Margin="5" ItemsSource="{Binding Services}"/>
-        <ListBox Grid.Row="1" Grid.Column="1" Margin="5" ItemsSource="{Binding Details}"/>
-        <ListBox Grid.Row="1" Grid.Column="2" Margin="5"/>
-        <Button Grid.Row="2" Margin="10" Width="100" Content="Обрати"/>
-        <Button Grid.Row="2" Grid.Column="1" Margin="10" Width="100" Content="Додати"/>
-        <Button Grid.Row="2" Grid.Column="2" Margin="10" Width="100" Content="Зберегти"/>
+        <ListBox x:Name="ServicesUI" Grid.Row="1"  Margin="5" ItemsSource="{Binding Services}"/>
+        <ListBox x:Name="Storage" Grid.Row="1" Grid.Column="1" Margin="5" ItemsSource="{Binding Details}"/>
+        <ListBox x:Name="AddedDetails" Grid.Row="1" Grid.Column="2" Margin="5"/>
+        <Button Grid.Row="2" Margin="10" Width="100" Content="Обрати" Click="SelectService"/>
+        <Button Grid.Row="2" Grid.Column="1" Margin="10" Width="100" Content="Додати" Click="SelectDetail"/>
+        <Button Grid.Row="2" Grid.Column="2" Margin="10" Width="100" Content="Зберегти" Click="Save"/>
     </Grid>
 </Window>

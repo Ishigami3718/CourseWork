@@ -19,11 +19,32 @@ namespace CarService.Windows
     /// </summary>
     public partial class Window2 : Window
     {
-        public List<Service> Services { get; set; }
-        public List<IDetail> Details { get; set; }
+        public  List<Service> Services { get; set; }
+        public  List<IDetail> Details { get; set; }
+
+        Service selectedService;
+
+        public static List<IDetail> DetailsToTransfer { get; set; }
         public Window2()
         {
             InitializeComponent();
+            Services = Serializer.Deserialize<Service>("Services.Services.xml");
+            Details = Serializer.Deserialize<IDetail>("Storage.Details.xml");
+            DetailsToTransfer = new List<IDetail>();
+            DataContext = this;
+        }
+
+        private void SelectService(object sender, RoutedEventArgs e) => selectedService = (Service)ServicesUI.SelectedItem;
+
+        private void SelectDetail(object sender, RoutedEventArgs e)
+        {
+            DetailsToTransfer.Add(ClassCreator.CreateDetail((DetailDTO)Storage.SelectedItem));
+            DataContext = this;
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            Window1.TransferService(ClassCreator.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
         }
     }
 }

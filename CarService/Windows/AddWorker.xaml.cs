@@ -25,6 +25,7 @@ namespace CarService.Windows
         {
             InitializeComponent();
             Workers = Serializer.Deserialize<WorkerDTO>(@"Workers\Workers.xml").Select(i=>ClassCreator.CreateWorker(i)).ToList();
+            DataContext = this;
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -32,6 +33,7 @@ namespace CarService.Windows
             worker = (IWorker)SelectWorker.SelectedItem;
             worker.Quota = Math.Round(double.Parse(Quota.Text) / 100,3);
             Window1.TransferWorker(worker.ToDto());
+            this.Close();
         }
     }
 }
