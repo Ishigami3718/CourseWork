@@ -1,0 +1,61 @@
+﻿<Window x:Class="CarService.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarService"
+        mc:Ignorable="d"
+        Title="Система обліку СТО" Height="400" Width="800"
+        Icon="Images/AppIcon.png">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Замовлення"/>
+            <MenuItem Header="Клієнти"/>
+            <MenuItem Header="Послуги"/>
+            <MenuItem Header="Працівники"/>
+            <MenuItem Header="Склад"/>
+        </Menu>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddObject_Click">
+                    <Image Source="Images/Adding.png" Stretch="Uniform"/>
+                </Button>
+                <Button x:Name="Sort" Width="25" ToolTip="Сортувати" Click="Sorting">
+                    <Image Source="Images/Sorting.png" Height="25" Width="15"/>
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="Context">
+                            <MenuItem Header="За ім'ям" Click="ByName"/>
+                            <MenuItem Header="За датою" Click="ByDate"/>
+                            <MenuItem Header="За Id" Click="ById"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Width="25" ToolTip="Видалити">
+                    <Image Source="Images/Deleting.png" Height="25" Width="15"/>
+                </Button>
+                <Button Width="25" ToolTip="Редагувати">
+                    <Image Source="Images/Redacting.png" Height="25" Width="15"/>
+                </Button>
+                <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
+             Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Frame x:Name="Data" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                <Frame x:Name="AddData" Grid.Row="1" Grid.Column="0" Margin="5"/>
+            </Grid>
+
+
+        </Grid>
+    </DockPanel>
+</Window>
