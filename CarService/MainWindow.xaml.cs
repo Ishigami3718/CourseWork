@@ -99,20 +99,7 @@ namespace CarService
         private void Searching(object sender, TextChangedEventArgs e)
         {
             string ser = Search.Text;
-            if (ser != "Введіть для пошуку")
-            {
-                if (ser != string.Empty)
-                {
-                    List<RequestDTO> r = requests.Where(i => i.ClientName.Contains(ser)).ToList();
-                    requests.Clear();
-                    foreach (var i in r) requests.Add(i);
-                }
-                else
-                {
-                    requests.Clear();
-                    foreach (var i in requestsSer) requests.Add(i);
-                }
-            }
+            ClassServices.Searching.SearchByName(ser, requests, requestsSer);
         }
 
         private void LeaveSearching(object sender, KeyboardFocusChangedEventArgs e)
