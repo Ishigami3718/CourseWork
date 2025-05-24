@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600">
+        Title="Система обліку СТО" Height="400" Width="800"
+        Icon="Images/AppIcon.png">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Замовлення"/>
@@ -14,23 +15,31 @@
             <MenuItem Header="Працівники"/>
             <MenuItem Header="Склад"/>
         </Menu>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Width="25">
-                <MenuItem.Icon>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddObject_Click">
                     <Image Source="Images/Adding.png" Stretch="Uniform"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Width="25">
-                <MenuItem.Icon>
+                </Button>
+                <Button x:Name="Sort" Width="25" ToolTip="Сортувати" Click="Sorting">
                     <Image Source="Images/Sorting.png" Height="25" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Width="25">
-                <MenuItem.Icon>
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="Context">
+                            <MenuItem Header="За ім'ям" Click="ByName"/>
+                            <MenuItem Header="За датою" Click="ByDate"/>
+                            <MenuItem Header="За Id" Click="ById"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Width="25" ToolTip="Видалити">
                     <Image Source="Images/Deleting.png" Height="25" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
+                </Button>
+                <Button Width="25" ToolTip="Редагувати">
+                    <Image Source="Images/Redacting.png" Height="25" Width="15"/>
+                </Button>
+                <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
+             Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
+            </ToolBar>
+        </ToolBarTray>
         <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"/>
@@ -42,10 +51,9 @@
                     <RowDefinition Height="1.4*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0"/>
-                <Frame Grid.Row="1" Grid.Column="0"/>
+                <Frame x:Name="Data" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                <Frame x:Name="AddData" Grid.Row="1" Grid.Column="0" Margin="5"/>
             </Grid>
-            <Frame x:Name="Frame" Grid.Row="0" Grid.Column="0"/>
 
 
         </Grid>

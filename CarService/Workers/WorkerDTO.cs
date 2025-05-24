@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace CarService.Workers
 {
-    public interface IWorker
+    public class WorkerDTO
     {
-        public double Quota { get; set; }
+        public string Name {  get; set; }
+        public double Salary {  get; set; }
 
-        public WorkerDTO ToDto();
+        public double? Quota {  get; set; }
     }
 }
