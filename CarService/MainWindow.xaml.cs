@@ -22,10 +22,10 @@ namespace CarService
     /// </summary>
     public partial class MainWindow : Window
     {
-        static ObservableCollection<RequestDTO> requests;
-        static ObservableCollection<RequestDTO> requestsSer;
+        static ObservableCollection<RequestDTO> requests;// Дані для відображення в UI
+        static ObservableCollection<RequestDTO> requestsSer;// Дані для десереалізації і серреалізації
         DataAddition dataAddition;
-
+        //
         public static int LastId 
         { get 
             { 
@@ -61,7 +61,8 @@ namespace CarService
 
         public static void TransferRequest(RequestDTO request)
         {
-            requests.Add(request);
+            requestsSer.Add(request);
+            requests = requestsSer;
         }
         private void AddObject_Click(object sender, RoutedEventArgs e)
         {
