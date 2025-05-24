@@ -36,7 +36,7 @@ namespace CarService
         public MainWindow()
         {
             InitializeComponent();
-            requests = /*Serializer.Deserialize<RequestDTO>(@"Orders\Requests.xml");*/new ObservableCollection<RequestDTO>();
+            requestsSer = Serializer.Deserialize<RequestDTO>(@"Orders\Requests.xml");
             ObservableCollection<ServiceExecutingDTO> ser = new ObservableCollection<ServiceExecutingDTO>();
             ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
             RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
@@ -51,20 +51,12 @@ namespace CarService
                 Services = ser,
                 Workers = new ObservableCollection<WorkerDTO>() { new WorkerDTO() { Name = "Вадим Зубенко", Quota = 1.0 } }
             };
-            requests.Add(r);
-            requests.Add(r1);
+            requestsSer.Add(r);
+            requestsSer.Add(r1);
+            requests = new ObservableCollection<RequestDTO>(requestsSer);
             Data.Navigate(new Data(requests));
             dataAddition = new DataAddition();
             AddData.Navigate(dataAddition);
-            requestsSer = new ObservableCollection<RequestDTO>(requests.Select(i => new RequestDTO
-            {
-                Client = i.Client,
-                Date = i.Date,
-                Id = i.Id,
-                Price = i.Price,
-                Services = i.Services,
-                Workers = i.Workers
-            }));
         }
 
         public static void TransferRequest(RequestDTO request)

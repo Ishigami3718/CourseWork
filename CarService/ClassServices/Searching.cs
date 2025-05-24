@@ -11,20 +11,20 @@ namespace CarService.ClassServices
 {
     public class Searching
     {
-        private static void Search<T>(string search,ObservableCollection<T> dataToDaisplay, ObservableCollection<T> data, Func<T, string> serachBy)
+        private static void Search<T>(string search,ObservableCollection<T> dataToDisplay, ObservableCollection<T> data, Func<T, string> serachBy)
         {
             if (search != "Введіть для пошуку")
             {
                 if (search != string.Empty)
                 {
-                    List<T> r = dataToDaisplay.Where(i => serachBy(i).Contains(search)).ToList();
-                    dataToDaisplay.Clear();
-                    foreach (var i in r) dataToDaisplay.Add(i);
+                    List<T> r = data.Where(i => serachBy(i).Contains(search)).ToList();
+                    dataToDisplay.Clear();
+                    foreach (var i in r) dataToDisplay.Add(i);
                 }
                 else
                 {
-                    dataToDaisplay.Clear();
-                    foreach (var i in data) dataToDaisplay.Add(i);
+                    dataToDisplay.Clear();
+                    foreach (var i in data) dataToDisplay.Add(i);
                 }
             }
         }
