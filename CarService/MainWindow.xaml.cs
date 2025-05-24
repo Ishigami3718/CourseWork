@@ -87,15 +87,9 @@ namespace CarService
             but.ContextMenu.IsOpen = true;
         }
 
-        private void SortRequests(Func<RequestDTO, IComparable> ByKey)
-        {
-            var sorted = new ObservableCollection<RequestDTO>(requests.OrderBy(ByKey));
-            requests.Clear();
-            foreach (var item in sorted) requests.Add(item);
-        }
-        private void ByName(object sender, RoutedEventArgs e) => SortRequests(i => i.ClientName);
-        private void ByDate(object sender, RoutedEventArgs e) => SortRequests(i => i.Date);
-        private void ById(object sender, RoutedEventArgs e) => SortRequests(i => i.Id);
+        private void ByName(object sender, RoutedEventArgs e) => ClassServices.Sorting.ByName(requests);
+        private void ByDate(object sender, RoutedEventArgs e) => ClassServices.Sorting.ByDate(requests);
+        private void ById(object sender, RoutedEventArgs e) => ClassServices.Sorting.ById(requests);
 
         private void StartSearching(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -119,6 +113,12 @@ namespace CarService
                     foreach (var i in requestsSer) requests.Add(i);
                 }
             }
+        }
+
+        private void LeaveSearching(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            string ser = Search.Text;
+            if (string.IsNullOrEmpty(ser)) Search.Text = "Введіть для пошуку";
         }
     }
 }

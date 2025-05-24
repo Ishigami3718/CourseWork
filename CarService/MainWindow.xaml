@@ -37,7 +37,7 @@
                     <Image Source="Images/Redacting.png" Height="25" Width="15"/>
                 </Button>
                 <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
-             Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching"/>
+             Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
             </ToolBar>
         </ToolBarTray>
         <Grid>
