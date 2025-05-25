@@ -39,13 +39,13 @@ namespace CarService.Windows
 
         private void SelectDetail(object sender, RoutedEventArgs e)
         {
-            DetailsToTransfer.Add(ClassCreator.CreateDetail((DetailDTO)Storage.SelectedItem));
+            DetailsToTransfer.Add(ClassFactory.CreateDetail((DetailDTO)Storage.SelectedItem));
             DataContext = this;
         }
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            Window1.TransferService(ClassCreator.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
+            Window1.TransferService(ClassFactory.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
         }
     }
 }

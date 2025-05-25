@@ -41,7 +41,7 @@ namespace CarService.Windows
 
         public static void TransferWorker(WorkerDTO worker)
         {
-            workers.Add(ClassCreator.CreateWorker(worker));
+            workers.Add(ClassFactory.CreateWorker(worker));
         }
 
         public static void TransferService(ServiceExecutingDTO service)
@@ -51,9 +51,9 @@ namespace CarService.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Car car = ClassCreator.CreateCar(Mark.Text,Model.Text,Plate.Text,int.Parse(Run.Text),DateOnly.FromDateTime((DateTime)RegDate.SelectedDate));
-            IClient client = ClassCreator.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
-            Request requst = ClassCreator.CreateRequest(client, services, workers);
+            Car car = ClassFactory.CreateCar(Mark.Text,Model.Text,Plate.Text,int.Parse(Run.Text),DateOnly.FromDateTime((DateTime)RegDate.SelectedDate));
+            IClient client = ClassFactory.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
+            Request requst = ClassFactory.CreateRequest(client, services, workers);
             MainWindow.TransferRequest(requst.ToDTO());
 
         }

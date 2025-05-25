@@ -21,6 +21,13 @@ namespace CarService.Clients
             this.car = car;
         }
 
+        /*public Client(Client client)
+        {
+            id= client.id;
+            this.name = client.name;
+            this.car = client.car;
+        }*/
+
         public ClientDTO ToDTO()
         {
             return new ClientDTO

@@ -7,7 +7,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarService.ClassServices
+namespace CarService.Utils
 {
     public class Searching
     {

@@ -32,11 +32,11 @@ namespace CarService.Orders
 
         public Request(RequestDTO dto)
         {
-            client = ClassCreator.CreateClient(dto.Client);
+            client = ClassFactory.CreateClient(dto.Client);
             id = dto.Id;
             date = dto.Date;
             services = new ObservableCollection<ServiceExecuting>(dto.Services.Select(i => new ServiceExecuting(i)));
-            workers = new ObservableCollection<IWorker>(dto.Workers.Select(i => ClassCreator.CreateWorker(i)));
+            workers = new ObservableCollection<IWorker>(dto.Workers.Select(i => ClassFactory.CreateWorker(i)));
         }
 
         public RequestDTO ToDTO()

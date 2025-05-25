@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarService.ClassServices
+namespace CarService.Orders
 {
-    public class Calculator
+    public class OrderPriceCalculator
     {
         const double vat = 0.2;
 
@@ -31,7 +31,7 @@ namespace CarService.ClassServices
             return (detailPrice + service.Service.Price) * (1 + vat);
         }*/
 
-        public static double CalcFullPrice(ObservableCollection<ServiceExecuting> services,IClient client)
+        public static double CalcFullPrice(ObservableCollection<ServiceExecuting> services, IClient client)
         {
             double price = 0;
             foreach (ServiceExecuting service in services) price += service.TotalPrice;

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarService.ClassServices
+namespace CarService.Utils
 {
-    public class Sorting
+    public class SortingUtils
     {
         private static void SortRequests<T>(Func<T, IComparable> ByKey, ObservableCollection<T> toSort)
         {

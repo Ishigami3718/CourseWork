@@ -79,9 +79,9 @@ namespace CarService
             but.ContextMenu.IsOpen = true;
         }
 
-        private void ByName(object sender, RoutedEventArgs e) => ClassServices.Sorting.ByName(requests);
-        private void ByDate(object sender, RoutedEventArgs e) => ClassServices.Sorting.ByDate(requests);
-        private void ById(object sender, RoutedEventArgs e) => ClassServices.Sorting.ById(requests);
+        private void ByName(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByName(requests);
+        private void ByDate(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByDate(requests);
+        private void ById(object sender, RoutedEventArgs e) => Utils.SortingUtils.ById(requests);
 
         private void StartSearching(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -91,7 +91,7 @@ namespace CarService
         private void Searching(object sender, TextChangedEventArgs e)
         {
             string ser = Search.Text;
-            ClassServices.Searching.SearchByName(ser, requests, requestsSer);
+            Utils.Searching.SearchByName(ser, requests, requestsSer);
         }
 
         private void LeaveSearching(object sender, KeyboardFocusChangedEventArgs e)

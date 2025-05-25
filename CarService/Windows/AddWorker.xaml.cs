@@ -24,7 +24,7 @@ namespace CarService.Windows
         public AddWorker()
         {
             InitializeComponent();
-            Workers = Serializer.Deserialize<WorkerDTO>(@"Workers\Workers.xml").Select(i=>ClassCreator.CreateWorker(i)).ToList();
+            Workers = Serializer.Deserialize<WorkerDTO>(@"Workers\Workers.xml").Select(i=>ClassFactory.CreateWorker(i)).ToList();
             DataContext = this;
         }
 

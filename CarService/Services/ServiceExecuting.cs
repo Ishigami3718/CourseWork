@@ -29,7 +29,7 @@ namespace CarService.Services
         public ServiceExecuting(ServiceExecutingDTO dto)
         {
             service = new Service(dto.Service);
-            details = new ObservableCollection<IDetail>(dto.Details.Select(i=>ClassCreator.CreateDetail(i)));
+            details = new ObservableCollection<IDetail>(dto.Details.Select(i=>ClassFactory.CreateDetail(i)));
         }
 
         public ServiceExecutingDTO ToDto()

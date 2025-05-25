@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace CarService.ClassServices
+namespace CarService.Utils
 {
     public class Serializer
     {
