@@ -20,6 +20,8 @@ namespace CarService.Clients
             this.run = run;
             this.registerDate = reqisterDate;
         }
+
+        public int Run {  get { return run; } }
         public CarDTO ToDTO()
         {
             return new CarDTO()

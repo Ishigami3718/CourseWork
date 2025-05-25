@@ -10,5 +10,7 @@ namespace CarService.Clients
     {
         public double Discount {  get; }
         public ClientDTO ToDTO();
+
+        public Car Car { get; }
     }
 }
