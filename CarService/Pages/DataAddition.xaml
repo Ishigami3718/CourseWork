@@ -28,7 +28,18 @@
                     </DataGrid>
                 </TabItem>
                 <TabItem Header="Товари">
-                </TabItem>
+                <DataGrid Grid.Column="0" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services.Details}" HorizontalScrollBarVisibility="Auto"
+    VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="150" Header="Назва" Binding="{Binding Path=Service.Details.Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Модель" Binding="{Binding Path=Service.Details.Model}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Одиниці виміру" Binding="{Binding Path=Service.Details.Value}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Path=Service.Details.Count}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Details.Price}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
             </TabControl>
             <TabControl Grid.Column="1">
                 <TabItem Header="Виконавці">

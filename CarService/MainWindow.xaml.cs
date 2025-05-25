@@ -99,5 +99,17 @@ namespace CarService
             string ser = Search.Text;
             if (string.IsNullOrEmpty(ser)) Search.Text = "Введіть для пошуку";
         }
+
+        private void Storage(object sender, RoutedEventArgs e)
+        {
+            MainData.Visibility = Visibility.Collapsed;
+            MainView.Navigate(new Pages.Storage());
+        }
+
+        private void Orders(object sender, RoutedEventArgs e)
+        {
+            MainView.Content = null;
+            MainData.Visibility = Visibility.Visible;
+        }
     }
 }
