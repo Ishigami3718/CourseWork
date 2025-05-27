@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
 
 namespace CarService.Utils
 {
@@ -45,6 +46,11 @@ namespace CarService.Utils
             return new Detail(dto);
         }
 
+        public static IDetail CreateDetail(string name, string model, double price, double count, string value)
+        {
+            return new Detail(name,model,price,count,value);
+        }
+
         public static Request CreateRequest(IClient client, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
         {
             return new Request(client, MainWindow.LastId + 1, DateOnly.FromDateTime(DateTime.Now), services, OrderPriceCalculator.CalcFullPrice(services, client), workers);
@@ -52,7 +58,12 @@ namespace CarService.Utils
 
         public static ServiceExecuting CreateServiceExexuting(Service service, ObservableCollection<IDetail> details)
         {
-            return new ServiceExecuting(service, details, OrderPriceCalculator.CalcPrice(service, details));
+            return new ServiceExecuting(service, details);
+        }
+
+        public static Service CreateService(ServiceDTO service)
+        {
+            return new Service(service);
         }
     }
 

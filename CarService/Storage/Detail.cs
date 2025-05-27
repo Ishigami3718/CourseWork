@@ -27,5 +27,19 @@ namespace CarService.Storage
             count = dto.Count;
             value = dto.Value;
         }
+
+        public Detail(string name,string model, double price, double count,string value)
+        {
+            this.name = name;
+            this.model = model;
+            this.price = price;
+            this.count = count;
+            this.value = value;
+        }
+
+        public override string ToString()
+        {
+            return $"{name} {model} {count} {value} {price}грн";
+        }
     }
 }

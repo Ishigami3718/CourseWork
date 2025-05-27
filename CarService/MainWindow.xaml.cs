@@ -61,7 +61,7 @@ namespace CarService
 
         public static void TransferRequest(RequestDTO request)
         {
-            requests.Add(request);
+                requests.Add(request);
         }
         private void AddObject_Click(object sender, RoutedEventArgs e)
         {

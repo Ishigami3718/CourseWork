@@ -51,10 +51,14 @@ namespace CarService.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Car car = ClassFactory.CreateCar(Mark.Text,Model.Text,Plate.Text,int.Parse(Run.Text),DateOnly.FromDateTime((DateTime)RegDate.SelectedDate));
-            IClient client = ClassFactory.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
-            Request requst = ClassFactory.CreateRequest(client, services, workers);
-            MainWindow.TransferRequest(requst.ToDTO());
+            try
+            {
+                Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), DateOnly.FromDateTime((DateTime)RegDate.SelectedDate));
+                IClient client = ClassFactory.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
+                Request requst = ClassFactory.CreateRequest(client, services, workers);
+                MainWindow.TransferRequest(requst.ToDTO());
+            }
+            catch { }
 
         }
     }

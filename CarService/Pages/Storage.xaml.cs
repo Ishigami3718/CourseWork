@@ -21,10 +21,25 @@ namespace CarService.Pages
     /// </summary>
     public partial class Storage : Page
     {
-        public ObservableCollection<DetailDTO> Details {  get; set; }
+        public static ObservableCollection<DetailDTO> Details {  get; set; }
+        public static ObservableCollection<DetailDTO> DetailsSer { get; set; }
         public Storage()
         {
             InitializeComponent();
+            DetailsSer = Serializer.Deserialize<DetailDTO>(@"Storage\Storage.xml");
+            Details = DetailsSer;
+            DataContext = this;
+        }
+
+        private void AddDetail(object sender, RoutedEventArgs e)
+        {
+            new AddDetail().ShowDialog();
+            Serializer.Serialize<DetailDTO>(DetailsSer, @"Storage\Storage.xml");
+        }
+
+        public static void TransferDetail(DetailDTO detail)
+        {
+            DetailsSer.Add(detail);
         }
     }
 }

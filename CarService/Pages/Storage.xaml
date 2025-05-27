@@ -12,7 +12,7 @@
         <DockPanel>
             <ToolBarTray DockPanel.Dock="Top">
                 <ToolBar>
-                    <Button x:Name="AddObject" Width="25" ToolTip="Додати">
+                    <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddDetail">
                         <Image Source="pack://application:,,,/Images/Adding.png" Stretch="Uniform"/>
                     </Button>
                     <Button x:Name="Sort" Width="25" ToolTip="Сортувати">
@@ -39,11 +39,11 @@
       VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Details}" HorizontalScrollBarVisibility="Auto"
           VerticalScrollBarVisibility="Auto" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Назва" Binding="{Binding Path=Details.Name}"/>
-                    <DataGridTextColumn Header="Модель" Binding="{Binding Path=Details.Model}"/>
-                    <DataGridTextColumn Header="Одиниці виміру" Binding="{Binding Path=Details.Value}"/>
-                    <DataGridTextColumn Header="Клькість" Binding="{Binding Path=Details.Count}"/>
-                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Details.Price}"/>
+                <DataGridTextColumn Header="Назва" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                    <DataGridTextColumn Header="Одиниці виміру" Binding="{Binding Value}"/>
+                    <DataGridTextColumn Header="Клькість" Binding="{Binding Count}"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Price}"/>
                 </DataGrid.Columns>
         </DataGrid>
         </DockPanel>

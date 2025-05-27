@@ -21,6 +21,7 @@ namespace CarService.Windows
     public partial class Window2 : Window
     {
         public  ObservableCollection<Service> Services { get; set; }
+        private ObservableCollection<DetailDTO> DetailsSer;
         public  ObservableCollection<IDetail> Details { get; set; }
 
         Service selectedService;
@@ -29,8 +30,9 @@ namespace CarService.Windows
         public Window2()
         {
             InitializeComponent();
-            Services = Serializer.Deserialize<Service>("Services.Services.xml");
-            Details = Serializer.Deserialize<IDetail>("Storage.Details.xml");
+            DetailsSer = Serializer.Deserialize<DetailDTO>(@"Storage\Storage.xml");
+            Services =new ObservableCollection<Service>(Serializer.Deserialize<ServiceDTO>(@"Services\Services.xml").Select(i=>ClassFactory.CreateService(i)).ToList());
+            Details =new ObservableCollection<IDetail>(DetailsSer.Select(i=>ClassFactory.CreateDetail(i)).ToList());
             DetailsToTransfer = new ObservableCollection<IDetail>();
             DataContext = this;
         }
@@ -39,8 +41,8 @@ namespace CarService.Windows
 
         private void SelectDetail(object sender, RoutedEventArgs e)
         {
-            DetailsToTransfer.Add(ClassFactory.CreateDetail((DetailDTO)Storage.SelectedItem));
-            DataContext = this;
+            DetailsToTransfer.Add(ClassFactory.CreateDetail(((IDetail)Storage.SelectedItem).ToDTO()));
+            // Відняти кількість
         }
 
         private void Save(object sender, RoutedEventArgs e)

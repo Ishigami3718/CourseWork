@@ -13,6 +13,7 @@
     <None Remove="Images\Deleting.png" />
     <None Remove="Images\Redacting.png" />
     <None Remove="Images\Sorting.png" />
+    <None Remove="Storage\Storage.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,9 @@
     </Content>
     <Content Include="Images\Sorting.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Storage\Storage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

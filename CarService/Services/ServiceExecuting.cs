@@ -11,19 +11,17 @@ namespace CarService.Services
     {
         Service service;
         ObservableCollection<IDetail> details;
-        
-        double totalPrice;
 
-        public double TotalPrice { get { return totalPrice; } }
+        public double TotalPrice { get { return OrderPriceCalculator.CalcPrice(service, details); } }
         /*public Service Service { get { return service; } }
         public List<IDetail> Details { get { return details; } }*/
 
 
-        public ServiceExecuting(Service service, ObservableCollection<IDetail> details,double totalPrice)
+
+        public ServiceExecuting(Service service, ObservableCollection<IDetail> details)
         {
             this.service = service;
             this.details = details;
-            this.totalPrice = totalPrice;
         }
 
         public ServiceExecuting(ServiceExecutingDTO dto)
@@ -34,7 +32,7 @@ namespace CarService.Services
 
         public ServiceExecutingDTO ToDto()
         {
-            return new ServiceExecutingDTO { Details = details.Select(i => i.ToDTO()).ToList(), Service = service.ToDto(), TotalPrice = totalPrice };
+            return new ServiceExecutingDTO { Details = details.Select(i => i.ToDTO()).ToList(), Service = service.ToDto()};
         }
     }
 }
