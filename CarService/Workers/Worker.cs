@@ -10,17 +10,31 @@ namespace CarService.Workers
     {
         string name;
         double salary;
-        double quota;
+        double? quota;
 
-        public double Quota { get { return quota; } set { quota = value; } }
+        public double? Quota { get { return quota; } set { quota = value; } }
         public Worker(WorkerDTO dto)
         {
             name = dto.Name;
             salary = dto.Salary;
+            quota = dto.Quota;
         }
+
+        public Worker(string name, double salary)
+        {
+            this.name = name;
+            this.salary = salary;
+        }
+
+
         public WorkerDTO ToDto()
         {
-            return new WorkerDTO {Name=name,Salary=salary};
+            return new WorkerDTO {Name=name,Salary=salary,Quota=quota};
+        }
+
+        public override string ToString()
+        {
+            return $"{name} ставка:{quota}";
         }
     }
 }

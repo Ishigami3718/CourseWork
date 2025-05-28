@@ -69,7 +69,7 @@ namespace CarService
         private void AddObject_Click(object sender, RoutedEventArgs e)
         {
             new Window1().ShowDialog();
-            Serializer.Serialize(requestsSer, @"Orders\Orders.xml");
+            Serializer.Serialize<RequestDTO>(requestsSer, @"Orders\Orders.xml");
         }
 
         public void Update(RequestDTO request)
@@ -124,7 +124,13 @@ namespace CarService
             dataAddition.UpdateData(null);
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Workers(object sender, RoutedEventArgs e)
+        {
+            MainData.Visibility = Visibility.Collapsed;
+            MainView.Navigate(new Pages.Workers());
+        }
+
+        private void Service(object sender, RoutedEventArgs e)
         {
             MainData.Visibility = Visibility.Collapsed;
             MainView.Navigate(new Pages.Service());

@@ -12,6 +12,8 @@ namespace CarService.Services
         Service service;
         ObservableCollection<IDetail> details;
 
+        public ObservableCollection<IDetail> Details {  get { return details; } }
+
         public double TotalPrice { get { return OrderPriceCalculator.CalcPrice(service, details); } }
         /*public Service Service { get { return service; } }
         public List<IDetail> Details { get { return details; } }*/
@@ -32,7 +34,12 @@ namespace CarService.Services
 
         public ServiceExecutingDTO ToDto()
         {
-            return new ServiceExecutingDTO { Details = details.Select(i => i.ToDTO()).ToList(), Service = service.ToDto()};
+            return new ServiceExecutingDTO { Details = new ObservableCollection<DetailDTO>(details.Select(i => i.ToDTO()).ToList()), Service = service.ToDto()};
+        }
+
+        public override string ToString()
+        {
+            return service.ToString();
         }
     }
 }

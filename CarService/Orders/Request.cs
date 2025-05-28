@@ -11,7 +11,7 @@ namespace CarService.Orders
     {
         IClient client;
         int id;
-        DateOnly date;
+        DateTime date;
         ObservableCollection<ServiceExecuting> services;
         double totalPrice;
         ObservableCollection<IWorker> workers;
@@ -20,7 +20,7 @@ namespace CarService.Orders
         public int Id { get { return id; } }
         public ObservableCollection<ServiceExecuting> Services {  get { return services; } }
 
-        public Request(IClient client, int id, DateOnly date, ObservableCollection<ServiceExecuting> services,double totalPrice ,ObservableCollection<IWorker> workers)
+        public Request(IClient client, int id, DateTime date, ObservableCollection<ServiceExecuting> services,double totalPrice ,ObservableCollection<IWorker> workers)
         {
             this.client = client;
             this.id = id;

@@ -36,7 +36,7 @@ namespace CarService.Clients
             {
                 Id = id,
                 Name = name,
-                Car = car
+                Car = car.ToDTO()
             };
         }
 
@@ -44,7 +44,7 @@ namespace CarService.Clients
         {
             id = dto.Id;
             name = dto.Name;
-            car = dto.Car;
+            car = new Car(dto.Car);
         }
     }
 }

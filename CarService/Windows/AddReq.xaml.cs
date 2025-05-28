@@ -20,13 +20,13 @@ namespace CarService.Windows
     /// </summary>
     public partial class Window1 : Window
     {
-        public static ObservableCollection<IWorker> workers {  get; set; }
-        public static ObservableCollection<ServiceExecuting> services {  get; set; }
+        public static ObservableCollection<IWorker> Workers {  get; set; }
+        public static ObservableCollection<ServiceExecuting> Services {  get; set; }
         public Window1()
         {
             InitializeComponent();
-            workers = new ObservableCollection<IWorker>();
-            services = new ObservableCollection<ServiceExecuting>();
+            Workers = new ObservableCollection<IWorker>();
+            Services = new ObservableCollection<ServiceExecuting>();
         }
 
         private void AddService(object sender, RoutedEventArgs e)
@@ -41,22 +41,22 @@ namespace CarService.Windows
 
         public static void TransferWorker(WorkerDTO worker)
         {
-            workers.Add(ClassFactory.CreateWorker(worker));
+            Workers.Add(ClassFactory.CreateWorker(worker));
         }
 
         public static void TransferService(ServiceExecutingDTO service)
         {
-            services.Add(new ServiceExecuting(service)); 
+            Services.Add(new ServiceExecuting(service)); 
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
-                Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), DateOnly.FromDateTime((DateTime)RegDate.SelectedDate));
+                Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), (DateTime)RegDate.SelectedDate);
                 IClient client = ClassFactory.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
-                Request requst = ClassFactory.CreateRequest(client, services, workers);
-                MainWindow.TransferRequest(requst.ToDTO());
+                Request requst = ClassFactory.CreateRequest(client, Services, Workers);
+                if (Workers.Count!=0 && Services.Count!=0) MainWindow.TransferRequest(requst.ToDTO());
             }
             catch { }
 

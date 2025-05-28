@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace CarService.Orders
 {
@@ -14,9 +15,10 @@ namespace CarService.Orders
         public int Id { get; set; }
         [DisplayName("Клієнт")]
         public ClientDTO Client { get; set; }
+        [XmlIgnore]
         public string ClientName=>Client.Name;
         [DisplayName("Дата")]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         public ObservableCollection<ServiceExecutingDTO> Services { get; set; }
         [DisplayName("Ціна")]

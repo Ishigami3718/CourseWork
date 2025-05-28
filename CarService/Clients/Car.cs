@@ -10,9 +10,9 @@ namespace CarService.Clients
     {
         string mark, model, licensePlate;
         int run;
-        DateOnly registerDate;
+        DateTime registerDate;
 
-        public Car(string mark,string model,string licensePlate,int run,DateOnly reqisterDate)
+        public Car(string mark,string model,string licensePlate,int run,DateTime reqisterDate)
         {
             this.mark = mark;
             this.model = model;
@@ -29,7 +29,8 @@ namespace CarService.Clients
                 Mark = mark,
                 Model = model,
                 LicensePlate = licensePlate,
-                Run = run
+                Run = run,
+                RegisterDate=registerDate
             };
         }
 
@@ -39,6 +40,7 @@ namespace CarService.Clients
             model = dto.Model;
             licensePlate = dto.LicensePlate;
             run = dto.Run;
+            registerDate = dto.RegisterDate;
         }
     }
 }

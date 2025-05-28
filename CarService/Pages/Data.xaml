@@ -16,7 +16,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
                 <DataGridTextColumn Header="Клієнт" Binding="{Binding Path=ClientName}"/>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date, StringFormat='{}{0:dd.MM.yyyy}'}"/>
                 <DataGridTextColumn Header="До сплати" Binding="{Binding Path=Price}"/>
             </DataGrid.Columns>
         </DataGrid>

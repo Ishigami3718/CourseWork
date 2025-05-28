@@ -11,8 +11,8 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Замовлення" Click="Orders"/>
             <MenuItem Header="Клієнти"/>
-            <MenuItem Header="Послуги" Click="MenuItem_Click"/>
-            <MenuItem Header="Працівники"/>
+            <MenuItem Header="Послуги" Click="Service"/>
+            <MenuItem Header="Працівники" Click="Workers"/>
             <MenuItem Header="Склад" Click="Storage"/>
         </Menu>
         <Grid>
@@ -45,7 +45,6 @@
                 </ToolBarTray>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
 
                     </Grid.ColumnDefinitions>

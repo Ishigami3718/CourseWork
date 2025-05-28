@@ -16,6 +16,7 @@
     <None Remove="Orders\Orders.xml" />
     <None Remove="Services\Services.xml" />
     <None Remove="Storage\Storage.xml" />
+    <None Remove="Workers\Workers.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Storage\Storage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Workers\Workers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

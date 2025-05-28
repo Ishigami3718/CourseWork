@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
@@ -31,7 +32,7 @@ namespace CarService.Utils
         }
          */
 
-        public static Car CreateCar(string mark, string model, string licensePlate, int run, DateOnly reqisterDate)
+        public static Car CreateCar(string mark, string model, string licensePlate, int run, DateTime reqisterDate)
         {
             return new Car(mark, model, licensePlate, run, reqisterDate);
         }
@@ -39,6 +40,11 @@ namespace CarService.Utils
         public static IWorker CreateWorker(WorkerDTO dto)
         {
             return new Worker(dto);
+        }
+
+        public static IWorker CreateWorker(string name, double salary)
+        {
+            return new Worker(name,salary);
         }
 
         public static IDetail CreateDetail(DetailDTO dto)
@@ -51,9 +57,9 @@ namespace CarService.Utils
             return new Detail(name,model,price,count,value);
         }
 
-        public static Request CreateRequest(IClient client, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
+        public static Request    CreateRequest(IClient client, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
         {
-            return new Request(client, MainWindow.LastId + 1, DateOnly.FromDateTime(DateTime.Now), services, OrderPriceCalculator.CalcFullPrice(services, client), workers);
+            return new Request(client, MainWindow.LastId + 1, DateTime.Now, services, OrderPriceCalculator.CalcFullPrice(services, client), workers);
         }
 
         public static ServiceExecuting CreateServiceExexuting(Services.Service service, ObservableCollection<IDetail> details)
