@@ -8,8 +8,12 @@ namespace CarService.Storage
 {
     public interface IDetail
     {
+        public string Name { get; }
+        public string Model {  get; }
         public double Price { get; }
-        public double Count {  get; }
+        public double Count { get; set; }
+
+        public string Value {  get; }
 
         public DetailDTO ToDTO();
     }

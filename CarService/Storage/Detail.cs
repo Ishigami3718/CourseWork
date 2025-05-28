@@ -13,7 +13,11 @@ namespace CarService.Storage
         string value;
 
         public double Price => price;
-        public double Count => count;
+        public double Count {  get { return count; } set { count = value; } }
+
+        public string Value => value;
+        public string Name => name;
+        public string Model => model;
 
         public DetailDTO ToDTO()
         {
