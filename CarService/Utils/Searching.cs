@@ -15,7 +15,7 @@ namespace CarService.Utils
         {
             if (search != "Введіть для пошуку")
             {
-                if (search != string.Empty)
+                if (search != string.Empty && search!=null)
                 {
                     List<T> r = data.Where(i => serachBy(i).Contains(search)).ToList();
                     dataToDisplay.Clear();
@@ -31,5 +31,8 @@ namespace CarService.Utils
 
         public static void SearchByName(string search, ObservableCollection<RequestDTO> dataToDaisplay,
             ObservableCollection<RequestDTO> data) => Search<RequestDTO>(search, dataToDaisplay, data, i => i.ClientName);
+
+        public static void SearchByName(string search, ObservableCollection<DetailDTO> dataToDaisplay,
+            ObservableCollection<DetailDTO> data) => Search<DetailDTO>(search, dataToDaisplay, data, i => i.Name);
     }
 }

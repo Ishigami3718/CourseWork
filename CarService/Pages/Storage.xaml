@@ -19,23 +19,23 @@
                         <Image Source="pack://application:,,,/Images/Sorting.png" Height="25" Width="15"/>
                         <Button.ContextMenu>
                             <ContextMenu x:Name="Context">
-                                <MenuItem Header="За ім'ям" />
-                                <MenuItem Header="За датою" />
-                                <MenuItem Header="За Id" />
+                                <MenuItem Header="За Назвою" Click="ByName"/>
+                                <MenuItem Header="За Кількістю" Click="ByCount"/>
+                                <MenuItem Header="За Ціною" Click="ByPrice"/>
                             </ContextMenu>
                         </Button.ContextMenu>
                     </Button>
-                    <Button Width="25" ToolTip="Видалити">
+                    <Button Width="25" ToolTip="Видалити" Click="Delete">
                         <Image Source="pack://application:,,,/Images/Deleting.png" Height="25" Width="15"/>
                     </Button>
                     <Button Width="25" ToolTip="Редагувати">
                         <Image Source="pack://application:,,,/Images/Redacting.png" Height="25" Width="15"/>
                     </Button>
                     <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
-                     Text="Введіть для пошуку"/>
+                     Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
                 </ToolBar>
             </ToolBarTray>
-            <DataGrid ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+            <DataGrid x:Name="DetailsTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
       VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Details}" HorizontalScrollBarVisibility="Auto"
           VerticalScrollBarVisibility="Auto" IsReadOnly="True">
             <DataGrid.Columns>

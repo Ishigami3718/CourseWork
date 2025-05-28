@@ -24,7 +24,7 @@ namespace CarService.Pages
     {
         //Requests table
         public ObservableCollection<RequestDTO> Requests { get; set; }
-        private RequestDTO selectedRequest;
+        public RequestDTO SelectedReq => (RequestDTO)DataGrid.SelectedItem;
         
         public Data(ObservableCollection<RequestDTO> requestsDTO)
         {

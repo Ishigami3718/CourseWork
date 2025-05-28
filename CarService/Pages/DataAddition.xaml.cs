@@ -53,6 +53,11 @@ namespace CarService.Pages
                     Workers.Add(w);
                 DataContext = this;
             }
+            else
+            {
+                Services.Clear();
+                Workers.Clear();
+            }
         }
     }
 }

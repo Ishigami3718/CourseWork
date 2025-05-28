@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarService.Orders;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -25,7 +26,7 @@ namespace CarService
         static ObservableCollection<RequestDTO> requests;
         static ObservableCollection<RequestDTO> requestsSer;
         DataAddition dataAddition;
-
+        Data Requests;
         public static int LastId 
         { get 
             { 
@@ -54,7 +55,8 @@ namespace CarService
             requestsSer.Add(r);
             requestsSer.Add(r1);
             requests = new ObservableCollection<RequestDTO>(requestsSer);
-            Data.Navigate(new Data(requests));
+            Requests = new Data(requests);
+            Data.Navigate(Requests);
             dataAddition = new DataAddition();
             AddData.Navigate(dataAddition);
         }
@@ -110,6 +112,14 @@ namespace CarService
         {
             MainView.Content = null;
             MainData.Visibility = Visibility.Visible;
+        }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            RequestDTO toDelete = Requests.SelectedReq;
+            requestsSer.Remove(toDelete);
+            requests.Remove(toDelete);
+            dataAddition.UpdateData(null);
         }
     }
 }
