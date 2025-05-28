@@ -8,5 +8,8 @@ namespace CarService.Workers
 {
     public interface IWorker
     {
+        public double? Quota { get; set; }
+
+        public WorkerDTO ToDto();
     }
 }

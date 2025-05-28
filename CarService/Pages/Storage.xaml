@@ -1,0 +1,51 @@
+﻿<Page x:Class="CarService.Pages.Storage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarService.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Storage">
+
+    <Grid>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddDetail">
+                        <Image Source="pack://application:,,,/Images/Adding.png" Stretch="Uniform"/>
+                    </Button>
+                    <Button x:Name="Sort" Width="25" ToolTip="Сортувати">
+                        <Image Source="pack://application:,,,/Images/Sorting.png" Height="25" Width="15"/>
+                        <Button.ContextMenu>
+                            <ContextMenu x:Name="Context">
+                                <MenuItem Header="За Назвою" Click="ByName"/>
+                                <MenuItem Header="За Кількістю" Click="ByCount"/>
+                                <MenuItem Header="За Ціною" Click="ByPrice"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                    <Button Width="25" ToolTip="Видалити" Click="Delete">
+                        <Image Source="pack://application:,,,/Images/Deleting.png" Height="25" Width="15"/>
+                    </Button>
+                    <Button Width="25" ToolTip="Редагувати">
+                        <Image Source="pack://application:,,,/Images/Redacting.png" Height="25" Width="15"/>
+                    </Button>
+                    <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
+                     Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
+                </ToolBar>
+            </ToolBarTray>
+            <DataGrid x:Name="DetailsTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+      VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Details}" HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Назва" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                    <DataGridTextColumn Header="Одиниці виміру" Binding="{Binding Value}"/>
+                    <DataGridTextColumn Header="Клькість" Binding="{Binding Count}"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Price}"/>
+                </DataGrid.Columns>
+        </DataGrid>
+        </DockPanel>
+    </Grid>
+</Page>

@@ -5,49 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600">
+        Title="Система обліку СТО" Height="400" Width="800"
+        Icon="Images/AppIcon.png">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Замовлення"/>
+            <MenuItem Header="Замовлення" Click="Orders"/>
             <MenuItem Header="Клієнти"/>
-            <MenuItem Header="Послуги"/>
-            <MenuItem Header="Працівники"/>
-            <MenuItem Header="Склад"/>
-        </Menu>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Width="25">
-                <MenuItem.Icon>
-                    <Image Source="Images/Adding.png" Stretch="Uniform"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Width="25">
-                <MenuItem.Icon>
-                    <Image Source="Images/Sorting.png" Height="25" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Width="25">
-                <MenuItem.Icon>
-                    <Image Source="Images/Deleting.png" Height="25" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
+            <MenuItem Header="Послуги" Click="Service"/>
+            <MenuItem Header="Працівники" Click="Workers"/>
+            <MenuItem Header="Склад" Click="Storage"/>
         </Menu>
         <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition/>
+            <Frame x:Name="MainView" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
+            <DockPanel x:Name="MainData" Grid.ColumnSpan="2">
+                <ToolBarTray DockPanel.Dock="Top">
+                    <ToolBar>
+                        <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddObject_Click">
+                            <Image Source="Images/Adding.png" Stretch="Uniform"/>
+                        </Button>
+                        <Button x:Name="Sort" Width="25" ToolTip="Сортувати" Click="Sorting">
+                            <Image Source="Images/Sorting.png" Height="25" Width="15"/>
+                            <Button.ContextMenu>
+                                <ContextMenu x:Name="Context">
+                                    <MenuItem Header="За ім'ям" Click="ByName"/>
+                                    <MenuItem Header="За датою" Click="ByDate"/>
+                                    <MenuItem Header="За Id" Click="ById"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
+                        <Button Width="25" ToolTip="Видалити" Click="Delete">
+                            <Image Source="Images/Deleting.png" Height="25" Width="15"/>
+                        </Button>
+                        <Button Width="25" ToolTip="Редагувати">
+                            <Image Source="Images/Redacting.png" Height="25" Width="15"/>
+                        </Button>
+                        <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
+             Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
+                    </ToolBar>
+                </ToolBarTray>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
 
-        </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1.4*"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0"/>
-                <Frame Grid.Row="1" Grid.Column="0"/>
-            </Grid>
-            <Frame x:Name="Frame" Grid.Row="0" Grid.Column="0"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.4*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Frame x:Name="Data" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                        <Frame x:Name="AddData" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    </Grid>
 
-
+                </Grid>
+            </DockPanel>
         </Grid>
     </DockPanel>
 </Window>

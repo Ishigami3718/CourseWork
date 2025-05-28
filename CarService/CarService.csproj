@@ -9,23 +9,43 @@
 
   <ItemGroup>
     <None Remove="Images\Adding.png" />
+    <None Remove="Images\AppIcon.png" />
     <None Remove="Images\Deleting.png" />
+    <None Remove="Images\Redacting.png" />
     <None Remove="Images\Sorting.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClassServices\" />
+    <None Remove="Orders\Orders.xml" />
+    <None Remove="Services\Services.xml" />
+    <None Remove="Storage\Storage.xml" />
+    <None Remove="Workers\Workers.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Images\Adding.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\AppIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Deleting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Redacting.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Sorting.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Orders\Orders.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Services\Services.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Storage\Storage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Workers\Workers.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

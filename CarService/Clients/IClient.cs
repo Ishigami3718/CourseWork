@@ -8,5 +8,9 @@ namespace CarService.Clients
 {
     public interface IClient
     {
+        public double Discount {  get; }
+        public ClientDTO ToDTO();
+
+        public Car Car { get; }
     }
 }
