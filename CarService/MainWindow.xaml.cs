@@ -37,8 +37,8 @@ namespace CarService
         public MainWindow()
         {
             InitializeComponent();
-            requestsSer = Serializer.Deserialize<RequestDTO>(@"Orders\Requests.xml");
-            ObservableCollection<ServiceExecutingDTO> ser = new ObservableCollection<ServiceExecutingDTO>();
+            requestsSer = Serializer.Deserialize<RequestDTO>(@"Orders\Orders.xml");
+            /*ObservableCollection<ServiceExecutingDTO> ser = new ObservableCollection<ServiceExecutingDTO>();
             ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
             RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
                 Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser,
@@ -53,7 +53,7 @@ namespace CarService
                 Workers = new ObservableCollection<WorkerDTO>() { new WorkerDTO() { Name = "Вадим Зубенко", Quota = 1.0 } }
             };
             requestsSer.Add(r);
-            requestsSer.Add(r1);
+            requestsSer.Add(r1);*/
             requests = new ObservableCollection<RequestDTO>(requestsSer);
             Requests = new Data(requests);
             Data.Navigate(Requests);
@@ -63,11 +63,13 @@ namespace CarService
 
         public static void TransferRequest(RequestDTO request)
         {
-                requests.Add(request);
+            requests.Add(request);
+            requestsSer.Add(request);
         }
         private void AddObject_Click(object sender, RoutedEventArgs e)
         {
             new Window1().ShowDialog();
+            Serializer.Serialize(requestsSer, @"Orders\Orders.xml");
         }
 
         public void Update(RequestDTO request)
@@ -120,6 +122,12 @@ namespace CarService
             requestsSer.Remove(toDelete);
             requests.Remove(toDelete);
             dataAddition.UpdateData(null);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MainData.Visibility = Visibility.Collapsed;
+            MainView.Navigate(new Pages.Service());
         }
     }
 }

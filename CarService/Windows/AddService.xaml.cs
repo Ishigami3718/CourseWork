@@ -20,24 +20,24 @@ namespace CarService.Windows
     /// </summary>
     public partial class Window2 : Window
     {
-        public  ObservableCollection<Service> Services { get; set; }
+        public  ObservableCollection<Services.Service> Services { get; set; }
         private ObservableCollection<DetailDTO> DetailsSer;
         public  ObservableCollection<IDetail> Details { get; set; }
 
-        Service selectedService;
+        Services.Service selectedService;
 
         public static ObservableCollection<IDetail> DetailsToTransfer { get; set; }
         public Window2()
         {
             InitializeComponent();
             DetailsSer = Serializer.Deserialize<DetailDTO>(@"Storage\Storage.xml");
-            Services =new ObservableCollection<Service>(Serializer.Deserialize<ServiceDTO>(@"Services\Services.xml").Select(i=>ClassFactory.CreateService(i)).ToList());
+            Services =new ObservableCollection<Services.Service>(Serializer.Deserialize<ServiceDTO>(@"Services\Services.xml").Select(i=>ClassFactory.CreateService(i)).ToList());
             Details =new ObservableCollection<IDetail>(DetailsSer.Select(i=>ClassFactory.CreateDetail(i)).ToList());
             DetailsToTransfer = new ObservableCollection<IDetail>();
             DataContext = this;
         }
 
-        private void SelectService(object sender, RoutedEventArgs e) => selectedService = (Service)ServicesUI.SelectedItem;
+        private void SelectService(object sender, RoutedEventArgs e) => selectedService = (Services.Service)ServicesUI.SelectedItem;
 
         private void SelectDetail(object sender, RoutedEventArgs e)
         {
@@ -78,6 +78,7 @@ namespace CarService.Windows
         {
             Window1.TransferService(ClassFactory.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
             Serializer.Serialize(DetailsSer, @"Storage\Storage.xml");
+            this.Close();
         }
     }
 }

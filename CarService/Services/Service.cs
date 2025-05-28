@@ -25,7 +25,7 @@ namespace CarService.Services
 
         public ServiceDTO ToDto()
         {
-            return new ServiceDTO { Name = Name, Price = Price };
+            return new ServiceDTO { Name = Name, Price = Price,PriceVAT=price*1.2 };
         }
         public Service(ServiceDTO dto)
         {
@@ -33,5 +33,9 @@ namespace CarService.Services
             price = dto.Price;
         }
 
+        public override string ToString()
+        {
+            return $"{name} {price}грн";
+        }
     }
 }

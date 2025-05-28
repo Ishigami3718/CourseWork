@@ -23,20 +23,21 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="200" Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}" IsReadOnly="True"/>
                         <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Price}" IsReadOnly="True"/>
-                        <DataGridTextColumn Width="100" Header="Сума з ПДВ" Binding="{Binding Path=TotalPrice}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Сума з ПДВ" Binding="{Binding Path=Service.PriceVAT}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
                 <TabItem Header="Товари">
                 <DataGrid Grid.Column="0" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
-VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services.Details}" HorizontalScrollBarVisibility="Auto"
+VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding AllDetails}" HorizontalScrollBarVisibility="Auto"
     VerticalScrollBarVisibility="Auto" IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="150" Header="Назва" Binding="{Binding Path=Service.Details.Name}" IsReadOnly="True"/>
-                        <DataGridTextColumn Width="100" Header="Модель" Binding="{Binding Path=Service.Details.Model}" IsReadOnly="True"/>
-                        <DataGridTextColumn Width="100" Header="Одиниці виміру" Binding="{Binding Path=Service.Details.Value}" IsReadOnly="True"/>
-                        <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Path=Service.Details.Count}" IsReadOnly="True"/>
-                        <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Details.Price}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="150" Header="Назва" Binding="{Binding Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Модель" Binding="{Binding Model}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Одиниці виміру" Binding="{Binding Value}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Count}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Price}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="100" Header="Сума з ПДВ" Binding="{Binding PriceVAT}" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

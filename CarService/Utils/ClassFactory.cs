@@ -56,14 +56,19 @@ namespace CarService.Utils
             return new Request(client, MainWindow.LastId + 1, DateOnly.FromDateTime(DateTime.Now), services, OrderPriceCalculator.CalcFullPrice(services, client), workers);
         }
 
-        public static ServiceExecuting CreateServiceExexuting(Service service, ObservableCollection<IDetail> details)
+        public static ServiceExecuting CreateServiceExexuting(Services.Service service, ObservableCollection<IDetail> details)
         {
             return new ServiceExecuting(service, details);
         }
 
-        public static Service CreateService(ServiceDTO service)
+        public static Services.Service CreateService(ServiceDTO service)
         {
-            return new Service(service);
+            return new Services.Service(service);
+        }
+
+        public static Services.Service CreateService(string name, double price)
+        {
+            return new Services.Service(name, price);
         }
     }
 

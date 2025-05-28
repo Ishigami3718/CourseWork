@@ -15,8 +15,8 @@ namespace CarService.Utils
         }
         public static List<ServiceExecuting> DetermServices(Request previousRequest)
         {
-            List<Service> services = Serializer.Deserialize<ServiceDTO>(@"Services\Services.xaml").
-                Select(i=>new Service(i)).ToList();
+            List<Services.Service> services = Serializer.Deserialize<ServiceDTO>(@"Services\Services.xaml").
+                Select(i=>new Services.Service(i)).ToList();
             List<ServiceExecuting> res = new List<ServiceExecuting>();
             int run = previousRequest.Client.Car.Run;
             if (InRange(run, (5000, 11000)))

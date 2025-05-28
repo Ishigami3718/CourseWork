@@ -21,7 +21,8 @@ namespace CarService.Storage
 
         public DetailDTO ToDTO()
         {
-            return new DetailDTO { Count = count, Model = model, Price = price, Name = name, Value = value };
+            return new DetailDTO { Count = count, Model = model, Price = price, Name = name, Value = value, 
+                PriceVAT=DetailPriceCalculator.CalcPriceVAT(this) };
         }
         public Detail(DetailDTO dto)
         {

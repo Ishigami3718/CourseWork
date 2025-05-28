@@ -41,6 +41,7 @@ namespace CarService.Pages
         public static void TransferDetail(DetailDTO detail)
         {
             DetailsSer.Add(detail);
+            Details.Add(detail);
         }
 
         private void StartSearching(object sender, KeyboardFocusChangedEventArgs e)

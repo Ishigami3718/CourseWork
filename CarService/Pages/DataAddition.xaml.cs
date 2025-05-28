@@ -24,6 +24,8 @@ namespace CarService.Pages
        // public List<ServiceExecutingDTO> Requests { get; set; }
         public ObservableCollection<ServiceExecutingDTO> Services { get; set; }
         public ObservableCollection<WorkerDTO> Workers { get; set; }
+
+        public ObservableCollection<DetailDTO> AllDetails { get; set; }
         public DataAddition(RequestDTO requestsDTO)
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace CarService.Pages
         {
             Services = new ObservableCollection<ServiceExecutingDTO>();
             Workers = new ObservableCollection<WorkerDTO>();
+            AllDetails=new ObservableCollection<DetailDTO>();
             InitializeComponent();
             DataContext = this;
         }
@@ -51,6 +54,15 @@ namespace CarService.Pages
                 Workers.Clear();
                 foreach (var w in dto.Workers)
                     Workers.Add(w);
+
+                AllDetails.Clear();
+                foreach( var i in dto.Services)
+                {
+                    foreach(var j in i.Details)
+                    {
+                        AllDetails.Add(j);
+                    }
+                }
                 DataContext = this;
             }
             else

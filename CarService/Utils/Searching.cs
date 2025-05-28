@@ -34,5 +34,8 @@ namespace CarService.Utils
 
         public static void SearchByName(string search, ObservableCollection<DetailDTO> dataToDaisplay,
             ObservableCollection<DetailDTO> data) => Search<DetailDTO>(search, dataToDaisplay, data, i => i.Name);
+
+        public static void SearchByName(string search, ObservableCollection<ServiceDTO> dataToDaisplay,
+            ObservableCollection<ServiceDTO> data) => Search<ServiceDTO>(search, dataToDaisplay, data, i => i.Name);
     }
 }

@@ -24,5 +24,8 @@ namespace CarService.Utils
         public static void ByName(ObservableCollection<DetailDTO> toSort) => Sort<DetailDTO>(i => i.Name, toSort);
         public static void ByCount(ObservableCollection<DetailDTO> toSort) => Sort<DetailDTO>(i => i.Count, toSort);
         public static void ByPrice(ObservableCollection<DetailDTO> toSort) => Sort<DetailDTO>(i => i.Price, toSort);
+
+        public static void ByName(ObservableCollection<ServiceDTO> toSort) => Sort<ServiceDTO>(i => i.Name, toSort);
+        public static void ByPrice(ObservableCollection<ServiceDTO> toSort) => Sort<ServiceDTO>(i => i.Price, toSort);
     }
 }

@@ -12,7 +12,7 @@ namespace CarService.Orders
     {
         const double vat = 0.2;
 
-        public static double CalcPrice(Service service, ObservableCollection<IDetail> details)
+        public static double CalcPrice(Services.Service service, ObservableCollection<IDetail> details)
         {
             double detailPrice = 0;
             foreach (var i in details)
