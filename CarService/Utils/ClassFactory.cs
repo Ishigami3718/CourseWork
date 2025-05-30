@@ -1,4 +1,5 @@
-﻿using CarService.Services;
+﻿using CarService.Clients;
+using CarService.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
+using System.Xml.Linq;
 
 namespace CarService.Utils
 {
@@ -19,18 +21,14 @@ namespace CarService.Utils
             return new Client(dto);
         }
 
-        public static IClient CreateClient(string name, Car car, bool isReqular, int transmission, double discount)
+        public static IClient CreateClient(string name, Car car, int transmission, double discount)
         {
-            if (isReqular) return new RegularClient(MainWindow.LastId + 1, name, car, transmission, Math.Round(discount / 100, 3));
-            else return new Client(MainWindow.LastId + 1, name, car);
+             return new RegularClient(MainWindow.LastId + 1, name, car, transmission, Math.Round(discount / 100, 3));
         }
-
-        /*
-         public static IClient CreateRegularClient(Client client,int transmission, double discount)
+        public static IClient CreateClient(string name, Car car)
         {
-            return new RegularClient(client,transmission,discount);
+            return new Client(MainWindow.LastId + 1, name, car);
         }
-         */
 
         public static Car CreateCar(string mark, string model, string licensePlate, int run, DateTime reqisterDate)
         {

@@ -38,22 +38,6 @@ namespace CarService
         {
             InitializeComponent();
             requestsSer = Serializer.Deserialize<RequestDTO>(@"Orders\Orders.xml");
-            /*ObservableCollection<ServiceExecutingDTO> ser = new ObservableCollection<ServiceExecutingDTO>();
-            ser.Add(new ServiceExecutingDTO() {Service=new ServiceDTO() { Name="ddd",Price=450} });
-            RequestDTO r = new RequestDTO { Client = new ClientDTO() { Name="Ростислав Лещенко"}, 
-                Date = new DateOnly(2025, 4, 12), Id = 1, Price = 1500, Services = ser,
-                Workers=new ObservableCollection<WorkerDTO>() { new WorkerDTO() {Name="Kalpas Sidorov",Quota=1.0} } };
-            RequestDTO r1 = new RequestDTO
-            {
-                Client = new ClientDTO() { Name = "Петренко Петро" },
-                Date = new DateOnly(2024, 7, 10),
-                Id = 2,
-                Price = 700,
-                Services = ser,
-                Workers = new ObservableCollection<WorkerDTO>() { new WorkerDTO() { Name = "Вадим Зубенко", Quota = 1.0 } }
-            };
-            requestsSer.Add(r);
-            requestsSer.Add(r1);*/
             requests = new ObservableCollection<RequestDTO>(requestsSer);
             Requests = new Data(requests);
             Data.Navigate(Requests);
@@ -134,6 +118,12 @@ namespace CarService
         {
             MainData.Visibility = Visibility.Collapsed;
             MainView.Navigate(new Pages.Service());
+        }
+
+        private void CarInfo_Click(object sender, RoutedEventArgs e)
+        {
+            CarDTO car = Requests.SelectedReq.Client.Car;
+            if(car!=null) new CarInfo(car).ShowDialog();
         }
     }
 }

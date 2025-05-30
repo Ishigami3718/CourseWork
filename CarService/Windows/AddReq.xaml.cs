@@ -27,6 +27,7 @@ namespace CarService.Windows
             InitializeComponent();
             Workers = new ObservableCollection<IWorker>();
             Services = new ObservableCollection<ServiceExecuting>();
+            DataContext = this;
         }
 
         private void AddService(object sender, RoutedEventArgs e)
@@ -54,7 +55,15 @@ namespace CarService.Windows
             try
             {
                 Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), (DateTime)RegDate.SelectedDate);
-                IClient client = ClassFactory.CreateClient(Name.Text, car, (bool)Regularity.IsChecked, int.Parse(Transmission.Text), double.Parse(Discount.Text));
+                IClient client = null;
+                if ((bool)Regularity.IsChecked)
+                {
+                    client = ClassFactory.CreateClient(Name.Text, car,  int.Parse(Transmission.Text), double.Parse(Discount.Text));
+                }
+                else
+                {
+                    client = ClassFactory.CreateClient(Name.Text, car);
+                }
                 Request requst = ClassFactory.CreateRequest(client, Services, Workers);
                 if (Workers.Count!=0 && Services.Count!=0) MainWindow.TransferRequest(requst.ToDTO());
             }

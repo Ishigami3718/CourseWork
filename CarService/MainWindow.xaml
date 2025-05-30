@@ -39,16 +39,20 @@
                         <Button Width="25" ToolTip="Редагувати">
                             <Image Source="Images/Redacting.png" Height="25" Width="15"/>
                         </Button>
+                        <Button x:Name="CarInfo" Width="25" ToolTip="Додати" Click="CarInfo_Click">
+                            <Image Source="Images/CarInfo.png" Stretch="Uniform"/>
+                        </Button>
                         <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
              Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
                     </ToolBar>
                 </ToolBarTray>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="523*"/>
+                        <ColumnDefinition Width="277*"/>
 
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1.4*"/>
                             <RowDefinition/>

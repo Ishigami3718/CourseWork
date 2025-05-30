@@ -34,7 +34,7 @@ namespace CarService.Workers
 
         public override string ToString()
         {
-            return $"{name} ставка:{quota}";
+            return $"{name}";
         }
     }
 }
