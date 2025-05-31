@@ -30,5 +30,8 @@ namespace CarService.Utils
 
         public static void ByName(ObservableCollection<WorkerDTO> toSort) => Sort<WorkerDTO>(i => i.Name, toSort);
         public static void BySalarity(ObservableCollection<WorkerDTO> toSort) => Sort<WorkerDTO>(i => i.Salary, toSort);
+
+        public static void ByName(ObservableCollection<ClientDTO> toSort) => Sort<ClientDTO>(i => i.Name, toSort);
+        public static void ById(ObservableCollection<ClientDTO> toSort) => Sort<ClientDTO>(i => i.Id, toSort);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,8 @@ namespace CarService.Windows
     {
         public static ObservableCollection<IWorker> Workers {  get; set; }
         public static ObservableCollection<ServiceExecuting> Services {  get; set; }
+
+        private static ObservableCollection<DetailDTO> detailsSerialize;
         public Window1()
         {
             InitializeComponent();
@@ -50,6 +53,10 @@ namespace CarService.Windows
             Services.Add(new ServiceExecuting(service)); 
         }
 
+        public static void TransferDetailsToSerialize(ObservableCollection<DetailDTO> toSerialize)
+        {
+            detailsSerialize = toSerialize;
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
@@ -65,6 +72,7 @@ namespace CarService.Windows
                     int.Parse(Transmission.Text),double.Parse(Discount.Text));
                 Request requst = ClassFactory.CreateRequest(client, Services, Workers);
                 if (Workers.Count!=0 && Services.Count!=0) MainWindow.TransferRequest(requst.ToDTO());
+                if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Details\Details.xml");
             }
             catch { }
 

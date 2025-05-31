@@ -10,7 +10,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Замовлення" Click="Orders"/>
-            <MenuItem Header="Клієнти"/>
+            <MenuItem Header="Клієнти" Click="Clients"/>
             <MenuItem Header="Послуги" Click="Service"/>
             <MenuItem Header="Працівники" Click="Workers"/>
             <MenuItem Header="Склад" Click="Storage"/>

@@ -77,7 +77,7 @@ namespace CarService.Windows
         private void Save(object sender, RoutedEventArgs e)
         {
             Window1.TransferService(ClassFactory.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
-            Serializer.Serialize(DetailsSer, @"Storage\Storage.xml");
+            Window1.TransferDetailsToSerialize(DetailsSer);
             this.Close();
         }
     }

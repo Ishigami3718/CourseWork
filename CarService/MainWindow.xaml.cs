@@ -125,5 +125,11 @@ namespace CarService
             CarDTO car = Requests.SelectedReq.Client.Car;
             if(car!=null) new CarInfo(car).ShowDialog();
         }
+
+        private void Clients(object sender, RoutedEventArgs e)
+        {
+            MainData.Visibility = Visibility.Collapsed;
+            MainView.Navigate(new Pages.Clients());
+        }
     }
 }
