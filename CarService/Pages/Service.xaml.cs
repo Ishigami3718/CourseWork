@@ -71,5 +71,17 @@ namespace CarService.Pages
         private void ByName(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByName(Services);
 
         private void ByPrice(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByPrice(Services);
+
+        public static void Redact(ServiceDTO service,int id)
+        {
+            ServicesSer[id]= service;
+            Services.Clear();
+            foreach(var i in ServicesSer) Services.Add(i);
+        }
+        private void Redact(object sender, RoutedEventArgs e)
+        {
+            ServiceDTO serviceToRedact = ServicesTable.SelectedItem as ServiceDTO;
+            new AddServiceForStorage(serviceToRedact, ServicesSer.IndexOf(serviceToRedact)).ShowDialog();
+        }
     }
 }
