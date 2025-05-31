@@ -82,14 +82,19 @@ namespace CarService.Utils
             return new Detail(name,model,price,count,value);
         }
 
-        public static Request    CreateRequest(IClient client, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
+        public static Request    CreateRequest(IClient client,int id, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
         {
-            return new Request(client, MainWindow.LastId + 1, DateTime.Now, services, workers);
+            return new Request(client, id, DateTime.Now, services, workers);
         }
 
         public static ServiceExecuting CreateServiceExexuting(Services.Service service, ObservableCollection<IDetail> details)
         {
             return new ServiceExecuting(service, details);
+        }
+
+        public static ServiceExecuting CreateServiceExexuting(ServiceExecutingDTO service)
+        {
+            return new ServiceExecuting(service);
         }
 
         public static Services.Service CreateService(ServiceDTO service)

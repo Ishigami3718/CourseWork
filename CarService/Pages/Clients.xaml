@@ -37,16 +37,22 @@
                Text="Введіть для пошуку" GotKeyboardFocus="StartSearching" TextChanged="Searching" PreviewLostKeyboardFocus="LeaveSearching"/>
                 </ToolBar>
             </ToolBarTray>
-            <DataGrid x:Name="ClientsTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="1" x:Name="ClientsTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
 VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ClientsDis}" HorizontalScrollBarVisibility="Auto"
     VerticalScrollBarVisibility="Auto" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Періодичність(місяці)" Binding="{Binding Transmission}"/>
-                    <DataGridTextColumn Header="Знижка, %" Binding="{Binding Discount, StringFormat='{}{0:P0}'}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Періодичність(місяці)" Binding="{Binding Transmission}"/>
+                        <DataGridTextColumn Header="Знижка, %" Binding="{Binding Discount, StringFormat='{}{0:P0}'}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </DockPanel>
     </Grid>
 </Page>

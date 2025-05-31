@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -122,7 +123,15 @@ namespace CarService
 
         private void CarInfo_Click(object sender, RoutedEventArgs e)
         {
-            CarDTO car = Requests.SelectedReq.Client.Car;
+            CarDTO car=null;
+            try
+            {
+                if (Requests.SelectedReq != null)
+                {
+                    car = Requests.SelectedReq.Client.Car;
+                }
+            }
+            catch(NullReferenceException) { }
             if(car!=null) new CarInfo(car).ShowDialog();
         }
 
@@ -130,6 +139,19 @@ namespace CarService
         {
             MainData.Visibility = Visibility.Collapsed;
             MainView.Navigate(new Pages.Clients());
+        }
+
+        public static void Redact(RequestDTO request,int id)
+        {
+            requestsSer[id] = request;
+        }
+
+        private void RedactRequest(object sender, RoutedEventArgs e)
+        {
+            Requests.Redact(requestsSer);
+            requests.Clear();
+            foreach(RequestDTO request in requestsSer) requests.Add(request);
+            Serializer.Serialize<RequestDTO>(requestsSer, @"Orders\Orders.xml");
         }
     }
 }

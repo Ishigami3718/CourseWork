@@ -38,5 +38,12 @@ namespace CarService.Pages
         {
             (Application.Current.MainWindow as MainWindow).Update((RequestDTO)DataGrid.SelectedItem);
         }
+
+        public void Redact(ObservableCollection<RequestDTO> requestsToSer)
+        {
+            RequestDTO toRedact = (RequestDTO)DataGrid.SelectedItem;
+            Window1 redacting = new Window1(toRedact, requestsToSer.IndexOf(toRedact));
+            redacting.ShowDialog();
+        }
     }
 }

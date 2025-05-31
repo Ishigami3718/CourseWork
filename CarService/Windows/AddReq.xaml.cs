@@ -25,11 +25,33 @@ namespace CarService.Windows
         public static ObservableCollection<ServiceExecuting> Services {  get; set; }
 
         private static ObservableCollection<DetailDTO> detailsSerialize;
+
+        private bool isRedact = false;
+        private int idToRedact;
         public Window1()
         {
             InitializeComponent();
             Workers = new ObservableCollection<IWorker>();
             Services = new ObservableCollection<ServiceExecuting>();
+            DataContext = this;
+        }
+
+        public Window1(RequestDTO request,int id)
+        {
+            InitializeComponent();
+            Workers = new ObservableCollection<IWorker>(request.Workers.Select(i => ClassFactory.CreateWorker(i)).ToList());
+            Services = new ObservableCollection<ServiceExecuting>(request.Services.Select(i => ClassFactory.
+            CreateServiceExexuting(i)).ToList());
+            Name.Text = request.ClientName;
+            Transmission.Text = request.Client.Transmission.ToString();
+            Discount.Text = request.Client.Discount.ToString();
+            Mark.Text = request.Client.Car.Mark;
+            Model.Text = request.Client.Car.Model;
+            Plate.Text = request.Client.Car.LicensePlate;
+            Run.Text = request.Client.Car.Run.ToString();
+            RegDate.SelectedDate = request.Client.Car.RegisterDate;
+            isRedact = true;
+            idToRedact = id;
             DataContext = this;
         }
 
@@ -64,15 +86,21 @@ namespace CarService.Windows
                 Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), (DateTime)RegDate.SelectedDate);
                 int? transmission;
                 double? discount;
-                if (string.IsNullOrEmpty(Transmission.Text)) transmission = null;
+                if (string.IsNullOrWhiteSpace(Transmission.Text)) transmission = null;
                 else transmission=int.Parse(Transmission.Text);
-                if (string.IsNullOrEmpty(Discount.Text)) discount = null;
-                else discount = double.Parse(Transmission.Text);
+                if (string.IsNullOrWhiteSpace(Discount.Text)) discount = null;
+                else discount = double.Parse(Discount.Text);
                 IClient client = ClassFactory.CreateClient((bool)Regularity.IsChecked,Name.Text,car,
-                    int.Parse(Transmission.Text),double.Parse(Discount.Text));
-                Request requst = ClassFactory.CreateRequest(client, Services, Workers);
-                if (Workers.Count!=0 && Services.Count!=0) MainWindow.TransferRequest(requst.ToDTO());
-                if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Details\Details.xml");
+                    transmission,discount);
+                Request requst;
+                if(isRedact) requst = ClassFactory.CreateRequest(client, idToRedact+1, Services, Workers);
+                else  requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, Services, Workers);
+                if (Workers.Count != 0 && Services.Count != 0)
+                {
+                    if (isRedact) MainWindow.Redact(requst.ToDTO(), idToRedact);
+                    else MainWindow.TransferRequest(requst.ToDTO());
+                }
+                if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
             }
             catch { }
 
