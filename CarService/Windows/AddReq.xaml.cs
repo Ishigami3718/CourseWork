@@ -26,6 +26,7 @@ namespace CarService.Windows
 
         public static ObservableCollection<DetailDTO> detailsSerialize;
 
+        private ObservableCollection<ClientDTO> RegularClient;
         private bool isRedact = false;
         private int idToRedact;
         DateTime dateFromRedact;
@@ -34,6 +35,7 @@ namespace CarService.Windows
             InitializeComponent();
             Workers = new ObservableCollection<IWorker>();
             Services = new ObservableCollection<ServiceExecuting>();
+            RegularClient = Serializer.Deserialize<ClientDTO>(@"Clients\RegularClients.xml");
             detailsSerialize = null;
             DataContext = this;
         }
@@ -53,6 +55,7 @@ namespace CarService.Windows
             Plate.Text = request.Client.Car.LicensePlate;
             Run.Text = request.Client.Car.Run.ToString();
             RegDate.SelectedDate = request.Client.Car.RegisterDate;
+            RegularClient = Serializer.Deserialize<ClientDTO>(@"Clients\RegularClients.xml");
             isRedact = true;
             idToRedact = id;
             if (ClassFactory.CreateClient(request.Client) is RegularClient) Regularity.IsChecked = true;
@@ -98,6 +101,11 @@ namespace CarService.Windows
                 else discount = double.Parse(Discount.Text);
                 IClient client = ClassFactory.CreateClient((bool)Regularity.IsChecked, Name.Text, car,
                     transmission, discount);
+                if (client is RegularClient)
+                {
+                    RegularClient.Add(client.ToDTO());
+                    Serializer.Serialize(RegularClient, @"Clients\RegularClients.xml");
+                }
                 Request requst;
                 if (isRedact) requst = ClassFactory.CreateRequest(client, idToRedact + 1, dateFromRedact, Services, Workers);
                 else requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, DateTime.Now, Services, Workers);
@@ -109,10 +117,35 @@ namespace CarService.Windows
                 if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
             }
             catch { }
+            this.Close();
         }
 
-        private void ClearServices(object sender, RoutedEventArgs e) => Services.Clear();
+        private void ClearServices(object sender, RoutedEventArgs e) 
+        { 
+            Services.Clear();
+            detailsSerialize = null;
+        }
+
 
         private void ClearWorkers(object sender, RoutedEventArgs e) => Workers.Clear();
+
+        private void SelectRegularWorker(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Regularity_Click(object sender, RoutedEventArgs e)
+        {
+            if(Regularity.IsChecked == true)
+            {
+                Transmission.IsEnabled = true;
+                Discount.IsEnabled = true;
+            }
+            else
+            {
+                Transmission.IsEnabled = false;
+                Discount.IsEnabled = false;
+            }
+        }
     }
 }
