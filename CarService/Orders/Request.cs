@@ -13,20 +13,19 @@ namespace CarService.Orders
         int id;
         DateTime date;
         ObservableCollection<ServiceExecuting> services;
-        double totalPrice;
+        double totalPrice=>OrderPriceCalculator.CalcFullPrice(services,client);
         ObservableCollection<IWorker> workers;
 
         public IClient Client {  get { return client; } }
         public int Id { get { return id; } }
         public ObservableCollection<ServiceExecuting> Services {  get { return services; } }
 
-        public Request(IClient client, int id, DateTime date, ObservableCollection<ServiceExecuting> services,double totalPrice ,ObservableCollection<IWorker> workers)
+        public Request(IClient client, int id, DateTime date, ObservableCollection<ServiceExecuting> services ,ObservableCollection<IWorker> workers)
         {
             this.client = client;
             this.id = id;
             this.date = date;
             this.services = services;
-            this.totalPrice = totalPrice;
             this.workers = workers;
         }
 

@@ -27,7 +27,7 @@ namespace CarService.Workers
         }
 
 
-        public WorkerDTO ToDto()
+        public virtual WorkerDTO ToDto()
         {
             return new WorkerDTO {Name=name,Salary=salary,Quota=quota};
         }

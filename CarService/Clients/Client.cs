@@ -30,7 +30,7 @@ namespace CarService.Clients
 
         public Car Car { get { return this.car; } }
 
-        public ClientDTO ToDTO()
+        public virtual ClientDTO ToDTO()
         {
             return new ClientDTO
             {

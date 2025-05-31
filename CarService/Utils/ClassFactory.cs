@@ -12,6 +12,34 @@ using System.Xml.Linq;
 
 namespace CarService.Utils
 {
+    public abstract class Factory
+    {
+        public abstract IClient Create(string name, Car car);
+    }
+
+    public  class ClientFactory:Factory
+    {
+        public override IClient Create(string name, Car car)
+        {
+            return new Client(MainWindow.LastId + 1, name, car);
+        }
+    }
+
+    public  class RegularClientFactory : Factory
+    {
+        int transmission;
+        double discount;
+
+        public RegularClientFactory(int transmission, double discount)
+        {
+            this.discount = discount;
+            this.transmission = transmission;
+        }
+        public override IClient Create(string name, Car car)
+        {
+            return new RegularClient(MainWindow.LastId + 1, name, car,transmission,Math.Round(discount/100,3));
+        }
+    }
     public class ClassFactory
     {
         //OCP SRP
@@ -21,13 +49,12 @@ namespace CarService.Utils
             return new Client(dto);
         }
 
-        public static IClient CreateClient(string name, Car car, int transmission, double discount)
+        public static IClient CreateClient(bool isRegular, string name, Car car,int? transmission,double? discount)
         {
-             return new RegularClient(MainWindow.LastId + 1, name, car, transmission, Math.Round(discount / 100, 3));
-        }
-        public static IClient CreateClient(string name, Car car)
-        {
-            return new Client(MainWindow.LastId + 1, name, car);
+            Factory factory;
+            if (isRegular) factory = new RegularClientFactory((int)transmission, (double)discount);
+            else factory = new ClientFactory();
+            return factory.Create(name, car);
         }
 
         public static Car CreateCar(string mark, string model, string licensePlate, int run, DateTime reqisterDate)
@@ -57,7 +84,7 @@ namespace CarService.Utils
 
         public static Request    CreateRequest(IClient client, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
         {
-            return new Request(client, MainWindow.LastId + 1, DateTime.Now, services, OrderPriceCalculator.CalcFullPrice(services, client), workers);
+            return new Request(client, MainWindow.LastId + 1, DateTime.Now, services, workers);
         }
 
         public static ServiceExecuting CreateServiceExexuting(Services.Service service, ObservableCollection<IDetail> details)

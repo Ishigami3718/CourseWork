@@ -55,15 +55,14 @@ namespace CarService.Windows
             try
             {
                 Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), (DateTime)RegDate.SelectedDate);
-                IClient client = null;
-                if ((bool)Regularity.IsChecked)
-                {
-                    client = ClassFactory.CreateClient(Name.Text, car,  int.Parse(Transmission.Text), double.Parse(Discount.Text));
-                }
-                else
-                {
-                    client = ClassFactory.CreateClient(Name.Text, car);
-                }
+                int? transmission;
+                double? discount;
+                if (string.IsNullOrEmpty(Transmission.Text)) transmission = null;
+                else transmission=int.Parse(Transmission.Text);
+                if (string.IsNullOrEmpty(Discount.Text)) discount = null;
+                else discount = double.Parse(Transmission.Text);
+                IClient client = ClassFactory.CreateClient((bool)Regularity.IsChecked,Name.Text,car,
+                    int.Parse(Transmission.Text),double.Parse(Discount.Text));
                 Request requst = ClassFactory.CreateRequest(client, Services, Workers);
                 if (Workers.Count!=0 && Services.Count!=0) MainWindow.TransferRequest(requst.ToDTO());
             }

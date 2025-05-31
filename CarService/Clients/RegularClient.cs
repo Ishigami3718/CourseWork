@@ -25,9 +25,9 @@ namespace CarService.Clients
             this.discount = discount;
         }*/
         
-        public new ClientDTO ToDTO()
+        public override ClientDTO ToDTO()
         {
-            ClientDTO dto = ((Client)this).ToDTO();
+            ClientDTO dto = base.ToDTO();
             dto.Transmission = transmission;
             dto.Discount = discount;
             return dto;
