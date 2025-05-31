@@ -15,7 +15,7 @@
                     <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddWorker">
                         <Image Source="pack://application:,,,/Images/Adding.png" Stretch="Uniform"/>
                     </Button>
-                    <Button x:Name="Sort" Width="25" ToolTip="Сортувати">
+                    <Button x:Name="Sort" Width="25" ToolTip="Сортувати" Click="Sorting">
                         <Image Source="pack://application:,,,/Images/Sorting.png" Height="25" Width="15"/>
                         <Button.ContextMenu>
                             <ContextMenu x:Name="Context">
@@ -36,7 +36,7 @@
             </ToolBarTray>
             <DataGrid x:Name="WorkersTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
 VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding WorkersDis}" HorizontalScrollBarVisibility="Auto"
-    VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+    VerticalScrollBarVisibility="Auto" IsReadOnly="True" SelectionMode="Single" CanUserReorderColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Зарплата" Binding="{Binding Salary}"/>

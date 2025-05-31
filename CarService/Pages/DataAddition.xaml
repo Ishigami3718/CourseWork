@@ -19,7 +19,7 @@
                 <TabItem Header="Роботи">
                     <DataGrid Grid.Column="0" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
       VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Services}" HorizontalScrollBarVisibility="Auto"
-          VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+          VerticalScrollBarVisibility="Auto" IsReadOnly="True" SelectionMode="Single" CanUserReorderColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="200" Header="Найменування номенклатури" Binding="{Binding Path=Service.Name}" IsReadOnly="True"/>
                         <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Path=Service.Price}" IsReadOnly="True"/>

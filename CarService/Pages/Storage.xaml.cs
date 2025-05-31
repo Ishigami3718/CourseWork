@@ -68,6 +68,11 @@ namespace CarService.Pages
             Details.Remove(toDelete);
             Serializer.Serialize(DetailsSer, @"Storage\Storage.xml");
         }
+        private void Sorting(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            but.ContextMenu.IsOpen = true;
+        }
 
         private void ByName(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByName(Details);
 

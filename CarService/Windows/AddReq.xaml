@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.Windows"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="500" Closing="Window_Closing">
+        Title="Window1" Height="500" Width="600" MinHeight="500" MinWidth="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.7*"/>
             <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="Клієнт" FontSize="16" Margin="3">
             <Grid>
@@ -78,8 +79,12 @@ FontSize="15" Width="75"/>
                 <GroupBox Header="Роботи" Grid.RowSpan="2" Grid.ColumnSpan="2">
                     <ListBox ItemsSource="{Binding Services}"/>
                     </GroupBox>
-                        <Button Content="Додати" Grid.Column="2" Margin="5" Click="AddService"/>
-                <Button Grid.Row="1" Grid.Column="2" Margin="5" FontSize="14" Click="AddWorker">
+                        <Button Grid.Column="2" Margin="5" Click="AddService">
+                    <Button.Content>
+                        <TextBlock Text="Додати сервіс" TextWrapping="Wrap"/>
+                    </Button.Content>
+                </Button>
+                        <Button Grid.Row="1" Grid.Column="2" Margin="5" FontSize="14" Click="AddWorker">
                     <Button.Content>
                         <TextBlock Text="Назначити працівника" TextWrapping="Wrap"/>
                     </Button.Content>
@@ -89,5 +94,23 @@ FontSize="15" Width="75"/>
                 </GroupBox>
             </Grid>
         </GroupBox>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="100">
+                <Button.Content>
+                    <TextBlock Text="Очистити серіси" FontSize="16" TextWrapping="Wrap"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="100">
+                <Button.Content>
+                    <TextBlock Text="Очистити праціників" FontSize="16" TextWrapping="Wrap"/>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="2" Content="OK" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="50" Width="100" Click="Ok"/>
+        </Grid>
     </Grid>
 </Window>

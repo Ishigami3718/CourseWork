@@ -1,4 +1,5 @@
 ﻿using CarService.Clients;
+using CarService.Pages;
 using CarService.Services;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace CarService.Utils
         }
         public override IClient Create(string name, Car car)
         {
-            return new RegularClient(MainWindow.LastId + 1, name, car,transmission,Math.Round(discount/100,3));
+            return new RegularClient(Pages.Clients.IdToNewClient + 1, name, car,transmission,Math.Round(discount/100,3));
         }
     }
     public class ClassFactory
@@ -82,9 +83,9 @@ namespace CarService.Utils
             return new Detail(name,model,price,count,value);
         }
 
-        public static Request    CreateRequest(IClient client,int id, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
+        public static Request    CreateRequest(IClient client,int id, DateTime date, ObservableCollection<ServiceExecuting> services, ObservableCollection<IWorker> workers)
         {
-            return new Request(client, id, DateTime.Now, services, workers);
+            return new Request(client, id, date, services, workers);
         }
 
         public static ServiceExecuting CreateServiceExexuting(Services.Service service, ObservableCollection<IDetail> details)

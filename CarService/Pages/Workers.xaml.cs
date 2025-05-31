@@ -71,6 +71,11 @@ namespace CarService.Pages
         private void ByName(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByName(WorkersDis);
 
         private void ByPrice(object sender, RoutedEventArgs e) => Utils.SortingUtils.BySalarity(WorkersDis);
+        private void Sorting(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            but.ContextMenu.IsOpen = true;
+        }
 
         public static void Redact(WorkerDTO worker, int id)
         {

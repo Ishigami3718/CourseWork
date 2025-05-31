@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarService"
         mc:Ignorable="d"
         Title="Система обліку СТО" Height="400" Width="800"
-        Icon="Images/AppIcon.png">
+        Icon="Images/AppIcon.png" MinHeight="400" MinWidth="500">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Замовлення" Click="Orders"/>

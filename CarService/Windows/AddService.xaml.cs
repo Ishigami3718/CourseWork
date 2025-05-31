@@ -30,7 +30,8 @@ namespace CarService.Windows
         public Window2()
         {
             InitializeComponent();
-            DetailsSer = Serializer.Deserialize<DetailDTO>(@"Storage\Storage.xml");
+            if(Window1.detailsSerialize != null ) DetailsSer= Window1.detailsSerialize;
+            else DetailsSer = Serializer.Deserialize<DetailDTO>(@"Storage\Storage.xml");
             Services =new ObservableCollection<Services.Service>(Serializer.Deserialize<ServiceDTO>(@"Services\Services.xml").Select(i=>ClassFactory.CreateService(i)).ToList());
             Details =new ObservableCollection<IDetail>(DetailsSer.Select(i=>ClassFactory.CreateDetail(i)).ToList());
             DetailsToTransfer = new ObservableCollection<IDetail>();

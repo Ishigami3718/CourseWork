@@ -15,7 +15,7 @@
                     <Button x:Name="AddObject" Width="25" ToolTip="Додати" Click="AddClient">
                         <Image Source="pack://application:,,,/Images/Adding.png" Stretch="Uniform"/>
                     </Button>
-                    <Button x:Name="Sort" Width="25" ToolTip="Сортувати">
+                    <Button x:Name="Sort" Width="25" ToolTip="Сортувати" Click="Sorting">
                         <Image Source="pack://application:,,,/Images/Sorting.png" Height="25" Width="15"/>
                         <Button.ContextMenu>
                             <ContextMenu x:Name="Context">
@@ -30,7 +30,7 @@
                     <Button Width="25" ToolTip="Редагувати" Click="Redact">
                         <Image Source="pack://application:,,,/Images/Redacting.png" Height="25" Width="15"/>
                     </Button>
-                    <Button x:Name="CarInfo" Width="25" ToolTip="Додати" Click="CarInfo_Click">
+                    <Button x:Name="CarInfo" Width="25" ToolTip="Інформаія про машину" Click="CarInfo_Click">
                         <Image Source="pack://application:,,,/Images/CarInfo.png" Stretch="Uniform"/>
                     </Button>
                     <TextBox x:Name="Search" Width="125" Margin="10,0,0,0" VerticalAlignment="Center"
@@ -43,8 +43,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="1" x:Name="ClientsTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
-VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ClientsDis}" HorizontalScrollBarVisibility="Auto"
-    VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ClientsDis}" HorizontalScrollBarVisibility="Auto" SelectionMode="Single"
+    VerticalScrollBarVisibility="Auto" IsReadOnly="True" CanUserReorderColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}"/>

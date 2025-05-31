@@ -9,25 +9,32 @@ namespace CarService.Utils
 {
     public class ServiceManager
     {
-        private static bool InRange(int run,(int,int) range)
-        {
-            return run>=range.Item1 && run<=range.Item2;
-        }
-        public static List<ServiceExecuting> DetermServices(Request previousRequest)
+        public static List<ServiceExecuting> DetermServicesByGlobalRun(int run)
         {
             List<Services.Service> services = Serializer.Deserialize<ServiceDTO>(@"Services\Services.xaml").
                 Select(i=>new Services.Service(i)).ToList();
             List<ServiceExecuting> res = new List<ServiceExecuting>();
-            int run = previousRequest.Client.Car.Run;
-            if (InRange(run, (5000, 11000)))
+            if (run<11000)
             {
                 //res.Add(new ServiceExecuting());
             }
-            else if (InRange(run, (24000, 48000)))
+            else if (run<24000)
             {
 
             }
-            else if (InRange(run, (24000, 48000)))
+            else if (run<48000)
+            {
+
+            }
+            else if (run < 56000)
+            {
+
+            }
+            else if (run < 80000)
+            {
+
+            }
+            else if (run > 80000)
             {
 
             }

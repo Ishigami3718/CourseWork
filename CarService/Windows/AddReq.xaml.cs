@@ -24,15 +24,17 @@ namespace CarService.Windows
         public static ObservableCollection<IWorker> Workers {  get; set; }
         public static ObservableCollection<ServiceExecuting> Services {  get; set; }
 
-        private static ObservableCollection<DetailDTO> detailsSerialize;
+        public static ObservableCollection<DetailDTO> detailsSerialize;
 
         private bool isRedact = false;
         private int idToRedact;
+        DateTime dateFromRedact;
         public Window1()
         {
             InitializeComponent();
             Workers = new ObservableCollection<IWorker>();
             Services = new ObservableCollection<ServiceExecuting>();
+            detailsSerialize = null;
             DataContext = this;
         }
 
@@ -42,6 +44,7 @@ namespace CarService.Windows
             Workers = new ObservableCollection<IWorker>(request.Workers.Select(i => ClassFactory.CreateWorker(i)).ToList());
             Services = new ObservableCollection<ServiceExecuting>(request.Services.Select(i => ClassFactory.
             CreateServiceExexuting(i)).ToList());
+            detailsSerialize = null;
             Name.Text = request.ClientName;
             Transmission.Text = request.Client.Transmission.ToString();
             Discount.Text = (request.Client.Discount*100).ToString();
@@ -53,6 +56,7 @@ namespace CarService.Windows
             isRedact = true;
             idToRedact = id;
             if (ClassFactory.CreateClient(request.Client) is RegularClient) Regularity.IsChecked = true;
+            dateFromRedact = request.Date;
             DataContext = this;
         }
 
@@ -80,7 +84,8 @@ namespace CarService.Windows
         {
             detailsSerialize = toSerialize;
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+
+        private void Ok(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -88,14 +93,14 @@ namespace CarService.Windows
                 int? transmission;
                 double? discount;
                 if (string.IsNullOrWhiteSpace(Transmission.Text)) transmission = null;
-                else transmission=int.Parse(Transmission.Text);
+                else transmission = int.Parse(Transmission.Text);
                 if (string.IsNullOrWhiteSpace(Discount.Text)) discount = null;
                 else discount = double.Parse(Discount.Text);
-                IClient client = ClassFactory.CreateClient((bool)Regularity.IsChecked,Name.Text,car,
-                    transmission,discount);
+                IClient client = ClassFactory.CreateClient((bool)Regularity.IsChecked, Name.Text, car,
+                    transmission, discount);
                 Request requst;
-                if(isRedact) requst = ClassFactory.CreateRequest(client, idToRedact+1, Services, Workers);
-                else  requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, Services, Workers);
+                if (isRedact) requst = ClassFactory.CreateRequest(client, idToRedact + 1, dateFromRedact, Services, Workers);
+                else requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, DateTime.Now, Services, Workers);
                 if (Workers.Count != 0 && Services.Count != 0)
                 {
                     if (isRedact) MainWindow.Redact(requst.ToDTO(), idToRedact);
@@ -104,7 +109,10 @@ namespace CarService.Windows
                 if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
             }
             catch { }
-
         }
+
+        private void ClearServices(object sender, RoutedEventArgs e) => Services.Clear();
+
+        private void ClearWorkers(object sender, RoutedEventArgs e) => Workers.Clear();
     }
 }

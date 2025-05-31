@@ -25,6 +25,13 @@ namespace CarService.Pages
         public static ObservableCollection<ClientDTO> ClientsDis {  get; set; }
         private static ObservableCollection<ClientDTO> ClientSer;
 
+        public static int IdToNewClient { get 
+            {
+                if (ClientSer.Count != 0) return ClientSer[ClientSer.Count - 1].Id;
+                else return 0;
+            } 
+        }
+
         public Clients()
         {
             InitializeComponent();
@@ -68,6 +75,12 @@ namespace CarService.Pages
             ClientSer.Remove(toDelete);
             ClientsDis.Remove(toDelete);
             Serializer.Serialize(ClientSer, @"Clients\RegularClients.xml");
+        }
+
+        private void Sorting(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            but.ContextMenu.IsOpen = true;
         }
 
         private void ByName(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByName(ClientsDis);
