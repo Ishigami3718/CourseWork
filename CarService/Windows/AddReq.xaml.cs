@@ -44,7 +44,7 @@ namespace CarService.Windows
             CreateServiceExexuting(i)).ToList());
             Name.Text = request.ClientName;
             Transmission.Text = request.Client.Transmission.ToString();
-            Discount.Text = request.Client.Discount.ToString();
+            Discount.Text = (request.Client.Discount*100).ToString();
             Mark.Text = request.Client.Car.Mark;
             Model.Text = request.Client.Car.Model;
             Plate.Text = request.Client.Car.LicensePlate;
@@ -52,6 +52,7 @@ namespace CarService.Windows
             RegDate.SelectedDate = request.Client.Car.RegisterDate;
             isRedact = true;
             idToRedact = id;
+            if (ClassFactory.CreateClient(request.Client) is RegularClient) Regularity.IsChecked = true;
             DataContext = this;
         }
 

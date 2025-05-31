@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +20,27 @@ namespace CarService.Windows
     /// </summary>
     public partial class AddRegularClient : Window
     {
+        bool isRedact = false;
+        int idToRedact;
         public AddRegularClient()
         {
             InitializeComponent();
+        }
+
+        public AddRegularClient(ClientDTO client,int id)
+        {
+            InitializeComponent();
+            CarDTO car = client.Car;
+            Mark.Text = car.Mark;
+            Model.Text = car.Model;
+            Plate.Text = car.LicensePlate;
+            Run.Text = car.Run.ToString();
+            RegDate.SelectedDate = car.RegisterDate;
+            Name.Text = client.Name;
+            Transmission.Text=client.Transmission.ToString();
+            Discount.Text = (client.Discount*100).ToString();
+            isRedact = true;
+            idToRedact = id;
         }
 
         private void Ok(object sender, RoutedEventArgs e)
@@ -29,7 +48,8 @@ namespace CarService.Windows
             Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), (DateTime)RegDate.SelectedDate);
             Factory factory = new RegularClientFactory(int.Parse(Transmission.Text),double.Parse(Discount.Text));
             IClient client = factory.Create(Name.Text, car);
-            Pages.Clients.TransferClient(client.ToDTO());
+            if (isRedact) Pages.Clients.Redact(client.ToDTO(),idToRedact);
+            else Pages.Clients.TransferClient(client.ToDTO());
             this.Close();
         }
     }

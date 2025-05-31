@@ -79,5 +79,18 @@ namespace CarService.Pages
             CarDTO car = ((ClientDTO)ClientsTable.SelectedItem).Car;
             if (car != null) new CarInfo(car).ShowDialog();
         }
+
+        public static void Redact(ClientDTO client, int id)
+        {
+            ClientSer[id] = client;
+            ClientsDis.Clear();
+            foreach (var i in ClientSer) ClientsDis.Add(i);
+        }
+        private void Redact(object sender, RoutedEventArgs e)
+        {
+            ClientDTO clientToRedact = ClientsTable.SelectedItem as ClientDTO;
+            new AddRegularClient(clientToRedact, ClientSer.IndexOf(clientToRedact)).ShowDialog();
+            Serializer.Serialize(ClientSer, @"Clients\RegularClients.xml");
+        }
     }
 }

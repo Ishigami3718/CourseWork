@@ -27,7 +27,7 @@
                     <Button Width="25" ToolTip="Видалити" Click="Delete">
                         <Image Source="pack://application:,,,/Images/Deleting.png" Height="25" Width="15"/>
                     </Button>
-                    <Button Width="25" ToolTip="Редагувати">
+                    <Button Width="25" ToolTip="Редагувати" Click="Redact">
                         <Image Source="pack://application:,,,/Images/Redacting.png" Height="25" Width="15"/>
                     </Button>
                     <Button x:Name="CarInfo" Width="25" ToolTip="Додати" Click="CarInfo_Click">

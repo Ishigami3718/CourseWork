@@ -82,6 +82,7 @@ namespace CarService.Pages
         {
             ServiceDTO serviceToRedact = ServicesTable.SelectedItem as ServiceDTO;
             new AddServiceForStorage(serviceToRedact, ServicesSer.IndexOf(serviceToRedact)).ShowDialog();
+            Serializer.Serialize(ServicesSer, @"Services\Services.xml");
         }
     }
 }

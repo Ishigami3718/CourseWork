@@ -74,5 +74,18 @@ namespace CarService.Pages
         private void ByCount(object sender, RoutedEventArgs e)=> Utils.SortingUtils.ByCount(Details);
 
         private void ByPrice(object sender, RoutedEventArgs e)=> Utils.SortingUtils.ByPrice(Details);
+
+        public static void Redact(DetailDTO detail, int id)
+        {
+            DetailsSer[id] = detail;
+            Details.Clear();
+            foreach (var i in DetailsSer) Details.Add(i);
+        }
+        private void Redact(object sender, RoutedEventArgs e)
+        {
+            DetailDTO detailToRedact = DetailsTable.SelectedItem as DetailDTO;
+            new AddDetail(detailToRedact, DetailsSer.IndexOf(detailToRedact)).ShowDialog();
+            Serializer.Serialize(DetailsSer, @"Storage\Storage.xml");
+        }
     }
 }

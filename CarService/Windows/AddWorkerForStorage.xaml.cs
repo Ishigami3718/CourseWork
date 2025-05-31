@@ -20,14 +20,25 @@ namespace CarService.Windows
     /// </summary>
     public partial class AddWorkerForStorage : Window
     {
+        bool isRedact = false;
+        int idToRedact;
         public AddWorkerForStorage()
         {
             InitializeComponent();
         }
 
+        public AddWorkerForStorage(WorkerDTO worker,int id)
+        {
+            InitializeComponent();
+            Name.Text = worker.Name;
+            Salarity.Text = worker.Salary.ToString();
+            isRedact = true;
+            idToRedact = id;
+        }
         private void OK(object sender, RoutedEventArgs e)
         {
-            Pages.Workers.TransferWorker(ClassFactory.CreateWorker(Name.Text, double.Parse(Salarity.Text)).ToDto());
+            if (isRedact) Pages.Workers.Redact(ClassFactory.CreateWorker(Name.Text, double.Parse(Salarity.Text)).ToDto(), idToRedact);
+            else Pages.Workers.TransferWorker(ClassFactory.CreateWorker(Name.Text, double.Parse(Salarity.Text)).ToDto());
             this.Close();
         }
     }

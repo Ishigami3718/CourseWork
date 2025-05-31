@@ -19,9 +19,27 @@ namespace CarService.Windows
     /// </summary>
     public partial class AddDetail : Window
     {
+        bool isRedact = false;
+        int idToRedact;
         public AddDetail()
         {
             InitializeComponent();
+        }
+
+        public AddDetail(DetailDTO detail, int id)
+        {
+            InitializeComponent();
+            Name.Text = detail.Name;
+            Model.Text = detail.Model;
+            Price.Text = detail.Price.ToString();
+            Count.Text=detail.Count.ToString();
+            switch (detail.Value)
+            {
+                case "Шт": Value.SelectedIndex=0;break;
+                case "Л": Value.SelectedIndex = 1; break;
+            }
+            idToRedact = id;
+            isRedact = true;
         }
 
         private void OK(object sender, RoutedEventArgs e)
@@ -32,7 +50,9 @@ namespace CarService.Windows
                 case "Штуки":value="Шт";break;
                 case "Літри": value = "Л"; break;
             }
-            Pages.Storage.TransferDetail(ClassFactory.CreateDetail(Name.Text, Model.Text, double.Parse(Price.Text), double.Parse(Count.Text), value).ToDTO());
+            if (isRedact) Pages.Storage.Redact(ClassFactory.CreateDetail(Name.Text, Model.Text, double.Parse(Price.Text),
+                double.Parse(Count.Text), value).ToDTO(), idToRedact);
+            else Pages.Storage.TransferDetail(ClassFactory.CreateDetail(Name.Text, Model.Text, double.Parse(Price.Text), double.Parse(Count.Text), value).ToDTO());
             this.Close();
         }
     }

@@ -71,5 +71,18 @@ namespace CarService.Pages
         private void ByName(object sender, RoutedEventArgs e) => Utils.SortingUtils.ByName(WorkersDis);
 
         private void ByPrice(object sender, RoutedEventArgs e) => Utils.SortingUtils.BySalarity(WorkersDis);
+
+        public static void Redact(WorkerDTO worker, int id)
+        {
+            WorkersSer[id] = worker;
+            WorkersDis.Clear();
+            foreach (var i in WorkersSer) WorkersDis.Add(i);
+        }
+        private void Redact(object sender, RoutedEventArgs e)
+        {
+            WorkerDTO workerToRedact = WorkersTable.SelectedItem as WorkerDTO;
+            new AddWorkerForStorage(workerToRedact, WorkersSer.IndexOf(workerToRedact)).ShowDialog();
+            Serializer.Serialize(WorkersSer, @"Workers\Workers.xml");
+        }
     }
 }
