@@ -70,7 +70,9 @@ namespace CarService.Windows
 
         private void AddWorker(object sender, RoutedEventArgs e)
         {
-            new AddWorker().ShowDialog();
+            AddWorker add = new AddWorker();
+            add.WorkerAdded += TransferWorker;
+            add.ShowDialog();
         }
 
         public static void TransferWorker(WorkerDTO worker)
@@ -129,10 +131,6 @@ namespace CarService.Windows
 
         private void ClearWorkers(object sender, RoutedEventArgs e) => Workers.Clear();
 
-        private void SelectRegularWorker(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Regularity_Click(object sender, RoutedEventArgs e)
         {

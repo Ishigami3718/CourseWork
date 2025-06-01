@@ -19,6 +19,7 @@ namespace CarService.Windows
     /// </summary>
     public partial class AddWorker : Window
     {
+        public event Action<WorkerDTO> WorkerAdded;
         public List<IWorker> Workers {  get; set; }
         IWorker worker;
         public AddWorker()
@@ -32,7 +33,7 @@ namespace CarService.Windows
         {
             worker = (IWorker)SelectWorker.SelectedItem;
             worker.Quota = Math.Round(double.Parse(Quota.Text) / 100,3);
-            Window1.TransferWorker(worker.ToDto());
+            WorkerAdded?.Invoke(worker.ToDto());
             this.Close();
         }
     }

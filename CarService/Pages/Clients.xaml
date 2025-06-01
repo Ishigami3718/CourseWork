@@ -53,14 +53,14 @@ VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="Fals
                     </DataGrid.Columns>
                 </DataGrid>
                 <DockPanel>
-                    <Button VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5">
+                    <Button VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5" Click="NextRequest">
                         <Button.Content>
-                            <TextBlock Text="Сформувати чергове замовлення" TextWrapping="Wrap" FontSize="16"/>
+                            <TextBlock Text="Сформувати чергове замовлення" TextWrapping="Wrap" FontSize="14"/>
                         </Button.Content>
                     </Button>
-                    <Button VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5">
+                    <Button VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5" Click="CloseOrders">
                         <Button.Content>
-                            <TextBlock Text="Ближні обслуговування" TextWrapping="Wrap" FontSize="16"/>
+                            <TextBlock Text="Ближні обслуговування" TextWrapping="Wrap" FontSize="14"/>
                         </Button.Content>
                     </Button>
                 </DockPanel>

@@ -12,7 +12,7 @@ namespace CarService.Services
         Service service;
         ObservableCollection<IDetail> details;
 
-        public ObservableCollection<IDetail> Details {  get { return details; } }
+        public ObservableCollection<IDetail> Details {  get { return details; } set { if (value.Count != 0 || value != null) details = value; } }
 
         public double TotalPrice { get { return OrderPriceCalculator.CalcPrice(service, details); } }
         /*public Service Service { get { return service; } }

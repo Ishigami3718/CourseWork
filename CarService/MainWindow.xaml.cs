@@ -28,6 +28,7 @@ namespace CarService
         static ObservableCollection<RequestDTO> requestsSer;
         DataAddition dataAddition;
         Data Requests;
+        public static ObservableCollection<RequestDTO> Requests_ => requestsSer;
         public static int LastId 
         { get 
             { 

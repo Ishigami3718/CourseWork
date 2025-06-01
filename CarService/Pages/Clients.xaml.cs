@@ -1,4 +1,5 @@
-﻿using CarService.Orders;
+﻿using CarService.Clients;
+using CarService.Orders;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +24,7 @@ namespace CarService.Pages
     public partial class Clients : Page
     {
         public static ObservableCollection<ClientDTO> ClientsDis {  get; set; }
-        private static ObservableCollection<ClientDTO> ClientSer;
+        private static ObservableCollection<ClientDTO> ClientSer = Serializer.Deserialize<ClientDTO>(@"Clients\RegularClients.xml");
 
         public static int IdToNewClient { get 
             {
@@ -104,6 +105,28 @@ namespace CarService.Pages
             ClientDTO clientToRedact = ClientsTable.SelectedItem as ClientDTO;
             new AddRegularClient(clientToRedact, ClientSer.IndexOf(clientToRedact)).ShowDialog();
             Serializer.Serialize(ClientSer, @"Clients\RegularClients.xml");
+        }
+
+        private void NextRequest(object sender, RoutedEventArgs e)
+        {
+            new NextRequest((ClientDTO)ClientsTable.SelectedItem).ShowDialog();
+        }
+
+        private void CloseOrders(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<ClientDTO> clientToService = new ObservableCollection<ClientDTO>();
+            for(int i = 0; i < ClientSer.Count; i++)
+            {
+                DateTime previousDate = MainWindow.Requests_.Where(j => j.Client.Id == ClientSer[i].Id).Last().Date;
+                TimeSpan diff = DateTime.Now - previousDate;
+                if (diff.Days > (int)ClientSer[i].Transmission*30-14) clientToService.Add(ClientSer[i]);
+            }
+            if (clientToService.Count == 0) MessageBox.Show("В ближні 14 днів замовлень не передбчено");
+            else
+            {
+                ClientsDis.Clear();
+                foreach (var i in clientToService) ClientsDis.Add(i);
+            }
         }
     }
 }

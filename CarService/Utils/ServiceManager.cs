@@ -40,7 +40,10 @@ namespace CarService.Utils
                 {baseServices[7],90000},
                 {baseServices[8],90000}
             };
-            int runDiff = newRun- previousRequest.Client.Car.Run;
+            int previousRun;
+            if(previousRequest==null) previousRun = 0;
+            else previousRun = previousRequest.Client.Car.Run;
+            int runDiff = newRun - previousRun;
             foreach (var service in servicesByRunDiff) 
             {
                 if (runDiff > service.Value)
