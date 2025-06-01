@@ -55,7 +55,7 @@ namespace CarService.Windows
                     currRun = int.Parse(CurrentRun.Text);
                     newRun = currRun;
                     ObservableCollection<Services.ServiceExecuting> services =
-                        new ObservableCollection<Services.ServiceExecuting>(ServiceManager.DetermServicesByRunDiff(currRun, previousRequest));
+                        new ObservableCollection<Services.ServiceExecuting>(ServiceManager.DetermServicesByRunDiff(currRun, previousRequest.Client));
                     Services.Clear();
                     foreach (var i in services) Services.Add(i);
                 }

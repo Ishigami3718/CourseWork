@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -95,6 +96,9 @@ namespace CarService.Windows
             try
             {
                 Car car = ClassFactory.CreateCar(Mark.Text, Model.Text, Plate.Text, int.Parse(Run.Text), (DateTime)RegDate.SelectedDate);
+                List<System.ComponentModel.DataAnnotations.ValidationResult> carValidationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                CarDTO carDTO = car.ToDTO();
+                bool isCarValid = Validator.TryValidateObject(carDTO, new ValidationContext(carDTO), carValidationResults, true);
                 int? transmission;
                 double? discount;
                 if (string.IsNullOrWhiteSpace(Transmission.Text)) transmission = null;
@@ -103,6 +107,11 @@ namespace CarService.Windows
                 else discount = double.Parse(Discount.Text);
                 IClient client = ClassFactory.CreateClient((bool)Regularity.IsChecked, Name.Text, car,
                     transmission, discount);
+                ClientDTO clientDTO = client.ToDTO();
+                List<System.ComponentModel.DataAnnotations.ValidationResult> clientValidationResults = 
+                    new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                bool isclientValid = Validator.TryValidateObject(clientDTO, new ValidationContext(clientDTO), 
+                    clientValidationResults, true);
                 if (client is RegularClient)
                 {
                     RegularClient.Add(client.ToDTO());
@@ -111,15 +120,24 @@ namespace CarService.Windows
                 Request requst;
                 if (isRedact) requst = ClassFactory.CreateRequest(client, idToRedact + 1, dateFromRedact, Services, Workers);
                 else requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, DateTime.Now, Services, Workers);
-                if (Workers.Count != 0 && Services.Count != 0)
+
+                
+                if (Workers.Count != 0 && Services.Count != 0 && isCarValid && isclientValid)
                 {
                     if (isRedact) MainWindow.Redact(requst.ToDTO(), idToRedact);
                     else MainWindow.TransferRequest(requst.ToDTO());
+                    if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
+                    this.Close();
                 }
-                if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
+                else
+                {
+                    StringBuilder message = new StringBuilder();
+                    foreach (var i in clientValidationResults) message.AppendLine(i.ToString());
+                    foreach (var i in carValidationResults) message.AppendLine(i.ToString());
+                    MessageBox.Show(message.ToString());
+                }
             }
-            catch { }
-            this.Close();
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void ClearServices(object sender, RoutedEventArgs e) 
