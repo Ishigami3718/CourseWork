@@ -25,13 +25,17 @@ namespace CarService.Windows
 
 
         public static ObservableCollection<IDetail> DetailsToTransfer { get; set; }
-        public ChooseDetail()
+        public ChooseDetail(ObservableCollection<DetailDTO> setedDetails)
         {
             InitializeComponent();
             if (NextRequest.detailsSerialize != null) DetailsSer = NextRequest.detailsSerialize;
             else DetailsSer = Serializer.Deserialize<DetailDTO>(@"Storage\Storage.xml");
             Details = new ObservableCollection<IDetail>(DetailsSer.Select(i => ClassFactory.CreateDetail(i)).ToList());
-            DetailsToTransfer = new ObservableCollection<IDetail>();
+            if (setedDetails != null || setedDetails.Count != 0)
+            {
+                DetailsToTransfer = new ObservableCollection<IDetail>(setedDetails.Select(i=>ClassFactory.CreateDetail(i)));
+            }
+            else DetailsToTransfer = new ObservableCollection<IDetail>();
             DataContext = this;
         }
 

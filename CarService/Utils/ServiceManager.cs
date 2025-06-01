@@ -53,5 +53,35 @@ namespace CarService.Utils
             }
             return res;
         }
+
+        public static List<ServiceExecuting> DetermServicesByRunDiff(int newRun, ClientDTO previousRequest)
+        {
+            List<Services.Service> services = Serializer.Deserialize<ServiceDTO>(@"Services\Services.xaml").
+                Select(i => new Services.Service(i)).ToList();
+            List<ServiceExecuting> res = new List<ServiceExecuting>();
+            servicesByRunDiff = new Dictionary<Services.Service, int>()
+            {
+                {baseServices[0],10000},
+                {baseServices[1],10000},
+                {baseServices[2],30000},
+                {baseServices[3],60000},
+                {baseServices[4],60000},
+                {baseServices[5],60000},
+                {baseServices[6],90000},
+                {baseServices[7],90000},
+                {baseServices[8],90000}
+            };
+            int previousRun;
+            previousRun = previousRequest.Car.Run;
+            int runDiff = newRun - previousRun;
+            foreach (var service in servicesByRunDiff)
+            {
+                if (runDiff > service.Value)
+                {
+                    res.Add(ClassFactory.CreateServiceExexuting(service.Key, new ObservableCollection<IDetail>()));
+                }
+            }
+            return res;
+        }
     }
 }

@@ -109,7 +109,11 @@ namespace CarService.Pages
 
         private void NextRequest(object sender, RoutedEventArgs e)
         {
-            new NextRequest((ClientDTO)ClientsTable.SelectedItem).ShowDialog();
+            ClientDTO toNext = ClientsTable.SelectedItem as ClientDTO;
+            if (toNext != null)
+            {
+                new NextRequest(toNext).ShowDialog();
+            }
         }
 
         private void CloseOrders(object sender, RoutedEventArgs e)
@@ -117,9 +121,14 @@ namespace CarService.Pages
             ObservableCollection<ClientDTO> clientToService = new ObservableCollection<ClientDTO>();
             for(int i = 0; i < ClientSer.Count; i++)
             {
-                DateTime previousDate = MainWindow.Requests_.Where(j => j.Client.Id == ClientSer[i].Id).Last().Date;
-                TimeSpan diff = DateTime.Now - previousDate;
-                if (diff.Days > (int)ClientSer[i].Transmission*30-14) clientToService.Add(ClientSer[i]);
+                ObservableCollection<RequestDTO> previousReq =new ObservableCollection<RequestDTO> (MainWindow.Requests_.Where(j => j.Client.Id == ClientSer[i].Id));
+                DateTime previousDate;
+                if (previousReq.Count != 0)
+                {
+                    previousDate = previousReq.Last().Date;
+                    TimeSpan diff = DateTime.Now - previousDate;
+                    if (diff.Days > (int)ClientSer[i].Transmission * 30 - 14) clientToService.Add(ClientSer[i]);
+                }
             }
             if (clientToService.Count == 0) MessageBox.Show("В ближні 14 днів замовлень не передбчено");
             else
