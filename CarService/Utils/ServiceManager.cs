@@ -9,34 +9,44 @@ namespace CarService.Utils
 {
     public class ServiceManager
     {
-        public static List<ServiceExecuting> DetermServicesByGlobalRun(int run)
+        static List<Services.Service> baseServices = new List<Services.Service>()
+        {
+            new Services.Service("Заміна моторного масла",1),
+            new Services.Service("Заміна Масляного фільтра",1),
+            new Services.Service("Заміна повітряного фільтра",1),
+            new Services.Service("Заміна гальмівної рідини",1),
+            new Services.Service("Заміна антифризу",1),
+            new Services.Service("Заміна свічок зпалювання",1),
+            new Services.Service("Заміна гальмівних колодок",1),
+            new Services.Service("Заміна ремня ГРМ",1),
+            new Services.Service("Перевірка/заміна акамулятора",1),
+        };
+
+        static Dictionary<Services.Service, int> servicesByRunDiff;
+        public static List<ServiceExecuting> DetermServicesByRunDiff(int newRun,RequestDTO previousRequest)
         {
             List<Services.Service> services = Serializer.Deserialize<ServiceDTO>(@"Services\Services.xaml").
                 Select(i=>new Services.Service(i)).ToList();
             List<ServiceExecuting> res = new List<ServiceExecuting>();
-            if (run<11000)
+            servicesByRunDiff = new Dictionary<Services.Service, int>() 
             {
-                //res.Add(new ServiceExecuting());
-            }
-            else if (run<24000)
+                {baseServices[0],10000},
+                {baseServices[1],10000},
+                {baseServices[2],30000},
+                {baseServices[3],60000},
+                {baseServices[4],60000},
+                {baseServices[5],60000},
+                {baseServices[6],90000},
+                {baseServices[7],90000},
+                {baseServices[8],90000}
+            };
+            int runDiff = newRun- previousRequest.Client.Car.Run;
+            foreach (var service in servicesByRunDiff) 
             {
-
-            }
-            else if (run<48000)
-            {
-
-            }
-            else if (run < 56000)
-            {
-
-            }
-            else if (run < 80000)
-            {
-
-            }
-            else if (run > 80000)
-            {
-
+                if (runDiff > service.Value)
+                {
+                    res.Add(ClassFactory.CreateServiceExexuting(service.Key,new ObservableCollection<IDetail>()));
+                }
             }
             return res;
         }

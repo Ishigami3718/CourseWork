@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace CarService.Services
             get {  return price; } 
             set 
             { 
-                if(price>0) price = value;
+                if(value>0) price = value;
             } 
         }
 
@@ -36,6 +37,17 @@ namespace CarService.Services
         public override string ToString()
         {
             return $"{name} {price}грн";
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Service toComp = obj as Service;
+            return name.Equals(toComp.name) && price.Equals(toComp.price);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(name, price);
         }
     }
 }

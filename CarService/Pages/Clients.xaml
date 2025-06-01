@@ -52,6 +52,18 @@ VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="Fals
                         <DataGridTextColumn Header="Знижка, %" Binding="{Binding Discount, StringFormat='{}{0:P0}'}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <DockPanel>
+                    <Button VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5">
+                        <Button.Content>
+                            <TextBlock Text="Сформувати чергове замовлення" TextWrapping="Wrap" FontSize="16"/>
+                        </Button.Content>
+                    </Button>
+                    <Button VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5">
+                        <Button.Content>
+                            <TextBlock Text="Ближні обслуговування" TextWrapping="Wrap" FontSize="16"/>
+                        </Button.Content>
+                    </Button>
+                </DockPanel>
             </Grid>
         </DockPanel>
     </Grid>
