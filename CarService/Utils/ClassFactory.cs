@@ -109,7 +109,7 @@ namespace CarService.Utils
         }
     }
 
-    public class WorkerSetter
+    /*public class WorkerSetter
     {
         public static void SetWorker(List<IWorker> workers, WorkerDTO dto, double quota)
         {
@@ -117,5 +117,5 @@ namespace CarService.Utils
             worker.Quota = quota;
             workers.Add(worker);
         }
-    }
+    }*/
 }

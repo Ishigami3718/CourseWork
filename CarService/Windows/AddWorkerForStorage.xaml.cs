@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CarService.Clients;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -37,9 +39,30 @@ namespace CarService.Windows
         }
         private void OK(object sender, RoutedEventArgs e)
         {
-            if (isRedact) Pages.Workers.Redact(ClassFactory.CreateWorker(Name.Text, double.Parse(Salarity.Text)).ToDto(), idToRedact);
-            else Pages.Workers.TransferWorker(ClassFactory.CreateWorker(Name.Text, double.Parse(Salarity.Text)).ToDto());
-            this.Close();
+            try
+            {
+                IWorker worker = ClassFactory.CreateWorker(Name.Text, double.Parse(Salarity.Text));
+                WorkerDTO workerDTO = worker.ToDto();
+
+                List<System.ComponentModel.DataAnnotations.ValidationResult> workerValidationResults =
+                new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                bool isWorkerValid = Validator.TryValidateObject(workerDTO, new ValidationContext(workerDTO),
+                    workerValidationResults, true);
+
+                if (isWorkerValid)
+                {
+                    if (isRedact) Pages.Workers.Redact(workerDTO, idToRedact);
+                    else Pages.Workers.TransferWorker(workerDTO);
+                    this.Close();
+                }
+                else
+                {
+                    StringBuilder message = new StringBuilder();
+                    foreach (var i in workerValidationResults) message.AppendLine(i.ToString());
+                    MessageBox.Show(message.ToString());
+                }
+            }
+            catch { MessageBox.Show("Не всі дані введені"); }
         }
     }
 }

@@ -90,7 +90,10 @@ namespace CarService.Pages
 
         private void CarInfo_Click(object sender, RoutedEventArgs e)
         {
-            CarDTO car = ((ClientDTO)ClientsTable.SelectedItem).Car;
+            ClientDTO client = ClientsTable.SelectedItem as ClientDTO;
+            if(client == null) return;
+            CarDTO car = client.Car;
+
             if (car != null) new CarInfo(car).ShowDialog();
         }
 
@@ -103,6 +106,7 @@ namespace CarService.Pages
         private void Redact(object sender, RoutedEventArgs e)
         {
             ClientDTO clientToRedact = ClientsTable.SelectedItem as ClientDTO;
+            if (clientToRedact == null) return;
             new AddRegularClient(clientToRedact, ClientSer.IndexOf(clientToRedact)).ShowDialog();
             Serializer.Serialize(ClientSer, @"Clients\RegularClients.xml");
         }
@@ -121,7 +125,8 @@ namespace CarService.Pages
             ObservableCollection<ClientDTO> clientToService = new ObservableCollection<ClientDTO>();
             for(int i = 0; i < ClientSer.Count; i++)
             {
-                ObservableCollection<RequestDTO> previousReq =new ObservableCollection<RequestDTO> (MainWindow.Requests_.Where(j => j.Client.Id == ClientSer[i].Id));
+                ObservableCollection<RequestDTO> previousReq =new ObservableCollection<RequestDTO> 
+                    (MainWindow.Requests_.Where(j => j.Client.Id == ClientSer[i].Id && j.Client is RegularClient));
                 DateTime previousDate;
                 if (previousReq.Count != 0)
                 {

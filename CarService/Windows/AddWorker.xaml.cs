@@ -31,10 +31,17 @@ namespace CarService.Windows
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            worker = (IWorker)SelectWorker.SelectedItem;
-            worker.Quota = Math.Round(double.Parse(Quota.Text) / 100,3);
-            WorkerAdded?.Invoke(worker.ToDto());
-            this.Close();
+            try
+            {
+                worker = (IWorker)SelectWorker.SelectedItem;
+                if (worker == null) { MessageBox.Show("Оберіть працівника"); return; }
+                double quotaPercent = double.Parse(Quota.Text);
+                if (quotaPercent <10) { MessageBox.Show("Надто мала доля"); return; }
+                worker.Quota = Math.Round(quotaPercent / 100, 3);
+                WorkerAdded?.Invoke(worker.ToDto());
+                this.Close();
+            }
+            catch { MessageBox.Show("Введіть долю праціника"); }
         }
     }
 }

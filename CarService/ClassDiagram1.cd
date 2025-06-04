@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CarService.Storage.Detail" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAEBAAAQAQAAAAEACAAAAggAAAIAAA=</HashCode>
+      <FileName>Storage\Detail.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CarService.Storage.DetailDTO" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAIAAAAAAAAAggAAAAAAA=</HashCode>
+      <FileName>Storage\DetailDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Services.Service">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAEgAAAAAQAAAAEAIAABAAAAAAAAAA=</HashCode>
+      <FileName>Services\Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Services.ServiceDTO" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ServiceDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Services.ServiceExecuting">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAEAQAAAAAAAAAAQAAABEAAAAAAAAA=</HashCode>
+      <FileName>Services\ServiceExecuting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Services.ServiceExecutingDTO" Collapsed="true">
+    <Position X="16.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ServiceExecutingDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Orders.OrderPriceCalculator">
+    <Position X="23.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIIAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orders\OrderPriceCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Orders.Request">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAAAAAAAAAAAAAAAAQABAAAAAACAAAAAABYAAAgQ=</HashCode>
+      <FileName>Orders\Request.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Orders.RequestDTO" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAAAAAQAAAAAAAAAAAAAAAAAAAAABQAAgAAAAAAQ=</HashCode>
+      <FileName>Orders\RequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.Factory">
+    <Position X="24.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\ClassFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.ClientFactory">
+    <Position X="26.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\ClassFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.RegularClientFactory">
+    <Position X="23.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAIAAAA=</HashCode>
+      <FileName>Utils\ClassFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.ClassFactory">
+    <Position X="20.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAgAAAAAAAAAAFAAAABAAAAAABABAA=</HashCode>
+      <FileName>Utils\ClassFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.DetailPriceCalculator">
+    <Position X="22" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Utils\DetailPriceCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.Searching">
+    <Position X="20.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Utils\Searching.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.Serializer">
+    <Position X="27.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Serializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.ServiceManager">
+    <Position X="25.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAgAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\ServiceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Utils.SortingUtils">
+    <Position X="22" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAEAQAAAAAgAAAAAAAAAAAIAAgAg=</HashCode>
+      <FileName>Utils\SortingUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Clients.Car">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIgAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAIgAI=</HashCode>
+      <FileName>Clients\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Clients.CarDTO" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAI=</HashCode>
+      <FileName>Clients\CarDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Clients.Client">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAQAAAAAAAAAQAAAAAAEAAAAAgAAAAAAAgA=</HashCode>
+      <FileName>Clients\Client.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CarService.Clients.ClientDTO" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQAAAAAAAAAAAQAAAAAAAAAAgAAAAAAgAA=</HashCode>
+      <FileName>Clients\ClientDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CarService.Clients.RegularClient">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAIAAAA=</HashCode>
+      <FileName>Clients\RegularClient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CarService.Workers.Worker" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAAAAAAAAAEAAAABAAgAAAAIAA=</HashCode>
+      <FileName>Workers\Worker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="CarService.Storage.IDetail">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAQAQAAAAAAAAAAAggAAAAAAA=</HashCode>
+      <FileName>Storage\IDetail.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.Clients.IClient">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Clients\IClient.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CarService.Workers.IWorker">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAgAAAAAAA=</HashCode>
+      <FileName>Workers\IWorker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

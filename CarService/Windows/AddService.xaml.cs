@@ -42,44 +42,53 @@ namespace CarService.Windows
 
         private void SelectDetail(object sender, RoutedEventArgs e)
         {
-            IDetail detailToAdd = (IDetail)Storage.SelectedItem;
-            int indx = Storage.SelectedIndex;
-            int count = int.Parse(Count.Text);
-            
-            if (DetailsSer[indx].Count < count) 
+            try
             {
-                MessageBox.Show("Недостатньо деталей");
-                return; 
+                IDetail detailToAdd = (IDetail)Storage.SelectedItem;
+                int indx = Storage.SelectedIndex;
+                int count = int.Parse(Count.Text);
+
+                if (DetailsSer[indx].Count < count || count <= 0)
+                {
+                    MessageBox.Show("Недостатньо деталей");
+                    return;
+                }
+                var currDetail = DetailsToTransfer.FirstOrDefault(i =>
+                i.Name == detailToAdd.Name &&
+                i.Model == detailToAdd.Model &&
+                i.Price == detailToAdd.Price &&
+                i.Value == detailToAdd.Value
+                );
+                if (currDetail == null)
+                {
+                    detailToAdd.Count = count;
+                    DetailsToTransfer.Add(detailToAdd);
+                }
+                else
+                {
+                    currDetail.Count += count;
+                    ObservableCollection<IDetail> newDet = new ObservableCollection<IDetail>(DetailsToTransfer.Select(i => i).ToList());
+                    DetailsToTransfer.Clear();
+                    foreach (var i in newDet) DetailsToTransfer.Add(i);
+                }
+                DetailsSer[indx].Count -= count;
+                ObservableCollection<IDetail> toShow = new ObservableCollection<IDetail>(DetailsSer.Select(i => ClassFactory.CreateDetail(i)).ToList());
+                Details.Clear();
+                foreach (var i in toShow) Details.Add(i);
             }
-            var currDetail = DetailsToTransfer.FirstOrDefault(i =>
-            i.Name == detailToAdd.Name &&
-            i.Model == detailToAdd.Model &&
-            i.Price == detailToAdd.Price &&
-            i.Value == detailToAdd.Value
-            );
-            if (currDetail == null)
-            {
-                detailToAdd.Count = count;
-                DetailsToTransfer.Add(detailToAdd);
-            }
-            else 
-            {
-                currDetail.Count += count;
-                ObservableCollection<IDetail> newDet = new ObservableCollection<IDetail>(DetailsToTransfer.Select(i => i).ToList());
-                DetailsToTransfer.Clear();
-                foreach (var i in newDet) DetailsToTransfer.Add(i);
-            }
-            DetailsSer[indx].Count -= count;
-            ObservableCollection<IDetail> toShow = new ObservableCollection<IDetail>(DetailsSer.Select(i => ClassFactory.CreateDetail(i)).ToList());
-            Details.Clear();
-            foreach(var i in toShow) Details.Add(i);
+            catch { MessageBox.Show("Не вибрано кількість деталей або не вибрано деталь"); }
         }
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            Window1.TransferService(ClassFactory.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
-            Window1.TransferDetailsToSerialize(DetailsSer);
-            this.Close();
+            try
+            {
+                if (selectedService == null) { MessageBox.Show("Оберіть серіс"); return; }
+                Window1.TransferService(ClassFactory.CreateServiceExexuting(selectedService, DetailsToTransfer).ToDto());
+                Window1.TransferDetailsToSerialize(DetailsSer);
+                this.Close();
+            }
+            catch { MessageBox.Show("Не сі дані введені"); }
         }
     }
 }

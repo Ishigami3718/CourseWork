@@ -17,19 +17,10 @@ namespace CarService.Orders
             double detailPrice = 0;
             foreach (var i in details)
             {
-                detailPrice += i.Price * i.Count;
+                detailPrice += DetailPriceCalculator.CalcPrice(i);
             }
             return (detailPrice + service.Price) * (1 + vat);
         }
-        /*public static double CalcPrice(ServiceExecuting service)
-        {
-            double detailPrice = 0;
-            foreach (var i in service.Details)
-            {
-                detailPrice += i.Price * i.Count;
-            }
-            return (detailPrice + service.Service.Price) * (1 + vat);
-        }*/
 
         public static double CalcFullPrice(ObservableCollection<ServiceExecuting> services, IClient client)
         {

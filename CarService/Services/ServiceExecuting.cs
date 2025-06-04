@@ -15,8 +15,10 @@ namespace CarService.Services
         public ObservableCollection<IDetail> Details {  get { return details; } set { if (value.Count != 0 || value != null) details = value; } }
 
         public double TotalPrice { get { return OrderPriceCalculator.CalcPrice(service, details); } }
+
+
         /*public Service Service { get { return service; } }
-        public List<IDetail> Details { get { return details; } }*/
+public List<IDetail> Details { get { return details; } }*/
 
 
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.Windows"
         mc:Ignorable="d"
-        Title="CarInfo" Height="100" Width="600">
+        Title="Машина" Height="100" Width="600">
     <Grid>
         <DataGrid x:Name="ServicesTable" ColumnWidth="*" HorizontalAlignment="Stretch" CanUserResizeColumns="False" CanUserResizeRows="False" 
 VerticalAlignment="Stretch" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Car}" HorizontalScrollBarVisibility="Auto"

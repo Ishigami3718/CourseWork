@@ -107,6 +107,7 @@ namespace CarService
             RequestDTO toDelete = Requests.SelectedReq;
             requestsSer.Remove(toDelete);
             requests.Remove(toDelete);
+            Serializer.Serialize(requestsSer, @"Orders\Orders.xml");
             dataAddition.UpdateData(null);
         }
 

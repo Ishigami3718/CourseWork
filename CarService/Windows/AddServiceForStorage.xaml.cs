@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CarService.Storage;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,9 +39,30 @@ namespace CarService.Windows
 
         private void OK(object sender, RoutedEventArgs e)
         {
-            if (isRedact) Pages.Service.Redact(ClassFactory.CreateService(Name.Text, double.Parse(Price.Text)).ToDto(), idToRedact);
-            else Pages.Service.TransferService(ClassFactory.CreateService(Name.Text,double.Parse(Price.Text)).ToDto());
-            this.Close();
+            try
+            {
+                Services.Service service = ClassFactory.CreateService(Name.Text, double.Parse(Price.Text));
+                ServiceDTO serviceDTO = service.ToDto();
+
+                List<System.ComponentModel.DataAnnotations.ValidationResult> serviceValidationResults =
+                new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                bool isServiceValid = Validator.TryValidateObject(serviceDTO, new ValidationContext(serviceDTO),
+                    serviceValidationResults, true);
+
+                if (isServiceValid)
+                {
+                    if (isRedact) Pages.Service.Redact(serviceDTO, idToRedact);
+                    else Pages.Service.TransferService(serviceDTO);
+                    this.Close();
+                }
+                else
+                {
+                    StringBuilder message = new StringBuilder();
+                    foreach (var i in serviceValidationResults) message.AppendLine(i.ToString());
+                    MessageBox.Show(message.ToString());
+                }
+            }
+            catch { MessageBox.Show("Не всі дані введені"); }
         }
     }
 }

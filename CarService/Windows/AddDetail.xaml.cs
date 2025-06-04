@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CarService.Clients;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,16 +46,39 @@ namespace CarService.Windows
 
         private void OK(object sender, RoutedEventArgs e)
         {
-            string value="";
-            switch (((ComboBoxItem)Value.SelectedItem).Content.ToString())
+            try
             {
-                case "Штуки":value="Шт";break;
-                case "Літри": value = "Л"; break;
+                string value = "";
+                ComboBoxItem selecteValue = Value.SelectedItem as ComboBoxItem;
+                if (selecteValue == null) {MessageBox.Show("Не всі дані введені"); return; }
+                switch (selecteValue.Content.ToString())
+                {
+                    case "Штуки": value = "Шт"; break;
+                    case "Літри": value = "Л"; break;
+                }
+                IDetail detail = ClassFactory.CreateDetail(Name.Text, Model.Text, double.Parse(Price.Text),
+                    double.Parse(Count.Text), value);
+                DetailDTO detailDTO = detail.ToDTO();
+
+                List<System.ComponentModel.DataAnnotations.ValidationResult> detailValidationResults =
+                new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                bool isDetailValid = Validator.TryValidateObject(detailDTO, new ValidationContext(detailDTO),
+                    detailValidationResults, true);
+
+                if (isDetailValid)
+                {
+                    if (isRedact) Pages.Storage.Redact(detailDTO, idToRedact);
+                    else Pages.Storage.TransferDetail(detailDTO);
+                    this.Close();
+                }
+                else
+                {
+                    StringBuilder message = new StringBuilder();
+                    foreach (var i in detailValidationResults) message.AppendLine(i.ToString());
+                    MessageBox.Show(message.ToString());
+                }
             }
-            if (isRedact) Pages.Storage.Redact(ClassFactory.CreateDetail(Name.Text, Model.Text, double.Parse(Price.Text),
-                double.Parse(Count.Text), value).ToDTO(), idToRedact);
-            else Pages.Storage.TransferDetail(ClassFactory.CreateDetail(Name.Text, Model.Text, double.Parse(Price.Text), double.Parse(Count.Text), value).ToDTO());
-            this.Close();
+            catch { MessageBox.Show("Не всі дані введені, або неправильний формат введених даних"); }
         }
     }
 }

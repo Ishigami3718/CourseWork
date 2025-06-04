@@ -19,15 +19,15 @@ namespace CarService.Utils
             new Services.Service("Заміна свічок зпалювання",400),
             new Services.Service("Заміна гальмівних колодок",1000),
             new Services.Service("Заміна ремня ГРМ",2750),
-            new Services.Service("Перевірка/заміна акамулятора",200)
+            new Services.Service("Перевірка/заміна акамулятора",200),
+            new Services.Service("Заміна гальмівної рдини",500),
+            new Services.Service("Перевірка гальмівних дисків",700),
         };
 
         static Dictionary<Services.Service, int> servicesByRunDiff;
 
         public static List<ServiceExecuting> DetermServicesByRunDiff(int newRun, ClientDTO previousRequest)
         {
-            List<Services.Service> services = Serializer.Deserialize<ServiceDTO>(@"Services\Services.xaml").
-                Select(i => new Services.Service(i)).ToList();
             List<ServiceExecuting> res = new List<ServiceExecuting>();
             servicesByRunDiff = new Dictionary<Services.Service, int>()
             {
@@ -39,7 +39,9 @@ namespace CarService.Utils
                 {baseServices[5],60000},
                 {baseServices[6],90000},
                 {baseServices[7],90000},
-                {baseServices[8],90000}
+                {baseServices[8],90000},
+                {baseServices[9],150000},
+                {baseServices[10],150000}
             };
             int previousRun;
             previousRun = previousRequest.Car.Run;

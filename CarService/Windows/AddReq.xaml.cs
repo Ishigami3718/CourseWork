@@ -44,23 +44,27 @@ namespace CarService.Windows
         public Window1(RequestDTO request,int id)
         {
             InitializeComponent();
-            Workers = new ObservableCollection<IWorker>(request.Workers.Select(i => ClassFactory.CreateWorker(i)).ToList());
-            Services = new ObservableCollection<ServiceExecuting>(request.Services.Select(i => ClassFactory.
-            CreateServiceExexuting(i)).ToList());
-            detailsSerialize = null;
-            Name.Text = request.ClientName;
-            Transmission.Text = request.Client.Transmission.ToString();
-            Discount.Text = (request.Client.Discount*100).ToString();
-            Mark.Text = request.Client.Car.Mark;
-            Model.Text = request.Client.Car.Model;
-            Plate.Text = request.Client.Car.LicensePlate;
-            Run.Text = request.Client.Car.Run.ToString();
-            RegDate.SelectedDate = request.Client.Car.RegisterDate;
-            RegularClient = Serializer.Deserialize<ClientDTO>(@"Clients\RegularClients.xml");
-            isRedact = true;
-            idToRedact = id;
-            if (ClassFactory.CreateClient(request.Client) is RegularClient) Regularity.IsChecked = true;
-            dateFromRedact = request.Date;
+            try
+            {
+                Workers = new ObservableCollection<IWorker>(request.Workers.Select(i => ClassFactory.CreateWorker(i)).ToList());
+                Services = new ObservableCollection<ServiceExecuting>(request.Services.Select(i => ClassFactory.
+                CreateServiceExexuting(i)).ToList());
+                detailsSerialize = null;
+                Name.Text = request.ClientName;
+                Transmission.Text = request.Client.Transmission.ToString();
+                Discount.Text = (request.Client.Discount * 100).ToString();
+                Mark.Text = request.Client.Car.Mark;
+                Model.Text = request.Client.Car.Model;
+                Plate.Text = request.Client.Car.LicensePlate;
+                Run.Text = request.Client.Car.Run.ToString();
+                RegDate.SelectedDate = request.Client.Car.RegisterDate;
+                RegularClient = Serializer.Deserialize<ClientDTO>(@"Clients\RegularClients.xml");
+                isRedact = true;
+                idToRedact = id;
+                if (ClassFactory.CreateClient(request.Client) is RegularClient) Regularity.IsChecked = true;
+                dateFromRedact = request.Date;
+            }
+            catch { }
             DataContext = this;
         }
 
@@ -121,8 +125,14 @@ namespace CarService.Windows
                 if (isRedact) requst = ClassFactory.CreateRequest(client, idToRedact + 1, dateFromRedact, Services, Workers);
                 else requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, DateTime.Now, Services, Workers);
 
-                
-                if (Workers.Count != 0 && Services.Count != 0 && isCarValid && isclientValid)
+
+                RequestDTO requestDTO = requst.ToDTO();
+                List<System.ComponentModel.DataAnnotations.ValidationResult> requestValidationResults =
+                    new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                bool isRequestValid = Validator.TryValidateObject(requestDTO, new ValidationContext(requestDTO),
+                    requestValidationResults, true);
+
+                if (Workers.Count != 0 && Services.Count != 0 && isCarValid && isclientValid && isRequestValid)
                 {
                     if (isRedact) MainWindow.Redact(requst.ToDTO(), idToRedact);
                     else MainWindow.TransferRequest(requst.ToDTO());
@@ -134,10 +144,11 @@ namespace CarService.Windows
                     StringBuilder message = new StringBuilder();
                     foreach (var i in clientValidationResults) message.AppendLine(i.ToString());
                     foreach (var i in carValidationResults) message.AppendLine(i.ToString());
+                    foreach (var i in requestValidationResults) message.AppendLine(i.ToString());
                     MessageBox.Show(message.ToString());
                 }
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            catch { MessageBox.Show("Не всі дані введені"); }
         }
 
         private void ClearServices(object sender, RoutedEventArgs e) 
@@ -163,5 +174,6 @@ namespace CarService.Windows
                 Discount.IsEnabled = false;
             }
         }
+
     }
 }

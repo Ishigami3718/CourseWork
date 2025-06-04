@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -41,9 +42,16 @@ namespace CarService.Pages
 
         public void Redact(ObservableCollection<RequestDTO> requestsToSer)
         {
-            RequestDTO toRedact = (RequestDTO)DataGrid.SelectedItem;
-            Window1 redacting = new Window1(toRedact, requestsToSer.IndexOf(toRedact));
-            redacting.ShowDialog();
+            try
+            {
+                RequestDTO toRedact = (RequestDTO)DataGrid.SelectedItem;
+                if (toRedact != null)
+                {
+                    Window1 redacting = new Window1(toRedact, requestsToSer.IndexOf(toRedact));
+                    redacting.ShowDialog();
+                }
+            }
+            catch {  }
         }
     }
 }

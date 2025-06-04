@@ -89,6 +89,7 @@ namespace CarService.Pages
         private void Redact(object sender, RoutedEventArgs e)
         {
             DetailDTO detailToRedact = DetailsTable.SelectedItem as DetailDTO;
+            if (detailToRedact == null) return;
             new AddDetail(detailToRedact, DetailsSer.IndexOf(detailToRedact)).ShowDialog();
             Serializer.Serialize(DetailsSer, @"Storage\Storage.xml");
         }

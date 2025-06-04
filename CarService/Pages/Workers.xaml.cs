@@ -86,6 +86,7 @@ namespace CarService.Pages
         private void Redact(object sender, RoutedEventArgs e)
         {
             WorkerDTO workerToRedact = WorkersTable.SelectedItem as WorkerDTO;
+            if (workerToRedact == null) return;
             new AddWorkerForStorage(workerToRedact, WorkersSer.IndexOf(workerToRedact)).ShowDialog();
             Serializer.Serialize(WorkersSer, @"Workers\Workers.xml");
         }
