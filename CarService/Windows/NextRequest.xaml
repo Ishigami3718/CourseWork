@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.Windows"
         mc:Ignorable="d"
-        Title="Нступне замовлення" Height="350" Width="500">
+        Title="Наступне замовлення" Height="350" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

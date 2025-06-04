@@ -116,11 +116,6 @@ namespace CarService.Windows
                     new List<System.ComponentModel.DataAnnotations.ValidationResult>();
                 bool isclientValid = Validator.TryValidateObject(clientDTO, new ValidationContext(clientDTO), 
                     clientValidationResults, true);
-                if (client is RegularClient)
-                {
-                    RegularClient.Add(client.ToDTO());
-                    Serializer.Serialize(RegularClient, @"Clients\RegularClients.xml");
-                }
                 Request requst;
                 if (isRedact) requst = ClassFactory.CreateRequest(client, idToRedact + 1, dateFromRedact, Services, Workers);
                 else requst = ClassFactory.CreateRequest(client, MainWindow.LastId + 1, DateTime.Now, Services, Workers);
@@ -137,6 +132,11 @@ namespace CarService.Windows
                     if (isRedact) MainWindow.Redact(requst.ToDTO(), idToRedact);
                     else MainWindow.TransferRequest(requst.ToDTO());
                     if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
+                    if (client is RegularClient)
+                    {
+                        RegularClient.Add(client.ToDTO());
+                        Serializer.Serialize(RegularClient, @"Clients\RegularClients.xml");
+                    }
                     this.Close();
                 }
                 else
@@ -148,7 +148,7 @@ namespace CarService.Windows
                     MessageBox.Show(message.ToString());
                 }
             }
-            catch { MessageBox.Show("Не всі дані введені"); }
+            catch { MessageBox.Show("Не всі дані введені, або введені некоректно"); }
         }
 
         private void ClearServices(object sender, RoutedEventArgs e) 

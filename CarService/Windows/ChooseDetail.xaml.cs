@@ -47,7 +47,7 @@ namespace CarService.Windows
                 int indx = Storage.SelectedIndex;
                 int count = int.Parse(Count.Text);
 
-                if (DetailsSer[indx].Count < count)
+                if (DetailsSer[indx].Count < count || count <= 0)
                 {
                     MessageBox.Show("Недостатньо деталей");
                     return;
