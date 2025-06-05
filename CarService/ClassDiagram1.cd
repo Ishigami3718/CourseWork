@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CarService.Storage.Detail" BaseTypeListCollapsed="true">
-    <Position X="6.5" Y="3" Width="1.5" />
+    <Position X="6" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAQAAAAAEBAAAQAQAAAAEACAAAAggAAAIAAA=</HashCode>
       <FileName>Storage\Detail.cs</FileName>
@@ -23,7 +23,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CarService.Services.ServiceDTO" Collapsed="true">
-    <Position X="12.75" Y="3.5" Width="1.5" />
+    <Position X="17.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\ServiceDTO.cs</FileName>
@@ -65,21 +65,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CarService.Utils.Factory">
-    <Position X="24.75" Y="3.75" Width="1.5" />
+    <Position X="10.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\ClassFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarService.Utils.ClientFactory">
-    <Position X="26.25" Y="5.25" Width="1.5" />
+    <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\ClassFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarService.Utils.RegularClientFactory">
-    <Position X="23.75" Y="5.25" Width="1.5" />
+    <Position X="10" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAIAAAA=</HashCode>
       <FileName>Utils\ClassFactory.cs</FileName>
@@ -150,7 +150,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CarService.Clients.ClientDTO" Collapsed="true">
-    <Position X="12.75" Y="1.5" Width="1.5" />
+    <Position X="18.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAQAAAAAAAAAAAQAAAAAAAAAAgAAAAAAgAA=</HashCode>
       <FileName>Clients\ClientDTO.cs</FileName>
@@ -165,7 +165,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CarService.Workers.Worker" BaseTypeListCollapsed="true">
-    <Position X="4.5" Y="5.5" Width="1.5" />
+    <Position X="4.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAEAAAAAAAAAAAEAAAABAAgAAAAIAA=</HashCode>
       <FileName>Workers\Worker.cs</FileName>
@@ -173,21 +173,21 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Interface Name="CarService.Storage.IDetail">
-    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAQAQAAAAAAAAAAAggAAAAAAA=</HashCode>
       <FileName>Storage\IDetail.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="CarService.Clients.IClient">
-    <Position X="8.25" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Clients\IClient.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="CarService.Workers.IWorker">
-    <Position X="4.5" Y="3.75" Width="1.5" />
+    <Position X="10" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAgAAAAAAA=</HashCode>
       <FileName>Workers\IWorker.cs</FileName>

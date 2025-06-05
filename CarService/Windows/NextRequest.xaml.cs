@@ -54,11 +54,11 @@ namespace CarService.Windows
                 {
                     RequestDTO previousRequest = previousRequests.Last();
                     currRun = int.Parse(CurrentRun.Text);
-                    newRun = currRun-previousRequest.Client.Car.Run;
+                    newRun = currRun;
+                    int run = currRun-previousRequest.Client.Car.Run;
                     ObservableCollection<Services.ServiceExecuting> services =
-                        new ObservableCollection<Services.ServiceExecuting>(ServiceManager.DetermServicesByRunDiff(currRun, previousRequest.Client));
+                        new ObservableCollection<Services.ServiceExecuting>(ServiceManager.DetermServicesByRunDiff(run, previousRequest.Client));
                     Services.Clear();
-                    client.Car.Run = newRun;
                     foreach (var i in services) Services.Add(i);
                 }
                 else
@@ -68,7 +68,6 @@ namespace CarService.Windows
                     ObservableCollection<Services.ServiceExecuting> services =
                         new ObservableCollection<Services.ServiceExecuting>(ServiceManager.DetermServicesByRunDiff(currRun, client));
                     Services.Clear();
-                    client.Car.Run = newRun;
                     foreach (var i in services) Services.Add(i);
                 }
             }
@@ -113,6 +112,10 @@ namespace CarService.Windows
                 if (isRequestValid)
                 {
                     MainWindow.TransferRequest(requestDTO);
+                    if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
+                    client.Car.Run = newRun;
+                    Serializer.Serialize(MainWindow.Requests_, @"Orders\Orders.xml");
+                    this.Close();
                 }
                 else
                 {
@@ -120,10 +123,6 @@ namespace CarService.Windows
                     foreach (var i in requestValidationResults) message.AppendLine(i.ToString());
                     MessageBox.Show(message.ToString());
                 }
-                if (detailsSerialize != null) Serializer.Serialize(detailsSerialize, @"Storage\Storage.xml");
-                client.Car.Run = newRun;
-                Serializer.Serialize(MainWindow.Requests_, @"Orders\Orders.xml");
-                this.Close();
             }
             catch { MessageBox.Show("Не всі дані введені"); }
         }

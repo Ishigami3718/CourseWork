@@ -18,13 +18,6 @@ namespace CarService.Clients
             this.transmission = transmission;
             this.discount = discount;
         }
-
-        
-        /*public RegularClient(Client client,int transmission,double discount):base(client)
-        {
-            this.discount = discount;
-        }*/
-        
         public override ClientDTO ToDTO()
         {
             ClientDTO dto = base.ToDTO();

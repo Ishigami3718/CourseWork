@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService.Windows"
         mc:Ignorable="d"
-        Title="Працівник" Height="200" Width="300">
+        Title="Працівник" Height="200" Width="300" MinHeight="200" MinWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>

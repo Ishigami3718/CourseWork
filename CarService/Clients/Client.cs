@@ -20,14 +20,6 @@ namespace CarService.Clients
             this.name = name;
             this.car = car;
         }
-
-        /*public Client(Client client)
-        {
-            id= client.id;
-            this.name = client.name;
-            this.car = client.car;
-        }*/
-
         public Car Car { get { return this.car; } }
 
         public virtual ClientDTO ToDTO()

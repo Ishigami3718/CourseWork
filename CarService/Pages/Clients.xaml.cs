@@ -117,6 +117,7 @@ namespace CarService.Pages
             if (toNext != null)
             {
                 new NextRequest(toNext).ShowDialog();
+                Serializer.Serialize(ClientSer, @"Client\RegularClients.xml");
             }
         }
 
